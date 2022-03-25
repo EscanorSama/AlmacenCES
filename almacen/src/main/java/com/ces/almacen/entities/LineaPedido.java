@@ -1,5 +1,6 @@
 package com.ces.almacen.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,5 +20,15 @@ public class LineaPedido {
     @GeneratedValue
     @Column(name = "id")
     private long id;
+    @Column(name = "cantidad")
+    private int cantidad;
+
+    @ManyToOne
+    @JsonBackReference
+    private Pedido pedido;
+
+    @ManyToOne
+    @JsonBackReference
+    private Material material;
 
 }

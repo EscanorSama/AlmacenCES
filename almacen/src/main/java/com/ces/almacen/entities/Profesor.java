@@ -1,12 +1,14 @@
 package com.ces.almacen.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -19,10 +21,7 @@ public class Profesor {
     @GeneratedValue
     @Column(name = "id")
     private long id;
-    @Column(name = "idSolicitud")
-    private long idSolicitud;
-    @Column(name = "idPersona")
-    private long idPersona;
+
     @Column(name = "numSs")
     private int numSs;
     @Column(name = "salario")
@@ -30,6 +29,14 @@ public class Profesor {
 
     @OneToOne
     @JsonBackReference
-    Persona persona;
+    private Persona persona;
+
+    @OneToMany (mappedBy = "profesor")
+    @JsonManagedReference
+    private List<Solicitud> solicitudes;
+
+    @OneToMany(mappedBy = "profesor")
+    @JsonManagedReference
+    private List<Armario> armarios;
 
 }

@@ -14,7 +14,8 @@ import javax.persistence.*;
 @ToString
 @Entity
 @Table(name = "persona")
-public class Persona {
+public class
+Persona {
     @Id
     @GeneratedValue
     @Column(name = "id")

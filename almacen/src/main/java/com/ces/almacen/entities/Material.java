@@ -12,6 +12,7 @@ import org.hibernate.annotations.ManyToAny;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @Setter
@@ -26,13 +27,20 @@ public class Material {
     @Column
     private long id;
 
-    @ManyToMany(mappedBy = "material")
-    @JsonIgnoreProperties({"materiales"})
-    private ArrayList<Categoria> categorias;
+    @ManyToMany
+    private List<Categoria> categorias;
 
     @OneToMany(mappedBy = "material")
-    @JsonManagedReference
-    private Pedido pedido;
+    private List<LineaPedido> lineasPedidos;
+
+    @OneToMany(mappedBy = "material")
+    private List<LineaAlmacen> lineasAlmacen;
+
+    @OneToMany(mappedBy = "material")
+    private List<LineaSolicitud> lineasSolicitud;
+
+
+
 
 
 

@@ -25,4 +25,9 @@ public class Taquilla {
     @OneToOne
     @JsonBackReference
     private Contenedor contenedor;
+
+    @OneToOne
+    @JsonBackReference
+    private Alumno alumno;
+
 }

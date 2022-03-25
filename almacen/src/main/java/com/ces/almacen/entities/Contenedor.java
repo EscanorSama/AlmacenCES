@@ -7,6 +7,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -21,6 +22,12 @@ public class Contenedor {
     @GeneratedValue
     @Column(name = "id")
     private long id;
+    @Column(name = "zona")
+    private String zona;
+    @Column(name = "descripcion")
+    private String descripcion;
+    @Column(name = "numero")
+    private int numero;
 
 
     @OneToOne(mappedBy = "contenedor")
@@ -34,6 +41,10 @@ public class Contenedor {
     @OneToOne(mappedBy = "contenedor")
     @JsonManagedReference
     private Taquilla taquilla;
+
+    @OneToMany(mappedBy = "contenedor")
+    @JsonManagedReference
+    private List<LineaAlmacen> lineasAlmacen;
 
 
 

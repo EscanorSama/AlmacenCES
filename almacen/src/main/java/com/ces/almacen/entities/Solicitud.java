@@ -1,34 +1,32 @@
 package com.ces.almacen.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @ToString
 @Entity
-@Table(name = "alumno")
-public class Alumno {
+@Table(name = "solicitud")
+public class Solicitud {
     @Id
     @GeneratedValue
-    @Column(name = "id")
+    @Column(name="id")
     private long id;
+    @Column(name = "fecha")
+    private int fecha;
 
+    @OneToMany(mappedBy = "solicitud")
+    private List<LineaSolicitud> lineasSolicitud;
 
-    @OneToOne
+    @ManyToOne
     @JsonBackReference
-    private Persona persona;
-
-    @OneToOne(mappedBy = "alumno")
-    @JsonManagedReference
-    private Taquilla taquilla;
-
-
+    private Profesor profesor;
 }

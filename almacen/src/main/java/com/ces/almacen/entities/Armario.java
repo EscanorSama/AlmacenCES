@@ -26,6 +26,10 @@ public class Armario {
     @JsonBackReference
     private Contenedor contenedor;
 
+    @ManyToOne
+    @JsonBackReference
+    private Profesor profesor;
+
 
 
 }
