@@ -1,4 +1,7 @@
 package com.ces.almacen.repositories;
 
-public interface ContenedorRepository {
+import com.ces.almacen.entities.Contenedor;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface ContenedorRepository extends JpaRepository<Contenedor, Long> {
 }

@@ -1,7 +1,30 @@
 package com.ces.almacen.controllers;
 
-import org.springframework.web.bind.annotation.RestController;
+import com.ces.almacen.errors.NotFoundException;
+import com.ces.almacen.models.ArmarioModel;
+import com.ces.almacen.services.ArmarioService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 public class ArmarioController {
+    @Autowired
+    private ArmarioService armarioService;
+
+    @PostMapping(path = "/armario")
+    public void postArmario(@RequestBody ArmarioModel armarioModel){
+        armarioService.insertArmario(armarioModel);
+    }
+
+    @DeleteMapping(path = "/armario/{id}")
+    public ArmarioModel deleteArmario(@PathVariable(name="id")Long id){
+        Optional<ArmarioModel> result = armarioService.deleteArmario(id);
+        if(result.isPresent()){
+            return result.get();
+        }
+        throw new NotFoundException();
+    }
+
 }

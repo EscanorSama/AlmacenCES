@@ -9,6 +9,8 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @ToString
-public class AlmacenModel {
+public class LineaAlmacenModel {
     private long id;
+    private int cantidad;
+    private int fecha;
 }
