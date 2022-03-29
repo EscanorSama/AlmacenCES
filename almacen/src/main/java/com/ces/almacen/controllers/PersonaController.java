@@ -18,6 +18,15 @@ public class PersonaController {
         personaService.insertPersona(personaModel);
     }
 
+    @GetMapping(path = "/persona/{id}")
+    public PersonaModel getPersona(@PathVariable(name = "id")Long id){
+        Optional<PersonaModel> result = personaService.getPersona(id);
+        if(result.isPresent()){
+            return result.get();
+        }
+        throw new NotFoundException();
+    }
+
     @DeleteMapping(path = "/persona/{id}")
     public PersonaModel deletePersona(@PathVariable(name = "id")Long id){
         Optional<PersonaModel> result = personaService.deletePersona(id);

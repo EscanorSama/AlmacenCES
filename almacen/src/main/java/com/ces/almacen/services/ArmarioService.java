@@ -33,4 +33,15 @@ public class ArmarioService {
         }
         return resultAm;
     }
+
+    public Optional<ArmarioModel> getArmario(Long id) {
+        Optional<ArmarioModel> resultAm = Optional.empty();
+        Optional<Armario> result = armarioRepository.findById(id);
+        if(result.isPresent()){
+            Armario armario = result.get();
+            ArmarioModel armarioModel = armarioConverter.entityToModel(armario);
+            resultAm = Optional.of(armarioModel);
+        }
+        return resultAm;
+    }
 }

@@ -33,4 +33,15 @@ public class AlumnoService {
         }
         return resultAm;
     }
+
+    public Optional<AlumnoModel> getAlumno(Long id) {
+        Optional<AlumnoModel> resultAm = Optional.empty();
+        Optional<Alumno> result = alumnoRepository.findById(id);
+        if(result.isPresent()){
+            Alumno alumno = result.get();
+            AlumnoModel alumnoModel = alumnoConverter.entityToModel(alumno);
+            resultAm = Optional.of(alumnoModel);
+        }
+        return resultAm;
+    }
 }

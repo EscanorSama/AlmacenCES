@@ -11,4 +11,7 @@ import lombok.ToString;
 @ToString
 public class TaquillaModel {
     private long id;
+    private long contenedor_id;
+    private long alumno_id;
+
 }

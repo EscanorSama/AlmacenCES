@@ -32,4 +32,15 @@ public class MaterialService {
         }
         return resultMm;
     }
+
+    public Optional<MaterialModel> getMaterial(Long id) {
+        Optional<MaterialModel> resultMm = Optional.empty();
+        Optional<Material> result = materialRepository.findById(id);
+        if(result.isPresent()){
+            Material material = result.get();
+            MaterialModel materialModel = materialConverter.entityToModel(material);
+            resultMm = Optional.of(materialModel);
+        }
+        return resultMm;
+    }
 }

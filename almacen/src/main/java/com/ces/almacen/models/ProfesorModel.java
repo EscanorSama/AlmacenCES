@@ -13,4 +13,5 @@ public class ProfesorModel {
     private long id;
     private int numSs;
     private double salario;
+    private long persona_id;
 }

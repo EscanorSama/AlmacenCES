@@ -19,6 +19,15 @@ public class TaquillaController {
         taquillaService.insertTaquilla(taquillaModel);
     }
 
+    @GetMapping(path = "/taquilla/{id}")
+    public TaquillaModel getTaquilla(@PathVariable(name = "id")Long id){
+        Optional<TaquillaModel> result = taquillaService.getTaquilla(id);
+        if (result.isPresent()){
+            return result.get();
+        }
+        throw new NotFoundException();
+    }
+
     @DeleteMapping(path = "/taquilla/{id}")
     public TaquillaModel deleteTaquilla(@PathVariable(name = "id") Long id){
         Optional<TaquillaModel> result = taquillaService.deleteTaquilla(id);

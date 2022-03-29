@@ -11,4 +11,5 @@ import lombok.ToString;
 @ToString
 public class AlumnoModel {
     private long id;
+    private long persona_id;
 }

@@ -30,15 +30,15 @@ public class Contenedor {
     private int numero;
 
 
-    @OneToOne(mappedBy = "contenedor")
+    @OneToOne(mappedBy = "contenedor", cascade = CascadeType.REMOVE)
     @JsonManagedReference
     private Almacen almacen;
 
-    @OneToOne(mappedBy = "contenedor")
+    @OneToOne(mappedBy = "contenedor", cascade = CascadeType.REMOVE)
     @JsonManagedReference
     private Armario armario;
 
-    @OneToOne(mappedBy = "contenedor")
+    @OneToOne(mappedBy = "contenedor", cascade = CascadeType.REMOVE)
     @JsonManagedReference
     private Taquilla taquilla;
 

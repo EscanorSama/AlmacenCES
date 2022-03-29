@@ -32,4 +32,15 @@ public class PersonaService {
         }
         return resultPm;
     }
+
+    public Optional<PersonaModel> getPersona(Long id) {
+        Optional<PersonaModel> resultPm = Optional.empty();
+        Optional<Persona> result = personaRepository.findById(id);
+        if(result.isPresent()){
+            Persona persona = result.get();
+            PersonaModel personaModel = personaConverter.entityToModel(persona);
+            resultPm = Optional.of(personaModel);
+        }
+        return resultPm;
+    }
 }

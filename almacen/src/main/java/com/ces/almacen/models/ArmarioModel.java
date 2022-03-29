@@ -11,4 +11,6 @@ import lombok.ToString;
 @ToString
 public class ArmarioModel {
     private long id;
+    private long contenedor_id;
+    private long profesor_id;
 }

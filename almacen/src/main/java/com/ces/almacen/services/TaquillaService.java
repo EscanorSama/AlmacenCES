@@ -32,4 +32,15 @@ public class TaquillaService {
         }
         return resultTm;
     }
+
+    public Optional<TaquillaModel> getTaquilla(Long id) {
+        Optional<TaquillaModel> resultTm = Optional.empty();
+        Optional<Taquilla> result = taquillaRepository.findById(id);
+        if (result.isPresent()){
+            Taquilla taquilla = result.get();
+            TaquillaModel taquillaModel = taquillaConverter.entityToModel(taquilla);
+            resultTm = Optional.of(taquillaModel);
+        }
+        return resultTm;
+    }
 }

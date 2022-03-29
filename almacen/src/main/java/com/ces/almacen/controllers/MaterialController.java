@@ -18,6 +18,15 @@ public class MaterialController {
         materialService.insertMaterial(materialModel);
     }
 
+    @GetMapping(path = "/material/{id}")
+    public MaterialModel getMaterial(@PathVariable(name = "id")Long id){
+        Optional<MaterialModel> result = materialService.getMaterial(id);
+        if(result.isPresent()){
+            return result.get();
+        }
+        throw new NotFoundException();
+    }
+
     @DeleteMapping(path = "/material/id")
     public MaterialModel deleteMaterial(@PathVariable(name = "id")Long id){
         Optional<MaterialModel> result = materialService.deleteMaterial(id);

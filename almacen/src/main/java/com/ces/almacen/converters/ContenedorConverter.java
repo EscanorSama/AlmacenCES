@@ -18,7 +18,7 @@ public class ContenedorConverter {
         Contenedor contenedor = new Contenedor();
         contenedor.setId(contenedorModel.getId());
         contenedor.setZona(contenedorModel.getZona());
-        contenedor.setDescripcion(contenedor.getDescripcion());
+        contenedor.setDescripcion(contenedorModel.getDescripcion());
         contenedor.setNumero(contenedorModel.getNumero());
         return contenedor;
     }

@@ -1,5 +1,6 @@
 package com.ces.almacen.controllers;
 
+import com.ces.almacen.entities.Pedido;
 import com.ces.almacen.errors.NotFoundException;
 import com.ces.almacen.models.PedidoModel;
 import com.ces.almacen.services.PedidoService;
@@ -16,6 +17,15 @@ public class PedidoController {
     @PostMapping(path = "/pedido")
     public void postPedido(@RequestBody PedidoModel pedidoModel){
         pedidoService.insertPedido(pedidoModel);
+    }
+
+    @GetMapping(path = "pedido/{id}")
+    public PedidoModel getPedido (@PathVariable(name = "id")Long id){
+        Optional<PedidoModel> result = pedidoService.getPedido(id);
+        if(result.isPresent()){
+            return result.get();
+        }
+        throw new NotFoundException();
     }
 
     @DeleteMapping(path = "/pedido/{id}")

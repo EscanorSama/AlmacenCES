@@ -6,6 +6,7 @@ import com.ces.almacen.services.ContenedorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -16,6 +17,34 @@ public class ContenedorController {
     @PostMapping(path = "/contenedor")
     public void postContenedor(@RequestBody ContenedorModel contenedorModel){
         contenedorService.insertContenedor(contenedorModel);
+    }
+
+    @GetMapping(path = "/contenedores")
+    public List<ContenedorModel> getContenedores(@RequestParam(name = "zona", required = false)String zona,
+                                                 @RequestParam(name = "descripcion", required = false)String descripcion,
+                                                 @RequestParam(name = "numero", required = false)Integer numero){
+        if (zona!=null  ){
+            return contenedorService.getContenedorZona(zona);
+        }
+
+
+
+        else if( descripcion!=null ){
+            return contenedorService.getContenedorDescripcion(descripcion);
+        }else if (numero!=null){
+            return contenedorService.getContenedorNumero(numero);
+        }else{
+            return contenedorService.getContenedores();
+        }
+    }
+
+    @GetMapping(path = "/contenedor/{id}")
+    public ContenedorModel getContenedor(@PathVariable(name = "id")Long id){
+        Optional<ContenedorModel> result = contenedorService.getContenedor(id);
+        if(result.isPresent()){
+            return result.get();
+        }
+        throw new NotFoundException();
     }
 
     @DeleteMapping(path = "/contenedor/{id}")

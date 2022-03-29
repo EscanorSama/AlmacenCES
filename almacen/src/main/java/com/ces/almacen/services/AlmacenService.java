@@ -18,6 +18,9 @@ public class AlmacenService {
     @Autowired
     private AlmacenConverter almacenConverter;
 
+
+
+
     public void insertAlmacen(AlmacenModel almacenModel) {
         Almacen almacen = almacenConverter.modelToEntity(almacenModel);
         almacenRepository.save(almacen);
@@ -32,6 +35,17 @@ public class AlmacenService {
             resultAm = Optional.of(almacenModel);
             resultAm = Optional.of(almacenModel);
             almacenRepository.delete(almacen);
+        }
+        return resultAm;
+    }
+
+    public Optional<AlmacenModel> getAlmacen(Long id) {
+        Optional<AlmacenModel> resultAm = Optional.empty();
+        Optional<Almacen> result = almacenRepository.findById(id);
+        if (result.isPresent()){
+            Almacen almacen = result.get();
+            AlmacenModel almacenModel = almacenConverter.entityToModel(almacen);
+            resultAm = Optional.of(almacenModel);
         }
         return resultAm;
     }

@@ -34,4 +34,15 @@ public class CategoriaService {
         }
         return resultCm;
     }
+
+    public Optional<CategoriaModel> getCategoria(Long id) {
+        Optional<CategoriaModel> resultCm = Optional.empty();
+        Optional<Categoria> result = categoriaRepository.findById(id);
+        if (result.isPresent()){
+            Categoria categoria = result.get();
+            CategoriaModel categoriaModel = categoriaConverter.entityToModel(categoria);
+            resultCm = Optional.of(categoriaModel);
+        }
+        return resultCm;
+    }
 }

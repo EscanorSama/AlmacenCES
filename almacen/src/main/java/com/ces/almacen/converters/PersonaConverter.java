@@ -19,7 +19,7 @@ public class PersonaConverter {
     public Persona modelToEntity (PersonaModel personaModel){
         Persona persona = new Persona();
         persona.setId(personaModel.getId());
-        persona.setMail(persona.getMail());
+        persona.setMail(personaModel.getMail());
         persona.setNombre(personaModel.getNombre());
         persona.setApellido(personaModel.getApellido());
         persona.setDni(personaModel.getDni());

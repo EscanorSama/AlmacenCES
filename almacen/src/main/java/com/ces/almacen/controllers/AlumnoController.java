@@ -18,6 +18,15 @@ public class AlumnoController {
         alumnoService.insertAlumno(alumnoModel);
     }
 
+    @GetMapping(path = "/alumno")
+    public AlumnoModel getAlumno(@PathVariable(name = "id")Long id){
+        Optional<AlumnoModel> result = alumnoService.getAlumno(id);
+        if (result.isPresent()){
+            return result.get();
+        }
+        throw new NotFoundException();
+    }
+
     @DeleteMapping(path = "/alumno/{id}")
     public AlumnoModel deleteAlumno(@PathVariable(name = "id") Long id){
         Optional<AlumnoModel> result = alumnoService.deleteAlumno(id);

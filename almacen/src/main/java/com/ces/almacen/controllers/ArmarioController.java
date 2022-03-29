@@ -18,6 +18,15 @@ public class ArmarioController {
         armarioService.insertArmario(armarioModel);
     }
 
+    @GetMapping(path = "/armario/{id}")
+    public ArmarioModel getArmario(@PathVariable(name = "id")Long id){
+        Optional<ArmarioModel> result = armarioService.getArmario(id);
+        if(result.isPresent()){
+            return result.get();
+        }
+        throw new NotFoundException();
+    }
+
     @DeleteMapping(path = "/armario/{id}")
     public ArmarioModel deleteArmario(@PathVariable(name="id")Long id){
         Optional<ArmarioModel> result = armarioService.deleteArmario(id);

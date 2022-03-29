@@ -1,5 +1,6 @@
 package com.ces.almacen.converters;
 
+import com.ces.almacen.entities.Persona;
 import com.ces.almacen.entities.Profesor;
 import com.ces.almacen.models.ProfesorModel;
 import org.springframework.stereotype.Component;
@@ -13,6 +14,7 @@ public class ProfesorConverter {
         profesorModel.setId(profesor.getId());
         profesorModel.setNumSs(profesor.getNumSs());
         profesorModel.setSalario(profesor.getSalario());
+        profesorModel.setPersona_id(profesorModel.getPersona_id());
         return profesorModel;
     }
 
@@ -21,6 +23,11 @@ public class ProfesorConverter {
         profesor.setId(profesorModel.getId());
         profesor.setNumSs(profesorModel.getNumSs());
         profesor.setSalario(profesorModel.getSalario());
+
+        Persona persona = new Persona();
+        persona.setId(profesorModel.getPersona_id());
+        profesor.setPersona(persona);
+
         return profesor;
     }
 
