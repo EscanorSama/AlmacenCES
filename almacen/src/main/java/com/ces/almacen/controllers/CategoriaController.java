@@ -6,6 +6,7 @@ import com.ces.almacen.services.CategoriaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -25,6 +26,11 @@ public class CategoriaController {
             return result.get();
         }
         throw new NotFoundException();
+    }
+
+    @GetMapping(path = "/categorias")
+    public List<CategoriaModel> getCategorias(){
+        return categoriaService.getCategorias();
     }
 
     @DeleteMapping(path = "/categoria/{id}")

@@ -8,6 +8,8 @@ import com.ces.almacen.repositories.ArmarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -50,5 +52,20 @@ public class ArmarioService {
             resultAm = Optional.of(armarioModel);
         }
         return resultAm;
+    }
+
+    public List<ArmarioModel> getArmarios() {
+        List<Armario> armarios = armarioRepository.findAll();
+        List<ArmarioModel> armariosModel = listArmarioToListArmarioModel(armarios);
+        return armariosModel;
+    }
+
+    private List<ArmarioModel> listArmarioToListArmarioModel(List<Armario> armarios) {
+        List<ArmarioModel> armariosModel = new ArrayList<>();
+        for (Armario armario: armarios) {
+            ArmarioModel armarioModel = armarioConverter.entityToModel(armario);
+            armariosModel.add(armarioModel);
+        }
+        return armariosModel;
     }
 }

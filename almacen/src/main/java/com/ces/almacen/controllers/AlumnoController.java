@@ -6,6 +6,7 @@ import com.ces.almacen.services.AlumnoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -25,6 +26,11 @@ public class AlumnoController {
             return result.get();
         }
         throw new NotFoundException();
+    }
+
+    @GetMapping(path = "/alumnos")
+    public List<AlumnoModel> getAlumnos (){
+        return alumnoService.getAlumnos();
     }
 
     @DeleteMapping(path = "/alumno/{id}")

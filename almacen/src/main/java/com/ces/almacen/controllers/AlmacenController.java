@@ -23,11 +23,11 @@ public class AlmacenController {
         return almacenService.insertAlmacen(almacenModel);
     }
 
-    /*
-    @GetMapping(path = "/libros")
+    @GetMapping(path = "/almacenes")
     public List<AlmacenModel> getAlmacenes(){
+        return almacenService.getAlmacenes();
 
-    }*/
+    }
 
     @GetMapping(path = "/almacen/{id}")
     public AlmacenModel getAlmacen(@PathVariable(name = "id")Long id){

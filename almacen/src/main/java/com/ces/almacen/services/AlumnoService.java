@@ -8,6 +8,8 @@ import com.ces.almacen.repositories.AlumnoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -50,5 +52,20 @@ public class AlumnoService {
             resultAm = Optional.of(alumnoModel);
         }
         return resultAm;
+    }
+
+    public List<AlumnoModel> getAlumnos() {
+        List<Alumno> alumnos = alumnoRepository.findAll();
+        List<AlumnoModel> alumnosModel = listAlumnoToListAlumnoModel(alumnos);
+        return alumnosModel;
+    }
+
+    private List<AlumnoModel> listAlumnoToListAlumnoModel(List<Alumno> alumnos) {
+        List<AlumnoModel> alumnosModel = new ArrayList<>();
+        for (Alumno alumno:alumnos) {
+            AlumnoModel alumnoModel = alumnoConverter.entityToModel(alumno);
+            alumnosModel.add(alumnoModel);
+        }
+        return alumnosModel;
     }
 }

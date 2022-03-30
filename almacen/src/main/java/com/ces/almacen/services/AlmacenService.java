@@ -8,6 +8,7 @@ import com.ces.almacen.repositories.AlmacenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -53,5 +54,20 @@ public class AlmacenService {
             resultAm = Optional.of(almacenModel);
         }
         return resultAm;
+    }
+
+    public List<AlmacenModel> getAlmacenes() {
+        List<Almacen> almacenes = almacenRepository.findAll();
+        List<AlmacenModel> almacenesModels = listAlmacenToListAlmacenModel(almacenes);
+        return almacenesModels;
+    }
+
+    private List<AlmacenModel> listAlmacenToListAlmacenModel(List<Almacen> almacenes) {
+        List<AlmacenModel> almacenesModel = new ArrayList<>();
+        for (Almacen almacen: almacenes) {
+            AlmacenModel almacenModel = almacenConverter.entityToModel(almacen);
+            almacenesModel.add(almacenModel);
+        }
+        return almacenesModel;
     }
 }

@@ -26,9 +26,6 @@ public class ContenedorController {
         if (zona!=null  ){
             return contenedorService.getContenedorZona(zona);
         }
-
-
-
         else if( descripcion!=null ){
             return contenedorService.getContenedorDescripcion(descripcion);
         }else if (numero!=null){

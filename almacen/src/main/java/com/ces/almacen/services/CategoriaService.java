@@ -7,6 +7,8 @@ import com.ces.almacen.repositories.CategoriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -44,5 +46,20 @@ public class CategoriaService {
             resultCm = Optional.of(categoriaModel);
         }
         return resultCm;
+    }
+
+    public List<CategoriaModel> getCategorias() {
+        List<Categoria> categorias = categoriaRepository.findAll();
+        List<CategoriaModel> categoriaModels = listCategoriaToCategoriaModel(categorias);
+        return categoriaModels;
+    }
+
+    private List<CategoriaModel> listCategoriaToCategoriaModel(List<Categoria> categorias) {
+        List<CategoriaModel> categoriaModels = new ArrayList<>();
+        for (Categoria categoria: categorias) {
+            CategoriaModel categoriaModel = categoriaConverter.entityToModel(categoria);
+            categoriaModels.add(categoriaModel);
+        }
+        return categoriaModels;
     }
 }
