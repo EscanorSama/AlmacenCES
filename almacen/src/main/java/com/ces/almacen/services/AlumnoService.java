@@ -2,6 +2,7 @@ package com.ces.almacen.services;
 
 import com.ces.almacen.converters.AlumnoConverter;
 import com.ces.almacen.entities.Alumno;
+import com.ces.almacen.entities.Persona;
 import com.ces.almacen.models.AlumnoModel;
 import com.ces.almacen.repositories.AlumnoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +18,15 @@ public class AlumnoService {
     @Autowired
     private AlumnoConverter alumnoConverter;
 
-    public void insertAlumno(AlumnoModel alumnoModel) {
+    @Autowired
+    private PersonaService personaService;
+
+    public AlumnoModel insertAlumno(AlumnoModel alumnoModel) {
+        Persona persona = personaService.insertPersona(alumnoModel);
         Alumno alumno = alumnoConverter.modelToEntity(alumnoModel);
-        alumnoRepository.save(alumno);
+        alumno.setPersona(persona);
+        alumno.setId(alumnoRepository.save(alumno).getId());
+        return alumnoModel;
     }
 
     public Optional<AlumnoModel> deleteAlumno(Long id) {

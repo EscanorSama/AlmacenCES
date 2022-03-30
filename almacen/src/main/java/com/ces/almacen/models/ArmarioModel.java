@@ -9,8 +9,7 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @ToString
-public class ArmarioModel {
-    private long id;
-    private long contenedor_id;
-    private long profesor_id;
+public class ArmarioModel extends ContenedorModel{
+    private long armarioId;
+    private long profesorId;
 }

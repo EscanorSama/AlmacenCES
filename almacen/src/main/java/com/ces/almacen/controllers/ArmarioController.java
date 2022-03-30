@@ -14,8 +14,8 @@ public class ArmarioController {
     private ArmarioService armarioService;
 
     @PostMapping(path = "/armario")
-    public void postArmario(@RequestBody ArmarioModel armarioModel){
-        armarioService.insertArmario(armarioModel);
+    public ArmarioModel postArmario(@RequestBody ArmarioModel armarioModel){
+        return armarioService.insertArmario(armarioModel);
     }
 
     @GetMapping(path = "/armario/{id}")

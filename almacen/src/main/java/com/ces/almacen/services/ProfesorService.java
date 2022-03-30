@@ -1,6 +1,7 @@
 package com.ces.almacen.services;
 
 import com.ces.almacen.converters.ProfesorConverter;
+import com.ces.almacen.entities.Persona;
 import com.ces.almacen.entities.Profesor;
 import com.ces.almacen.models.ProfesorModel;
 import com.ces.almacen.repositories.ProfesorRepository;
@@ -17,10 +18,16 @@ public class ProfesorService {
     @Autowired
     private ProfesorConverter profesorConverter;
 
+    @Autowired
+    private PersonaService personaService;
 
-    public void insertProfesor(ProfesorModel profesorModel) {
+
+    public ProfesorModel insertProfesor(ProfesorModel profesorModel) {
+        Persona persona = personaService.insertPersona(profesorModel);
         Profesor profesor = profesorConverter.modelToEntity(profesorModel);
-        profesorRepository.save(profesor);
+        profesor.setPersona(persona);
+        profesorModel.setId(profesorRepository.save(profesor).getId());
+        return profesorModel;
     }
 
     /*

@@ -29,12 +29,6 @@ Persona {
     @Column(name = "dni")
     private String dni;
 
-    @OneToOne(mappedBy = "persona")
-    @JsonManagedReference
-    Alumno alumno;
-
-    @OneToOne(mappedBy = "persona")
-    @JsonManagedReference
-    Profesor profesor;
+    
 
 }

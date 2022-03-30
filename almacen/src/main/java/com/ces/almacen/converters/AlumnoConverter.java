@@ -9,19 +9,13 @@ import org.springframework.stereotype.Component;
 public class AlumnoConverter {
     public AlumnoModel entityToModel(Alumno alumno){
         AlumnoModel alumnoModel = new AlumnoModel();
-        alumnoModel.setId(alumno.getId());
-        alumnoModel.setPersona_id(alumno.getPersona().getId());
+        alumnoModel.setAlumnoId(alumno.getId());
         return alumnoModel;
     }
 
     public Alumno modelToEntity(AlumnoModel alumnoModel){
         Alumno alumno = new Alumno();
-        alumno.setId(alumnoModel.getId());
-
-        Persona persona = new Persona();
-        persona.setId(alumnoModel.getPersona_id());
-        alumno.setPersona(persona);
-
+        alumno.setId(alumnoModel.getAlumnoId());
         return alumno;
     }
 }

@@ -9,9 +9,8 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @ToString
-public class TaquillaModel {
-    private long id;
-    private long contenedor_id;
-    private long alumno_id;
+public class TaquillaModel extends ContenedorModel{
+    private long taquillaId;
+    private long alumnoId;
 
 }

@@ -1,6 +1,7 @@
 package com.ces.almacen.services;
 
 import com.ces.almacen.converters.TaquillaConverter;
+import com.ces.almacen.entities.Contenedor;
 import com.ces.almacen.entities.Taquilla;
 import com.ces.almacen.models.TaquillaModel;
 import com.ces.almacen.repositories.TaquillaRepository;
@@ -15,10 +16,16 @@ public class TaquillaService {
     private TaquillaRepository taquillaRepository;
     @Autowired
     private TaquillaConverter taquillaConverter;
+    @Autowired
+    private ContenedorService contenedorService;
 
-    public void insertTaquilla(TaquillaModel taquillaModel) {
+
+    public TaquillaModel insertTaquilla(TaquillaModel taquillaModel) {
+        Contenedor contenedor = contenedorService.insertContenedor(taquillaModel);
         Taquilla taquilla = taquillaConverter.modelToEntity(taquillaModel);
-        taquillaRepository.save(taquilla);
+        taquilla.setContenedor(contenedor);
+        taquillaModel.setTaquillaId(taquillaRepository.save(taquilla).getId());
+        return taquillaModel;
     }
 
     public Optional<TaquillaModel> deleteTaquilla(Long id) {

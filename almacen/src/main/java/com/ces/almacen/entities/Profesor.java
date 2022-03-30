@@ -23,7 +23,7 @@ public class Profesor {
     private long id;
 
     @Column(name = "numSs")
-    private int numSs;
+    private String numSs;
     @Column(name = "salario")
     private double salario;
 

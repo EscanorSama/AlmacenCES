@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 public class ContenedorConverter {
     public ContenedorModel entityToModel(Contenedor contenedor){
         ContenedorModel contenedorModel = new ContenedorModel();
-        contenedorModel.setId(contenedor.getId());
+        contenedorModel.setContenedorId(contenedor.getId());
         contenedorModel.setZona(contenedor.getZona());
         contenedorModel.setDescripcion(contenedor.getDescripcion());
         contenedorModel.setNumero(contenedor.getNumero());
@@ -16,7 +16,7 @@ public class ContenedorConverter {
     }
     public Contenedor modelToEntity(ContenedorModel contenedorModel){
         Contenedor contenedor = new Contenedor();
-        contenedor.setId(contenedorModel.getId());
+        contenedor.setId(contenedorModel.getContenedorId());
         contenedor.setZona(contenedorModel.getZona());
         contenedor.setDescripcion(contenedorModel.getDescripcion());
         contenedor.setNumero(contenedorModel.getNumero());

@@ -14,8 +14,8 @@ public class AlumnoController {
     private AlumnoService alumnoService;
 
     @PostMapping(path = "/alumno")
-    public void postAlumno(@RequestBody AlumnoModel alumnoModel){
-        alumnoService.insertAlumno(alumnoModel);
+    public AlumnoModel postAlumno(@RequestBody AlumnoModel alumnoModel){
+        return alumnoService.insertAlumno(alumnoModel);
     }
 
     @GetMapping(path = "/alumno")

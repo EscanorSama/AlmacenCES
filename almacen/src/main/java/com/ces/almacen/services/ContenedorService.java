@@ -19,9 +19,9 @@ public class ContenedorService {
     @Autowired
     private ContenedorConverter contenedorConverter;
 
-    public void insertContenedor(ContenedorModel contenedorModel) {
+    public Contenedor insertContenedor(ContenedorModel contenedorModel) {
         Contenedor contenedor = contenedorConverter.modelToEntity(contenedorModel);
-        contenedorRepository.save(contenedor);
+        return contenedorRepository.save(contenedor);
     }
 
     public Optional<ContenedorModel> deleteContenedor(Long id) {

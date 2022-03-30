@@ -16,8 +16,8 @@ public class ProfesorController {
 
 
     @PostMapping(path = "/profesor")
-    public void postProfesor(@RequestBody ProfesorModel profesorModel){
-        profesorService.insertProfesor(profesorModel);
+    public ProfesorModel postProfesor(@RequestBody ProfesorModel profesorModel){
+        return profesorService.insertProfesor(profesorModel);
     }
 
     /*

@@ -10,7 +10,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class ContenedorModel {
-    private long id;
+    private long contenedorId;
     private String zona;
     private String descripcion;
     private int numero;

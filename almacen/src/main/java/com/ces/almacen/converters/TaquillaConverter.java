@@ -10,24 +10,16 @@ import org.springframework.stereotype.Component;
 public class TaquillaConverter {
     public TaquillaModel entityToModel (Taquilla taquilla){
         TaquillaModel taquillaModel = new TaquillaModel();
-        taquillaModel.setId(taquilla.getId());
-        taquillaModel.setContenedor_id(taquilla.getContenedor().getId());
-        taquillaModel.setAlumno_id(taquilla.getAlumno().getId());
+        taquillaModel.setTaquillaId(taquilla.getId());
+        taquillaModel.setDescripcion(taquilla.getContenedor().getDescripcion());
+        taquillaModel.setZona(taquilla.getContenedor().getZona());
+        taquillaModel.setNumero(taquilla.getContenedor().getNumero());
+
         return taquillaModel;
     }
 
     public Taquilla modelToEntity(TaquillaModel taquillaModel){
         Taquilla taquilla = new Taquilla();
-        taquilla.setId(taquillaModel.getId());
-
-        Contenedor contenedor = new Contenedor();
-        contenedor.setId(taquillaModel.getContenedor_id());
-        taquilla.setContenedor(contenedor);
-
-        Alumno alumno = new Alumno();
-        alumno.setId(taquillaModel.getId());
-        taquilla.setAlumno(alumno);
-
         return taquilla;
     }
 }

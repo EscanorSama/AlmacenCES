@@ -10,23 +10,17 @@ import org.springframework.stereotype.Component;
 public class ArmarioConverter {
     public ArmarioModel entityToModel(Armario armario){
         ArmarioModel armarioModel= new ArmarioModel();
-        armarioModel.setId(armario.getId());
-        armarioModel.setContenedor_id(armario.getContenedor().getId());
-        armarioModel.setProfesor_id(armario.getProfesor().getId());
+        armarioModel.setArmarioId(armario.getId());
+        armarioModel.setDescripcion(armario.getContenedor().getDescripcion());
+        armarioModel.setZona(armario.getContenedor().getZona());
+        armarioModel.setNumero(armario.getContenedor().getNumero());
+        armarioModel.setProfesorId(armario.getProfesor().getId());
+
         return armarioModel;
     }
 
     public Armario modelToEntity(ArmarioModel armarioModel){
         Armario armario = new Armario();
-        armario.setId(armarioModel.getId());
-
-        Contenedor contenedor = new Contenedor();
-        contenedor.setId(armarioModel.getContenedor_id());
-        armario.setContenedor(contenedor);
-
-        Profesor profesor = new Profesor();
-        profesor.setId(armarioModel.getProfesor_id());
-        armario.setProfesor(profesor);
 
         return armario;
     }

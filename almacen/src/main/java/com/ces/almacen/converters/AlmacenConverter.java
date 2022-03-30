@@ -9,17 +9,15 @@ import org.springframework.stereotype.Component;
 public class AlmacenConverter {
     public AlmacenModel entityToModel(Almacen almacen){
         AlmacenModel almacenModel = new AlmacenModel();
-        almacenModel.setId(almacen.getId());
-        almacenModel.setContenedor_id(almacen.getContenedor().getId());
+        almacenModel.setAlmacenId(almacen.getId());
+        almacenModel.setDescripcion(almacen.getContenedor().getDescripcion());
+        almacenModel.setZona(almacen.getContenedor().getZona());
+        almacenModel.setNumero(almacen.getContenedor().getNumero());
         return almacenModel;
     }
 
     public Almacen modelToEntity(AlmacenModel almacenModel){
         Almacen almacen = new Almacen();
-        almacen.setId(almacenModel.getId());
-        Contenedor contenedor = new Contenedor();
-        contenedor.setId(almacenModel.getContenedor_id());
-        almacen.setContenedor(contenedor);
         return almacen;
     }
 }

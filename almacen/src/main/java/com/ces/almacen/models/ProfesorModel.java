@@ -9,9 +9,10 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @ToString
-public class ProfesorModel {
-    private long id;
-    private int numSs;
+public class ProfesorModel extends PersonaModel{
+    private long profesorId;
+    private String numSs;
     private double salario;
-    private long persona_id;
+
+
 }

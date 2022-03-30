@@ -11,23 +11,20 @@ import java.util.prefs.PreferencesFactory;
 public class ProfesorConverter {
     public ProfesorModel entityToModel(Profesor profesor){
         ProfesorModel profesorModel = new ProfesorModel();
-        profesorModel.setId(profesor.getId());
+        profesorModel.setProfesorId(profesor.getId());
+        profesorModel.setNombre(profesor.getPersona().getNombre());
+        profesorModel.setApellido(profesor.getPersona().getApellido());
+        profesorModel.setDni(profesor.getPersona().getDni());
+        profesorModel.setMail(profesor.getPersona().getMail());
         profesorModel.setNumSs(profesor.getNumSs());
         profesorModel.setSalario(profesor.getSalario());
-        profesorModel.setPersona_id(profesorModel.getPersona_id());
         return profesorModel;
     }
 
     public Profesor modelToEntity (ProfesorModel profesorModel){
         Profesor profesor = new Profesor();
-        profesor.setId(profesorModel.getId());
         profesor.setNumSs(profesorModel.getNumSs());
         profesor.setSalario(profesorModel.getSalario());
-
-        Persona persona = new Persona();
-        persona.setId(profesorModel.getPersona_id());
-        profesor.setPersona(persona);
-
         return profesor;
     }
 

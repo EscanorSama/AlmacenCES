@@ -2,6 +2,7 @@ package com.ces.almacen.services;
 
 import com.ces.almacen.converters.AlmacenConverter;
 import com.ces.almacen.entities.Almacen;
+import com.ces.almacen.entities.Contenedor;
 import com.ces.almacen.models.AlmacenModel;
 import com.ces.almacen.repositories.AlmacenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,12 +19,16 @@ public class AlmacenService {
     @Autowired
     private AlmacenConverter almacenConverter;
 
+    @Autowired
+    private ContenedorService contenedorService;
 
 
-
-    public void insertAlmacen(AlmacenModel almacenModel) {
+    public AlmacenModel insertAlmacen(AlmacenModel almacenModel) {
+        Contenedor contenedor = contenedorService.insertContenedor(almacenModel);
         Almacen almacen = almacenConverter.modelToEntity(almacenModel);
-        almacenRepository.save(almacen);
+        almacen.setContenedor(contenedor);
+        almacenModel.setAlmacenId(almacenRepository.save(almacen).getId());
+        return almacenModel;
     }
 
     public Optional<AlmacenModel> deleteAlmacen(Long id) {

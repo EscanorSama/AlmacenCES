@@ -19,8 +19,8 @@ public class AlmacenController {
     private ContenedorService contenedorService;
 
     @PostMapping(path = "/almacen")
-    public void  postAlmacen(@RequestBody AlmacenModel almacenModel){
-        almacenService.insertAlmacen(almacenModel);
+    public AlmacenModel  postAlmacen(@RequestBody AlmacenModel almacenModel){
+        return almacenService.insertAlmacen(almacenModel);
     }
 
     /*

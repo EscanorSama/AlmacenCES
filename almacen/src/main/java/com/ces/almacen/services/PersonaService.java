@@ -1,6 +1,7 @@
 package com.ces.almacen.services;
 
 import com.ces.almacen.converters.PersonaConverter;
+import com.ces.almacen.entities.Contenedor;
 import com.ces.almacen.entities.Persona;
 import com.ces.almacen.models.PersonaModel;
 import com.ces.almacen.repositories.PersonaRepository;
@@ -16,9 +17,9 @@ public class PersonaService {
     @Autowired
     private PersonaRepository personaRepository;
 
-    public void insertPersona(PersonaModel personaModel) {
+    public Persona insertPersona(PersonaModel personaModel) {
         Persona persona = personaConverter.modelToEntity(personaModel);
-        personaRepository.save(persona);
+        return personaRepository.save(persona);
     }
 
     public Optional<PersonaModel> deletePersona(Long id) {

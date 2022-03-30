@@ -15,8 +15,8 @@ public class TaquillaController {
     private TaquillaService taquillaService;
 
     @PostMapping(path = "/taquilla")
-    public void postTaquilla(@RequestBody TaquillaModel taquillaModel){
-        taquillaService.insertTaquilla(taquillaModel);
+    public TaquillaModel postTaquilla(@RequestBody TaquillaModel taquillaModel){
+        return taquillaService.insertTaquilla(taquillaModel);
     }
 
     @GetMapping(path = "/taquilla/{id}")
