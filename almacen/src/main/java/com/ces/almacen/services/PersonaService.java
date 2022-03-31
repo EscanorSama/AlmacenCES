@@ -8,6 +8,8 @@ import com.ces.almacen.repositories.PersonaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -43,5 +45,20 @@ public class PersonaService {
             resultPm = Optional.of(personaModel);
         }
         return resultPm;
+    }
+
+    public List<PersonaModel> getPersonas() {
+        List<Persona> personas = personaRepository.findAll();
+        List<PersonaModel> personasModels = listPersonasToListPersonasModel(personas);
+        return personasModels;
+    }
+
+    private List<PersonaModel> listPersonasToListPersonasModel(List<Persona> personas) {
+        List<PersonaModel> personasModel = new ArrayList<>();
+        for (Persona persona: personas) {
+            PersonaModel personaModel = personaConverter.entityToModel(persona);
+            personasModel.add(personaModel);
+        }
+        return personasModel;
     }
 }

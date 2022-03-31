@@ -7,6 +7,7 @@ import com.ces.almacen.services.ProfesorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -20,15 +21,17 @@ public class ProfesorController {
         return profesorService.insertProfesor(profesorModel);
     }
 
-    /*
-    @PostMapping(path = "profesor")
-    public ProfesorModel postProfesor(@RequestBody ProfesorModel profesorModel){
-        Optional<ProfesorModel> result = profesorService.insertProfesor(profesor);
-        if (result.isPresent()){
-            return result.get();
-        }
-        throw new BadRequestException();
-    }*/
+    @PostMapping(path = "/profesores")
+    public List<ProfesorModel> postProfesores(@RequestBody List<ProfesorModel> profesoresModel){
+        return profesorService.insertProfesores(profesoresModel);
+    }
+
+    @GetMapping(path = "/profesores")
+    public List<ProfesorModel> getProfesores(){
+        return profesorService.getProfesores();
+    }
+
+
 
     @GetMapping(path = "/profesor/{id}")
     public ProfesorModel getProfesor(@PathVariable(name = "id")Long id){

@@ -7,6 +7,8 @@ import com.ces.almacen.repositories.PedidoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -43,4 +45,21 @@ public class PedidoService {
         }
         return resultPm;
     }
+
+    public List<PedidoModel> getPedidos() {
+        List<Pedido> pedidos = pedidoRepository.findAll();
+        List<PedidoModel> pedidosModel = listPedidoToListPedidoModel(pedidos);
+        return pedidosModel;
+    }
+
+    private List<PedidoModel> listPedidoToListPedidoModel(List<Pedido> pedidos) {
+        List<PedidoModel> pedidosModel = new ArrayList<>();
+        for (Pedido pedido: pedidos) {
+            PedidoModel pedidoModel = pedidoConverter.entityToModel(pedido);
+            pedidosModel.add(pedidoModel);
+        }
+        return pedidosModel;
+    }
+
+
 }

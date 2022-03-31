@@ -6,6 +6,7 @@ import com.ces.almacen.services.MaterialService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -16,6 +17,16 @@ public class MaterialController {
     @PostMapping(path = "/material")
     public void postMaterial(@RequestBody MaterialModel materialModel){
         materialService.insertMaterial(materialModel);
+    }
+
+    @PostMapping(path = "/materiales")
+    public List<MaterialModel> postMateriales(@RequestBody List<MaterialModel> materialesModel){
+        return materialService.insertMateriales(materialesModel);
+    }
+
+    @GetMapping(path = "/materiales")
+    public List<MaterialModel> getMateriales(){
+        return materialService.getMateriales();
     }
 
     @GetMapping(path = "/material/{id}")

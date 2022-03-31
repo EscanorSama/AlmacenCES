@@ -2,11 +2,13 @@ package com.ces.almacen.controllers;
 
 import com.ces.almacen.entities.Pedido;
 import com.ces.almacen.errors.NotFoundException;
+import com.ces.almacen.models.MaterialModel;
 import com.ces.almacen.models.PedidoModel;
 import com.ces.almacen.services.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -17,6 +19,11 @@ public class PedidoController {
     @PostMapping(path = "/pedido")
     public void postPedido(@RequestBody PedidoModel pedidoModel){
         pedidoService.insertPedido(pedidoModel);
+    }
+
+    @GetMapping(path="/pedidos")
+    public List<PedidoModel> getPedidos(){
+        return pedidoService.getPedidos();
     }
 
     @GetMapping(path = "pedido/{id}")

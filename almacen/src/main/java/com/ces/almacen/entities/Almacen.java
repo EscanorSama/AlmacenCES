@@ -24,6 +24,8 @@ public class Almacen {
     @Column(name = "id")
     private long id;
 
+
+
     @OneToOne
     @JsonBackReference
     private Contenedor contenedor;

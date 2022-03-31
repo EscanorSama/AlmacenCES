@@ -19,6 +19,11 @@ public class AlumnoController {
         return alumnoService.insertAlumno(alumnoModel);
     }
 
+    @PostMapping(path = "/alumnos")
+    public List<AlumnoModel> postAlumnos(@RequestBody List<AlumnoModel> alumnosModel){
+        return alumnoService.postAlumnos(alumnosModel);
+    }
+
     @GetMapping(path = "/alumno")
     public AlumnoModel getAlumno(@PathVariable(name = "id")Long id){
         Optional<AlumnoModel> result = alumnoService.getAlumno(id);

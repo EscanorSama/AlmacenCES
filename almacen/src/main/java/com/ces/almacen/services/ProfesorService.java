@@ -8,6 +8,8 @@ import com.ces.almacen.repositories.ProfesorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -30,12 +32,7 @@ public class ProfesorService {
         return profesorModel;
     }
 
-    /*
-    public Optional<ProfesorModel> insertProfesor (ProfesorModel profesorModel){
-        Optional<ProfesorModel> result = Optional.empty();
-        return result;
 
-    }*/
 
     public Optional<ProfesorModel> deleteProfesor(Long id) {
         Optional<ProfesorModel> resultPm = Optional.empty();
@@ -58,5 +55,27 @@ public class ProfesorService {
             resultPm = Optional.of(profesorModel);
         }
         return resultPm;
+    }
+
+    public List<ProfesorModel> getProfesores() {
+        List<Profesor>profesores = profesorRepository.findAll();
+        List<ProfesorModel> profesoresModel = listProfesoresToListProfesoresModel(profesores);
+        return profesoresModel;
+    }
+
+    private List<ProfesorModel> listProfesoresToListProfesoresModel(List<Profesor> profesores) {
+        List<ProfesorModel> profesoresModel = new ArrayList<>();
+        for (Profesor profesor : profesores) {
+            ProfesorModel profesorModel = profesorConverter.entityToModel(profesor);
+            profesoresModel.add(profesorModel);
+        }
+        return profesoresModel;
+    }
+
+    public List<ProfesorModel> insertProfesores(List<ProfesorModel> profesoresModel) {
+        for (ProfesorModel profesorModel: profesoresModel) {
+            insertProfesor(profesorModel);
+        }
+        return profesoresModel;
     }
 }

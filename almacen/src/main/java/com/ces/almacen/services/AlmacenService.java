@@ -5,6 +5,7 @@ import com.ces.almacen.entities.Almacen;
 import com.ces.almacen.entities.Contenedor;
 import com.ces.almacen.models.AlmacenModel;
 import com.ces.almacen.repositories.AlmacenRepository;
+import com.ces.almacen.repositories.ContenedorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +24,10 @@ public class AlmacenService {
     @Autowired
     private ContenedorService contenedorService;
 
+    @Autowired
+    private ContenedorRepository contenedorRepository;
+
+
 
     public AlmacenModel insertAlmacen(AlmacenModel almacenModel) {
         Contenedor contenedor = contenedorService.insertContenedor(almacenModel);
@@ -32,18 +37,22 @@ public class AlmacenService {
         return almacenModel;
     }
 
-    public Optional<AlmacenModel> deleteAlmacen(Long id) {
-        Optional<AlmacenModel> resultAm = Optional.empty();
-        Optional<Almacen>result = almacenRepository.findById(id);
-        if(result.isPresent()){
-            Almacen almacen = result.get();
-            AlmacenModel almacenModel = almacenConverter.entityToModel(almacen);
-            resultAm = Optional.of(almacenModel);
-            resultAm = Optional.of(almacenModel);
-            almacenRepository.delete(almacen);
+
+
+    /*
+    public AlmacenModel deleteAlmacen(Long id) {
+        Optional<Almacen> almacen = almacenRepository.findById(id);
+        if (almacen.isPresent()){
+            AlmacenModel almacenModel = almacenConverter.entityToModel(almacen.get());
+            Long contenedorId = almacenModel.getContenedorId();
+            almacenRepository.delete(almacen.get());
+            Optional<Contenedor> contenedor = contenedorRepository.findById(contenedorId);
+            contenedorRepository.delete(contenedor.get());
+            return almacenConverter.entityToModel(almacen.get());
         }
-        return resultAm;
-    }
+        return null;
+
+    }*/
 
     public Optional<AlmacenModel> getAlmacen(Long id) {
         Optional<AlmacenModel> resultAm = Optional.empty();
@@ -70,4 +79,7 @@ public class AlmacenService {
         }
         return almacenesModel;
     }
+
+
+
 }

@@ -68,4 +68,11 @@ public class AlumnoService {
         }
         return alumnosModel;
     }
+
+    public List<AlumnoModel> postAlumnos(List<AlumnoModel> alumnosModel) {
+        for (AlumnoModel alumnoModel: alumnosModel) {
+            insertAlumno(alumnoModel);
+        }
+        return alumnosModel;
+    }
 }

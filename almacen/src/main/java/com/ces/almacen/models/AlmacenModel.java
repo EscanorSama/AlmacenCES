@@ -13,4 +13,5 @@ import javax.persistence.Column;
 @ToString
 public class AlmacenModel extends ContenedorModel {
     private long almacenId;
+
 }

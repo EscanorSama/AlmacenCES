@@ -6,6 +6,7 @@ import com.ces.almacen.services.PersonaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -16,6 +17,11 @@ public class PersonaController {
     @PostMapping(path = "/persona")
     public void postPersona(@RequestBody PersonaModel personaModel){
         personaService.insertPersona(personaModel);
+    }
+
+    @GetMapping(path = "/personas")
+    public List<PersonaModel> getPersonas(){
+        return personaService.getPersonas();
     }
 
     @GetMapping(path = "/persona/{id}")

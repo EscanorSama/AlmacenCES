@@ -7,6 +7,8 @@ import com.ces.almacen.repositories.MaterialRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -42,5 +44,27 @@ public class MaterialService {
             resultMm = Optional.of(materialModel);
         }
         return resultMm;
+    }
+
+    public List<MaterialModel> getMateriales() {
+        List<Material> materiales = materialRepository.findAll();
+        List<MaterialModel> materialesModel = listMaterialesToMaterialesModel(materiales);
+        return materialesModel;
+    }
+
+    private List<MaterialModel> listMaterialesToMaterialesModel(List<Material> materiales) {
+        List<MaterialModel> materialesModel = new ArrayList<>();
+        for (Material material:materiales) {
+            MaterialModel materialModel = materialConverter.entityToModel(material);
+            materialesModel.add(materialModel);
+        }
+        return materialesModel;
+    }
+
+    public List<MaterialModel> insertMateriales(List<MaterialModel> materialesModel) {
+        for (MaterialModel materialModel: materialesModel) {
+            insertMaterial(materialModel);
+        }
+        return materialesModel;
     }
 }

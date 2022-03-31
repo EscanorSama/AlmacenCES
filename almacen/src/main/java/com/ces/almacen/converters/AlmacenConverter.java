@@ -13,11 +13,13 @@ public class AlmacenConverter {
         almacenModel.setDescripcion(almacen.getContenedor().getDescripcion());
         almacenModel.setZona(almacen.getContenedor().getZona());
         almacenModel.setNumero(almacen.getContenedor().getNumero());
+
         return almacenModel;
     }
 
     public Almacen modelToEntity(AlmacenModel almacenModel){
         Almacen almacen = new Almacen();
+        almacen.setId(almacenModel.getAlmacenId());
         return almacen;
     }
 }

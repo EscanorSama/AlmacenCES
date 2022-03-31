@@ -7,6 +7,7 @@ import com.ces.almacen.services.TaquillaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -17,6 +18,11 @@ public class TaquillaController {
     @PostMapping(path = "/taquilla")
     public TaquillaModel postTaquilla(@RequestBody TaquillaModel taquillaModel){
         return taquillaService.insertTaquilla(taquillaModel);
+    }
+
+    @GetMapping(path = "/taquillas")
+    public List<TaquillaModel> getTaquillas(){
+        return taquillaService.getTaquillas();
     }
 
     @GetMapping(path = "/taquilla/{id}")

@@ -8,6 +8,8 @@ import com.ces.almacen.repositories.TaquillaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -49,5 +51,20 @@ public class TaquillaService {
             resultTm = Optional.of(taquillaModel);
         }
         return resultTm;
+    }
+
+    public List<TaquillaModel> getTaquillas() {
+        List<Taquilla> taquillas = taquillaRepository.findAll();
+        List<TaquillaModel> taquillasModel = listTaquillasToListTaquillasModel(taquillas);
+        return taquillasModel;
+    }
+
+    private List<TaquillaModel> listTaquillasToListTaquillasModel(List<Taquilla> taquillas) {
+        List<TaquillaModel> taquillasModel = new ArrayList<>();
+        for (Taquilla taquilla: taquillas) {
+            TaquillaModel taquillaModel = taquillaConverter.entityToModel(taquilla);
+            taquillasModel.add(taquillaModel);
+        }
+        return taquillasModel;
     }
 }
