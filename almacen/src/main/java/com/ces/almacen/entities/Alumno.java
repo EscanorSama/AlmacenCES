@@ -22,7 +22,7 @@ public class Alumno {
     private long id;
 
 
-    @OneToOne
+    @OneToOne(cascade={CascadeType.REMOVE})
     @JsonBackReference
     private Persona persona;
 

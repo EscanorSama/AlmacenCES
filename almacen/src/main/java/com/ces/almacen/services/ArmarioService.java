@@ -3,8 +3,10 @@ package com.ces.almacen.services;
 import com.ces.almacen.converters.ArmarioConverter;
 import com.ces.almacen.entities.Armario;
 import com.ces.almacen.entities.Contenedor;
+import com.ces.almacen.entities.Profesor;
 import com.ces.almacen.models.ArmarioModel;
 import com.ces.almacen.repositories.ArmarioRepository;
+import com.ces.almacen.repositories.ProfesorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,10 +25,20 @@ public class ArmarioService {
     @Autowired
     private ContenedorService contenedorService;
 
+    @Autowired
+    private ProfesorRepository profesorRepository;
+
     public ArmarioModel insertArmario(ArmarioModel armarioModel) {
         Contenedor contenedor = contenedorService.insertContenedor(armarioModel);
         Armario armario = armarioConverter.modelToEntity(armarioModel);
         armario.setContenedor(contenedor);
+
+        if(armarioModel.getProfesorId()!=0){ //hay profesor asociado
+            Optional<Profesor> profesor = profesorRepository.findById(armarioModel.getProfesorId());
+            if(profesor.isPresent()){ //el profesor existe en la base de datos
+                armario.setProfesor(profesor.get());
+            }
+        }
         armarioModel.setArmarioId(armarioRepository.save(armario).getId());
         return armarioModel;
     }

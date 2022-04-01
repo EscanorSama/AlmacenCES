@@ -22,7 +22,7 @@ public class Armario {
     private long id;
 
 
-    @OneToOne
+    @OneToOne(cascade={CascadeType.REMOVE})
     @JsonBackReference
     private Contenedor contenedor;
 

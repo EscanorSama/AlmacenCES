@@ -27,7 +27,7 @@ public class Profesor {
     @Column(name = "salario")
     private double salario;
 
-    @OneToOne
+    @OneToOne(cascade={CascadeType.REMOVE})
     @JsonBackReference
     private Persona persona;
 

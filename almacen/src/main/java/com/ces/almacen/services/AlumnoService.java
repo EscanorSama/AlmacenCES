@@ -8,6 +8,7 @@ import com.ces.almacen.repositories.AlumnoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -74,5 +75,22 @@ public class AlumnoService {
             insertAlumno(alumnoModel);
         }
         return alumnosModel;
+    }
+
+    public boolean updateAlumnoIdMail(Long id, String mail) {
+        Optional<Alumno> result = alumnoRepository.findById(id);
+
+        if (result.isPresent()){
+            Alumno alumno = result.get();
+
+            /*
+            probar con el metodo de setmail de la clase persona
+            AlumnoModel alumnoModel = alumnoConverter.entityToModel(alumno);
+            alumnoModel.setMail(mail);
+            Alumno alumno = alumnoConverter.modelToEntity(alumnoModel);
+            alumnoRepository.save(alumno);
+            return true;*/
+        }
+        return false;
     }
 }

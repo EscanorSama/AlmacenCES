@@ -22,7 +22,7 @@ public class Taquilla {
     @Column(name = "id")
     private long id;
 
-    @OneToOne
+    @OneToOne(cascade={CascadeType.REMOVE})
     @JsonBackReference
     private Contenedor contenedor;
 

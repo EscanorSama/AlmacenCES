@@ -39,15 +39,14 @@ public class AlmacenController {
     }
 
 
-
-    /*
-    @DeleteMapping(path="/almacen/{id}")
+    @DeleteMapping(path = "/almacen/{id}")
     public AlmacenModel deleteAlmacen(@PathVariable(name = "id")Long id){
-        AlmacenModel result = almacenService.deleteAlmacen(id);
-        if (result==null){
-            throw new NotFoundException();
+        Optional<AlmacenModel> result = almacenService.deleteAlmacen(id);
+        if(result.isPresent()){
+            return result.get();
         }
-        return result;
-    }*/
+        throw new NotFoundException();
+    }
+
 
 }

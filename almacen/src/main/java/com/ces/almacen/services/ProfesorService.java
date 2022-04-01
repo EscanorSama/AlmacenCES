@@ -46,7 +46,7 @@ public class ProfesorService {
         return resultPm;
     }
 
-    public Optional<ProfesorModel> getProfesor(Long id) {
+    public Optional<ProfesorModel> getProfesor(long id) {
         Optional<ProfesorModel> resultPm = Optional.empty();
         Optional<Profesor> result = profesorRepository.findById(id);
         if(result.isPresent()){

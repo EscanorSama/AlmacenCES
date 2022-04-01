@@ -26,7 +26,7 @@ public class Almacen {
 
 
 
-    @OneToOne
+    @OneToOne(cascade={CascadeType.REMOVE})
     @JsonBackReference
     private Contenedor contenedor;
 
