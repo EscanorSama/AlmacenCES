@@ -33,13 +33,7 @@ public class AlumnoController {
         throw new NotFoundException();
     }
 
-    @PutMapping(path = "/alumno/mail")
-    public boolean putAlumnoIdMail(@RequestParam(name = "id")Long id, @RequestParam(name = "mail")String mail){
-        if(alumnoService.updateAlumnoIdMail(id, mail)){
-            return true;
-        }
-        throw new NotFoundException();
-    }
+
 
     @GetMapping(path = "/alumnos")
     public List<AlumnoModel> getAlumnos (){

@@ -62,4 +62,10 @@ public class PedidoService {
     }
 
 
+    public void insertPedidos(List<PedidoModel> pedidosModel) {
+        for (PedidoModel pedidoModel: pedidosModel) {
+            insertPedido(pedidoModel);
+        }
+
+    }
 }

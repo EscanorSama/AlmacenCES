@@ -10,6 +10,12 @@ public class AlumnoConverter {
     public AlumnoModel entityToModel(Alumno alumno){
         AlumnoModel alumnoModel = new AlumnoModel();
         alumnoModel.setAlumnoId(alumno.getId());
+        alumnoModel.setMail(alumno.getPersona().getMail());
+        alumnoModel.setMail(alumno.getPersona().getMail());
+        alumnoModel.setNombre(alumno.getPersona().getNombre());
+        alumnoModel.setApellido(alumno.getPersona().getApellido());
+        alumnoModel.setDni(alumno.getPersona().getDni());
+        alumnoModel.setId(alumno.getPersona().getId());
         return alumnoModel;
     }
 

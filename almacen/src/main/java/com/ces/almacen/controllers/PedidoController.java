@@ -21,6 +21,11 @@ public class PedidoController {
         pedidoService.insertPedido(pedidoModel);
     }
 
+    @PostMapping(path = "/pedidos")
+    public void postPedidos(@RequestBody List<PedidoModel> pedidosModel){
+        pedidoService.insertPedidos(pedidosModel);
+    }
+
     @GetMapping(path="/pedidos")
     public List<PedidoModel> getPedidos(){
         return pedidoService.getPedidos();
