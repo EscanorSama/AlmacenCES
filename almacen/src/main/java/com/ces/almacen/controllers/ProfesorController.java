@@ -42,6 +42,11 @@ public class ProfesorController {
         throw new NotFoundException();
     }
 
+    @PutMapping(path = "/profesor/mail")
+    public void putProfesorMail(ProfesorModel profesorModel){
+        profesorService.updateProfesor(profesorModel);
+    }
+
     @DeleteMapping(path = "/profesor/{id}")
     public ProfesorModel deleteProfesor(@PathVariable(name = "id") Long id){
         Optional<ProfesorModel> result = profesorService.deleteProfesor(id);

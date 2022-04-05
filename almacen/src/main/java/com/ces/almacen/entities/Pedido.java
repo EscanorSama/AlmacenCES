@@ -23,6 +23,9 @@ public class Pedido {
     @Column
     private long id;
 
+    @Column(name = "fecha")
+    private int fecha;
+
 
     @OneToMany(mappedBy = "pedido")
     @JsonManagedReference

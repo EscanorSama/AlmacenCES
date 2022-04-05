@@ -38,7 +38,7 @@ public class MaterialController {
         throw new NotFoundException();
     }
 
-    @DeleteMapping(path = "/material/id")
+    @DeleteMapping(path = "/material/{id}")
     public MaterialModel deleteMaterial(@PathVariable(name = "id")Long id){
         Optional<MaterialModel> result = materialService.deleteMaterial(id);
         if(result.isPresent()){

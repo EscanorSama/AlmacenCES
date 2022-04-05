@@ -26,29 +26,6 @@ public class ContenedorController {
         contenedorService.insertContenedor(contenedorModel);
     }
 
-    @PutMapping(path = "/contenedor/descripcion")
-    public boolean putContenedorIdDescripcion(@RequestParam(name = "id")Long id, @RequestParam(name = "descripcion")String descripcion){
-        if (contenedorService.updateContenedorIdDescripcion(id, descripcion)){
-            return true;
-        }
-        return false;
-    }
-
-    @PutMapping(path = "/contenedor/zona")
-    public boolean putContenedorIdZona(@RequestParam(name = "id")Long id, @RequestParam(name = "zona")String zona){
-        if (contenedorService.updateContenedorIdZona(id, zona)){
-            return true;
-        }
-        throw new NotFoundException();
-    }
-
-    @PutMapping(path = "/contenedor/numero")
-    public boolean putContenedorIdNumero(@RequestParam(name = "id")Long id, @RequestParam(name = "numero")Integer numero){
-        if (contenedorService.updateContenedorIdNumero(id, numero)){
-            return true;
-        }
-        throw new NotFoundException();
-    }
 
 
     @GetMapping(path = "/contenedor/{id}")

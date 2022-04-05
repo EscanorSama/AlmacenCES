@@ -24,7 +24,7 @@ public class AlumnoController {
         return alumnoService.postAlumnos(alumnosModel);
     }
 
-    @GetMapping(path = "/alumno")
+    @GetMapping(path = "/alumno/{id}")
     public AlumnoModel getAlumno(@PathVariable(name = "id")Long id){
         Optional<AlumnoModel> result = alumnoService.getAlumno(id);
         if (result.isPresent()){
@@ -47,5 +47,10 @@ public class AlumnoController {
             return result.get();
         }
         throw new NotFoundException();
+    }
+
+    @PutMapping(path = "/alumno/mail")
+    public void putAlumnoMail(@RequestBody AlumnoModel alumnoModel){
+        alumnoService.updateAlumno(alumnoModel);
     }
 }

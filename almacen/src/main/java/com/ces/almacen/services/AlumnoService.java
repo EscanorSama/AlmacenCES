@@ -5,6 +5,7 @@ import com.ces.almacen.entities.Alumno;
 import com.ces.almacen.entities.Persona;
 import com.ces.almacen.models.AlumnoModel;
 import com.ces.almacen.repositories.AlumnoRepository;
+import com.ces.almacen.repositories.PersonaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,9 @@ import java.util.Optional;
 public class AlumnoService {
     @Autowired
     private AlumnoRepository alumnoRepository;
+
+    @Autowired
+    private PersonaRepository personaRepository;
 
     @Autowired
     private AlumnoConverter alumnoConverter;
@@ -77,5 +81,14 @@ public class AlumnoService {
         return alumnosModel;
     }
 
-
+    public void updateAlumno (AlumnoModel alumnoM){
+        Optional<Alumno> result = alumnoRepository.findById(alumnoM.getAlumnoId());
+        if(result.isPresent()){
+            Alumno alumno = result.get();
+            Persona persona = alumno.getPersona();
+            persona.setMail(alumnoM.getMail());
+            personaRepository.save(persona);
+            alumnoRepository.save(alumno);
+        }
+    }
 }

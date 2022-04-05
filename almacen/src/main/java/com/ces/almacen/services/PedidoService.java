@@ -1,6 +1,7 @@
 package com.ces.almacen.services;
 
 import com.ces.almacen.converters.PedidoConverter;
+import com.ces.almacen.entities.LineaPedido;
 import com.ces.almacen.entities.Pedido;
 import com.ces.almacen.models.PedidoModel;
 import com.ces.almacen.repositories.PedidoRepository;
@@ -17,8 +18,11 @@ public class PedidoService {
     private PedidoRepository pedidoRepository;
     @Autowired
     private PedidoConverter pedidoConverter;
+    @Autowired
+    private LineaPedidoService lineaPedidoService;
 
     public void insertPedido(PedidoModel pedidoModel) {
+
         Pedido pedido = pedidoConverter.modelToEntity(pedidoModel);
         pedidoRepository.save(pedido);
     }

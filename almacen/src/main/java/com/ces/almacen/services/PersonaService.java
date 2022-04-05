@@ -62,13 +62,5 @@ public class PersonaService {
         return personasModel;
     }
 
-    public boolean updatePersonaIdMail(Long id, String mail) {
-        Optional<Persona> persona = personaRepository.findById(id);
-        if(persona.isPresent()){
-            persona.get().setMail(mail);
-            personaRepository.save(persona.get());
-            return true;
-        }
-        return false;
-    }
+
 }

@@ -10,6 +10,7 @@ public class LineaPedidoConverter {
         LineaPedidoModel lineaPedidoModel = new LineaPedidoModel();
         lineaPedidoModel.setId(lineaPedido.getId());
         lineaPedidoModel.setCantidad(lineaPedido.getCantidad());
+
         return lineaPedidoModel;
     }
 
@@ -17,6 +18,7 @@ public class LineaPedidoConverter {
         LineaPedido lineaPedido = new LineaPedido();
         lineaPedido.setId(lineaPedidoModel.getId());
         lineaPedido.setCantidad(lineaPedidoModel.getCantidad());
+
         return lineaPedido;
     }
 }

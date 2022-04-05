@@ -28,6 +28,11 @@ public class ArmarioController {
         throw new NotFoundException();
     }
 
+    @PutMapping(path = "/armario")
+    public void putArmario(@RequestBody ArmarioModel armarioModel){
+        armarioService.updateArmario(armarioModel);
+    }
+
     @GetMapping(path = "armarios")
     public List<ArmarioModel> getArmarios(){
         return armarioService.getArmarios();

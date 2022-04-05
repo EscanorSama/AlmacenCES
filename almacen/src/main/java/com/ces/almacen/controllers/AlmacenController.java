@@ -4,6 +4,7 @@ import com.ces.almacen.errors.NotFoundException;
 import com.ces.almacen.models.AlmacenModel;
 import com.ces.almacen.services.AlmacenService;
 import com.ces.almacen.services.ContenedorService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,6 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@Slf4j
 public class AlmacenController {
     @Autowired
     private AlmacenService almacenService;
@@ -27,6 +29,12 @@ public class AlmacenController {
     public List<AlmacenModel> getAlmacenes(){
         return almacenService.getAlmacenes();
 
+    }
+
+    @PutMapping(path = "/almacen")
+    public void putAlmacen(@RequestBody AlmacenModel almacenModel){
+        log.info("******* almacén");
+        almacenService.updateAlmacen(almacenModel);
     }
 
     @GetMapping(path = "/almacen/{id}")

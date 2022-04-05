@@ -15,7 +15,7 @@ public class AlumnoConverter {
         alumnoModel.setNombre(alumno.getPersona().getNombre());
         alumnoModel.setApellido(alumno.getPersona().getApellido());
         alumnoModel.setDni(alumno.getPersona().getDni());
-        alumnoModel.setId(alumno.getPersona().getId());
+        alumnoModel.setAlumnoId(alumno.getPersona().getId());
         return alumnoModel;
     }
 

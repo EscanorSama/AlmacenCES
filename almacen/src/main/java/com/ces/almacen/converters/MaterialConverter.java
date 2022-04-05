@@ -9,11 +9,13 @@ public class MaterialConverter {
     public MaterialModel entityToModel(Material material){
         MaterialModel materialModel = new MaterialModel();
         materialModel.setId(material.getId());
+        materialModel.setNombre(material.getNombre());
         return materialModel;
     }
     public Material modelToEntity(MaterialModel materialModel){
         Material material = new Material();
         material.setId(material.getId());
+        material.setNombre(materialModel.getNombre());
         return material;
     }
 }

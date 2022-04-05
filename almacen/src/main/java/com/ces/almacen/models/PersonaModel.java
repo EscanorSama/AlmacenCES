@@ -10,7 +10,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class PersonaModel {
-    private long id;
+    private long personaId;
     private String mail;
     private String nombre;
     private String apellido;

@@ -11,4 +11,5 @@ import lombok.ToString;
 @ToString
 public class MaterialModel {
     private long id;
+    private String nombre;
 }

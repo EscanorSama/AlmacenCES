@@ -34,6 +34,11 @@ public class TaquillaController {
         throw new NotFoundException();
     }
 
+    @PutMapping(path = "/taquilla")
+    public void putTaquilla(@RequestBody TaquillaModel taquillaModel){
+        taquillaService.updateTaquilla(taquillaModel);
+    }
+
     @DeleteMapping(path = "/taquilla/{id}")
     public TaquillaModel deleteTaquilla(@PathVariable(name = "id") Long id){
         Optional<TaquillaModel> result = taquillaService.deleteTaquilla(id);

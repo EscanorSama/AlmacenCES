@@ -6,6 +6,7 @@ import com.ces.almacen.entities.Contenedor;
 import com.ces.almacen.entities.Taquilla;
 import com.ces.almacen.models.TaquillaModel;
 import com.ces.almacen.repositories.AlumnoRepository;
+import com.ces.almacen.repositories.ContenedorRepository;
 import com.ces.almacen.repositories.TaquillaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,8 @@ public class TaquillaService {
     private ContenedorService contenedorService;
     @Autowired
     private AlumnoRepository alumnoRepository;
+    @Autowired
+    private ContenedorRepository contenedorRepository;
 
 
     public TaquillaModel insertTaquilla(TaquillaModel taquillaModel) {
@@ -77,5 +80,18 @@ public class TaquillaService {
             taquillasModel.add(taquillaModel);
         }
         return taquillasModel;
+    }
+
+    public void updateTaquilla(TaquillaModel taquillaModel) {
+        Optional<Taquilla> result = taquillaRepository.findById(taquillaModel.getTaquillaId());
+        if (result.isPresent()){
+            Taquilla taquilla = result.get();
+            Contenedor contenedor = taquilla.getContenedor();
+            contenedor.setZona(taquillaModel.getZona());
+            contenedor.setDescripcion(taquillaModel.getDescripcion());
+            contenedor.setNumero(taquillaModel.getNumero());
+            contenedorRepository.save(contenedor);
+            taquillaRepository.save(taquilla);
+        }
     }
 }

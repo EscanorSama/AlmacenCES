@@ -80,33 +80,4 @@ public class ContenedorService {
         return contenedoresModel;
     }
 
-    public boolean updateContenedorIdDescripcion(Long id, String descripcion) {
-        Optional<Contenedor> result = contenedorRepository.findById(id);
-        if (result.isPresent()){
-            result.get().setDescripcion(descripcion);
-            contenedorRepository.save(result.get());
-            return true;
-        }
-        return false;
-    }
-
-    public boolean updateContenedorIdZona(Long id, String zona) {
-        Optional<Contenedor> contenedor = contenedorRepository.findById(id);
-        if (contenedor.isPresent()){
-            contenedor.get().setZona(zona);
-            contenedorRepository.save(contenedor.get());
-            return true;
-        }
-        return false;
-    }
-
-    public boolean updateContenedorIdNumero(Long id, Integer numero) {
-        Optional<Contenedor> contenedor = contenedorRepository.findById(id);
-        if (contenedor.isPresent()){
-            contenedor.get().setNumero(numero);
-            contenedorRepository.save(contenedor.get());
-            return true;
-        }
-        return false;
-    }
 }

@@ -6,6 +6,10 @@ import com.ces.almacen.entities.Contenedor;
 import com.ces.almacen.models.AlmacenModel;
 import com.ces.almacen.repositories.AlmacenRepository;
 import com.ces.almacen.repositories.ContenedorRepository;
+
+
+
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +17,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+
 @Service
+@Slf4j
 public class AlmacenService {
     @Autowired
     private AlmacenRepository almacenRepository;
@@ -75,5 +81,22 @@ public class AlmacenService {
             almacenRepository.delete(almacen);
         }
         return resultAm;
+    }
+
+    public void updateAlmacen(AlmacenModel almacenModel) {
+        Optional<Almacen> result = almacenRepository.findById(almacenModel.getAlmacenId());
+        log.info("******* AlmacenService"+ almacenModel.getZona());
+        if (result.isPresent()) {
+            Almacen almacen = result.get();
+            Contenedor contenedor = almacen.getContenedor();
+            log.info("****** "+contenedor.getId());
+            contenedor.setZona(almacenModel.getZona());
+            contenedor.setNumero(almacenModel.getNumero());
+            contenedor.setDescripcion(almacenModel.getDescripcion());
+            contenedorRepository.save(contenedor);
+            almacenRepository.save(almacen);
+        }else{
+            log.info("***** Almacén no encontrado");
+        }
     }
 }

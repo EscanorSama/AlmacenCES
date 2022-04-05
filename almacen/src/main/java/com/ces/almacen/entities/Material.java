@@ -27,6 +27,9 @@ public class Material {
     @Column
     private long id;
 
+    @Column(name = "nombre")
+    private String nombre;
+
     @ManyToMany
     private List<Categoria> categorias;
 
@@ -38,10 +41,5 @@ public class Material {
 
     @OneToMany(mappedBy = "material")
     private List<LineaSolicitud> lineasSolicitud;
-
-
-
-
-
 
 }

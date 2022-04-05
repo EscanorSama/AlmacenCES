@@ -6,6 +6,7 @@ import com.ces.almacen.entities.Contenedor;
 import com.ces.almacen.entities.Profesor;
 import com.ces.almacen.models.ArmarioModel;
 import com.ces.almacen.repositories.ArmarioRepository;
+import com.ces.almacen.repositories.ContenedorRepository;
 import com.ces.almacen.repositories.ProfesorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,6 +28,9 @@ public class ArmarioService {
 
     @Autowired
     private ProfesorRepository profesorRepository;
+
+    @Autowired
+    private ContenedorRepository contenedorRepository;
 
     public ArmarioModel insertArmario(ArmarioModel armarioModel) {
         Contenedor contenedor = contenedorService.insertContenedor(armarioModel);
@@ -79,5 +83,18 @@ public class ArmarioService {
             armariosModel.add(armarioModel);
         }
         return armariosModel;
+    }
+
+    public void updateArmario(ArmarioModel armarioModel) {
+        Optional<Armario> result = armarioRepository.findById(armarioModel.getArmarioId());
+        if (result.isPresent()){
+            Armario armario = result.get();
+            Contenedor contenedor = armario.getContenedor();
+            contenedor.setZona(armarioModel.getZona());
+            contenedor.setDescripcion(armarioModel.getDescripcion());
+            contenedor.setNumero(armarioModel.getNumero());
+            contenedorRepository.save(contenedor);
+            armarioRepository.save(armario);
+        }
     }
 }

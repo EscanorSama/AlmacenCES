@@ -24,13 +24,7 @@ public class PersonaController {
         return personaService.getPersonas();
     }
 
-    @PutMapping(path = "/persona/mail")
-    public boolean putPersonaIdMail(@RequestParam(name = "id")Long id, @RequestParam(name = "mail")String mail){
-        if (personaService.updatePersonaIdMail(id, mail)){
-            return true;
-        }
-        throw new NotFoundException();
-    }
+
 
     @GetMapping(path = "/persona/{id}")
     public PersonaModel getPersona(@PathVariable(name = "id")Long id){
