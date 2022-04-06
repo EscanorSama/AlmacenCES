@@ -27,6 +27,45 @@ public class Profesor {
     @Column(name = "salario")
     private double salario;
 
+    @Column(name = "nombre")
+    private String nombre;
+
+    @Column(name = "apellido")
+    private String apellido;
+
+    @Column(name = "domicilio")
+    private String domicilio;
+
+    @Column(name = "poblacion")
+    private String poblacion;
+
+    @Column(name = "provincia")
+    private String provincia;
+
+    @Column(name = "codigoPostal")
+    private String codigoPostal;
+
+    @Column(name = "dni")
+    private String dni;
+
+    @Column(name = "telefono")
+    private String telefono;
+
+    @Column(name = "movil")
+    private String movil;
+
+    @Column(name = "email")
+    private String email;
+
+    @Column(name = "formaPago")
+    private String formaPago;
+
+    @Column(name = "entidadDeCargo")
+    private String entidadDeCargo;
+
+    @Column(name = "cuentaBancaria")
+    private String cuentaBancaria;
+
     @OneToOne(cascade={CascadeType.REMOVE})
     @JsonBackReference
     private Persona persona;

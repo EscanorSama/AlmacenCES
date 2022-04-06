@@ -1,9 +1,12 @@
 package com.ces.almacen.services;
 
+import com.ces.almacen.converters.LineaPedidoConverter;
 import com.ces.almacen.converters.PedidoConverter;
 import com.ces.almacen.entities.LineaPedido;
 import com.ces.almacen.entities.Pedido;
+import com.ces.almacen.models.LineaPedidoModel;
 import com.ces.almacen.models.PedidoModel;
+import com.ces.almacen.repositories.LineaPedidoRepository;
 import com.ces.almacen.repositories.PedidoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,8 +23,17 @@ public class PedidoService {
     private PedidoConverter pedidoConverter;
     @Autowired
     private LineaPedidoService lineaPedidoService;
+    @Autowired
+    private LineaPedidoConverter lineaPedidoConverter;
+    @Autowired
+    private LineaPedidoRepository lineaPedidoRepository;
 
     public void insertPedido(PedidoModel pedidoModel) {
+        List<LineaPedidoModel> lineasPedidoModel=pedidoModel.getLineasPedido();
+        for (LineaPedidoModel lineaPedidoModel: lineasPedidoModel) {
+            LineaPedido lineaPedido = lineaPedidoConverter.modelToEntity(lineaPedidoModel);
+            lineaPedidoRepository.save(lineaPedido);
+        }
 
         Pedido pedido = pedidoConverter.modelToEntity(pedidoModel);
         pedidoRepository.save(pedido);

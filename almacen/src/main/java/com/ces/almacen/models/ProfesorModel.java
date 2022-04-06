@@ -13,6 +13,15 @@ public class ProfesorModel extends PersonaModel{
     private long profesorId;
     private String numSs;
     private double salario;
+    private String domicilio;
+    private String poblacion;
+    private String provincia;
+    private String codigoPostal;
+    private String telefono;
+    private String movil;
+    private String formaPago;
+    private String entidadDeCargo;
+    private String cuentaBancaria;
 
 
 }

@@ -18,6 +18,15 @@ public class ProfesorConverter {
         profesorModel.setMail(profesor.getPersona().getMail());
         profesorModel.setNumSs(profesor.getNumSs());
         profesorModel.setSalario(profesor.getSalario());
+        profesorModel.setDomicilio(profesor.getDomicilio());
+        profesorModel.setPoblacion(profesor.getPoblacion());
+        profesorModel.setProvincia(profesor.getProvincia());
+        profesorModel.setCodigoPostal(profesor.getCodigoPostal());
+        profesorModel.setTelefono(profesor.getTelefono());
+        profesorModel.setMovil(profesorModel.getMovil());
+        profesorModel.setFormaPago(profesor.getFormaPago());
+        profesorModel.setEntidadDeCargo(profesor.getEntidadDeCargo());
+        profesorModel.setCuentaBancaria(profesor.getCuentaBancaria());
         return profesorModel;
     }
 
@@ -25,6 +34,15 @@ public class ProfesorConverter {
         Profesor profesor = new Profesor();
         profesor.setNumSs(profesorModel.getNumSs());
         profesor.setSalario(profesorModel.getSalario());
+        profesor.setDomicilio(profesorModel.getDomicilio());
+        profesor.setPoblacion(profesorModel.getPoblacion());
+        profesor.setProvincia(profesorModel.getProvincia());
+        profesor.setCodigoPostal(profesorModel.getCodigoPostal());
+        profesor.setTelefono(profesorModel.getTelefono());
+        profesor.setMovil(profesorModel.getMovil());
+        profesor.setFormaPago(profesorModel.getFormaPago());
+        profesor.setEntidadDeCargo(profesorModel.getEntidadDeCargo());
+        profesor.setCuentaBancaria(profesorModel.getCuentaBancaria());
         return profesor;
     }
 

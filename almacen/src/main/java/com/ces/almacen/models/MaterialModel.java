@@ -12,4 +12,9 @@ import lombok.ToString;
 public class MaterialModel {
     private long id;
     private String nombre;
+    private String descripcion;
+    private String marca;
+    private String modelo;
+    private String numSerie;
+    private String estado;
 }

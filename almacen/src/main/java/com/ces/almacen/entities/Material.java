@@ -30,6 +30,24 @@ public class Material {
     @Column(name = "nombre")
     private String nombre;
 
+    @Column(name = "stock")
+    private String stock;
+
+    @Column(name = "descripcion")
+    private String descripcion;
+
+    @Column(name = "marca")
+    private String marca;
+
+    @Column(name = "modelo")
+    private String modelo;
+
+    @Column(name = "numSerie")
+    private String numSerie;
+
+    @Column(name = "estado")
+    private String estado;
+
     @ManyToMany
     private List<Categoria> categorias;
 

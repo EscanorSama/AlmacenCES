@@ -21,6 +21,29 @@ public class Alumno {
     @Column(name = "id")
     private long id;
 
+    @Column(name = "numExpediente")
+    private String numExpediente;
+
+    @Column(name = "domicilio")
+    private String domicilio;
+
+    @Column(name = "poblacion")
+    private String poblacion;
+
+    @Column(name = "provincia")
+    private String provincia;
+
+    @Column(name = "codigoPostal")
+    private String codigoPostal;
+
+    @Column(name = "telefono")
+    private String telefono;
+
+    @Column(name = "movil")
+    private String movil;
+
+
+
 
     @OneToOne(cascade={CascadeType.REMOVE})
     @JsonBackReference

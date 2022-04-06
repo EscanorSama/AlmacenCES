@@ -15,5 +15,5 @@ import java.util.List;
 public class PedidoModel {
     private long id;
     private int fecha;
-    List<LineaPedido> lineasPedido;
+    List<LineaPedidoModel> lineasPedido;
 }
