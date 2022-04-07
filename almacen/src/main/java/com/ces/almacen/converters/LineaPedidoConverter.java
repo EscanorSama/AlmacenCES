@@ -1,6 +1,8 @@
 package com.ces.almacen.converters;
 
 import com.ces.almacen.entities.LineaPedido;
+import com.ces.almacen.entities.Material;
+import com.ces.almacen.entities.Pedido;
 import com.ces.almacen.models.LineaPedidoModel;
 import org.springframework.stereotype.Component;
 
@@ -13,7 +15,7 @@ public class LineaPedidoConverter {
         LineaPedidoModel lineaPedidoModel = new LineaPedidoModel();
         lineaPedidoModel.setId(lineaPedido.getId());
         lineaPedidoModel.setCantidad(lineaPedido.getCantidad());
-
+        lineaPedidoModel.setMaterialId(lineaPedido.getMaterial().getId());
         return lineaPedidoModel;
     }
 
@@ -21,7 +23,13 @@ public class LineaPedidoConverter {
         LineaPedido lineaPedido = new LineaPedido();
         lineaPedido.setId(lineaPedidoModel.getId());
         lineaPedido.setCantidad(lineaPedidoModel.getCantidad());
+        Pedido pedido = new Pedido ();
+        pedido.setId(lineaPedidoModel.getIdPedido());
+        lineaPedido.setPedido(pedido);
 
+        Material material = new Material();
+        material.setId(lineaPedidoModel.getMaterialId());
+        lineaPedido.setMaterial(material);
         return lineaPedido;
     }
 

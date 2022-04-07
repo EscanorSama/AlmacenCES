@@ -10,6 +10,7 @@ public class SolicitudConverter {
         SolicitudModel solicitudModel = new SolicitudModel();
         solicitudModel.setId(solicitud.getId());
         solicitudModel.setFecha(solicitud.getFecha());
+
         return solicitudModel;
     }
 

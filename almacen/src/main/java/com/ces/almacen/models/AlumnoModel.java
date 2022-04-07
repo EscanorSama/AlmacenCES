@@ -11,6 +11,7 @@ import lombok.ToString;
 @ToString
 public class AlumnoModel extends PersonaModel{
     private long alumnoId;
+    private String numExpediente;
     private String domicilio;
     private String poblacion;
     private String provincia;

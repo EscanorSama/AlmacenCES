@@ -30,23 +30,27 @@ public class Material {
     @Column(name = "nombre")
     private String nombre;
 
-    @Column(name = "stock")
-    private String stock;
-
     @Column(name = "descripcion")
     private String descripcion;
 
     @Column(name = "marca")
     private String marca;
 
-    @Column(name = "modelo")
-    private String modelo;
+    @Column(name = "proveedor")
+    private String proveedor;
 
-    @Column(name = "numSerie")
-    private String numSerie;
+    @Column(name = "numUnidades")
+    private int numUnidades;
 
-    @Column(name = "estado")
-    private String estado;
+    @Column(name = "minimoStock")
+    private int minimoStock;
+
+    @Column(name = "observaciones")
+    private String observaciones;
+
+    @Column(name = "precio")
+    private double precio;
+
 
     @ManyToMany
     private List<Categoria> categorias;

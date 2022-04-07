@@ -5,6 +5,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -12,4 +14,5 @@ import lombok.ToString;
 public class SolicitudModel {
     private long id;
     private int fecha;
+    List<LineaSolicitudModel> lineasSolicitud;
 }

@@ -14,7 +14,10 @@ public class MaterialModel {
     private String nombre;
     private String descripcion;
     private String marca;
-    private String modelo;
-    private String numSerie;
-    private String estado;
+    private String proveedor;
+    private int numUnidades;
+    private int minimoStock;
+    private String observaciones;
+    private double precio;
+
 }

@@ -3,14 +3,17 @@ package com.ces.almacen.services;
 import com.ces.almacen.converters.LineaPedidoConverter;
 import com.ces.almacen.converters.PedidoConverter;
 import com.ces.almacen.entities.LineaPedido;
+import com.ces.almacen.entities.Material;
 import com.ces.almacen.entities.Pedido;
 import com.ces.almacen.models.LineaPedidoModel;
 import com.ces.almacen.models.PedidoModel;
 import com.ces.almacen.repositories.LineaPedidoRepository;
+import com.ces.almacen.repositories.MaterialRepository;
 import com.ces.almacen.repositories.PedidoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.sound.sampled.Line;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -27,17 +30,22 @@ public class PedidoService {
     private LineaPedidoConverter lineaPedidoConverter;
     @Autowired
     private LineaPedidoRepository lineaPedidoRepository;
+    @Autowired
+    private MaterialRepository materialRepository;
 
-    public void insertPedido(PedidoModel pedidoModel) {
-        List<LineaPedidoModel> lineasPedidoModel=pedidoModel.getLineasPedido();
+    public void insertPedido(PedidoModel pedidoModel){
+        List<LineaPedidoModel>lineasPedidoModel = pedidoModel.getLineasPedido();
+        Pedido pedido = pedidoRepository.save(pedidoConverter.modelToEntity(pedidoModel));
         for (LineaPedidoModel lineaPedidoModel: lineasPedidoModel) {
-            LineaPedido lineaPedido = lineaPedidoConverter.modelToEntity(lineaPedidoModel);
-            lineaPedidoRepository.save(lineaPedido);
+            lineaPedidoModel.setIdPedido(pedido.getId());
+            lineaPedidoService.insertLineaPedido(lineaPedidoModel);
+            /*LineaPedido lineaPedido = lineaPedidoConverter.modelToEntity(lineaPedidoModel);
+            lineaPedidoRepository.save(lineaPedido);*/
         }
 
-        Pedido pedido = pedidoConverter.modelToEntity(pedidoModel);
-        pedidoRepository.save(pedido);
     }
+
+
 
     public Optional<PedidoModel> deletePedido(Long id) {
         Optional<PedidoModel> resultPm = Optional.empty();

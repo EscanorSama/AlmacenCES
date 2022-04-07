@@ -12,9 +12,11 @@ public class MaterialConverter {
         materialModel.setNombre(material.getNombre());
         materialModel.setDescripcion(material.getDescripcion());
         materialModel.setMarca(material.getMarca());
-        materialModel.setModelo(material.getModelo());
-        materialModel.setNumSerie(material.getNumSerie());
-        materialModel.setEstado(material.getEstado());
+        materialModel.setProveedor(material.getProveedor());
+        materialModel.setNumUnidades(material.getNumUnidades());
+        materialModel.setMinimoStock(material.getMinimoStock());
+        materialModel.setObservaciones(material.getObservaciones());
+        materialModel.setPrecio(material.getPrecio());
         return materialModel;
     }
     public Material modelToEntity(MaterialModel materialModel){
@@ -23,9 +25,11 @@ public class MaterialConverter {
         material.setNombre(materialModel.getNombre());
         material.setDescripcion(materialModel.getDescripcion());
         material.setMarca(materialModel.getMarca());
-        material.setModelo(materialModel.getModelo());
-        material.setNumSerie(materialModel.getNumSerie());
-        material.setEstado(materialModel.getEstado());
+        material.setProveedor(materialModel.getProveedor());
+        material.setNumUnidades(materialModel.getNumUnidades());
+        material.setMinimoStock(materialModel.getMinimoStock());
+        material.setObservaciones(materialModel.getObservaciones());
+        material.setPrecio(materialModel.getPrecio());
         return material;
     }
 }

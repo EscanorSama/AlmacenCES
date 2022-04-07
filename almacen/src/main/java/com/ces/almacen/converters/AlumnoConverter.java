@@ -21,12 +21,14 @@ public class AlumnoConverter {
         alumnoModel.setCodigoPostal(alumno.getCodigoPostal());
         alumnoModel.setTelefono(alumno.getTelefono());
         alumnoModel.setMovil(alumnoModel.getMovil());
+        alumnoModel.setNumExpediente(alumno.getNumExpediente());
 
         return alumnoModel;
     }
 
     public Alumno modelToEntity(AlumnoModel alumnoModel){
         Alumno alumno = new Alumno();
+        alumno.setNumExpediente(alumnoModel.getNumExpediente());
         alumno.setId(alumnoModel.getAlumnoId());
         alumno.setDomicilio(alumnoModel.getDomicilio());
         alumno.setPoblacion(alumnoModel.getPoblacion());

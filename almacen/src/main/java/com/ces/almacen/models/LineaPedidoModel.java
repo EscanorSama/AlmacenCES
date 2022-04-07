@@ -14,5 +14,8 @@ import lombok.ToString;
 public class LineaPedidoModel {
     private long id;
     private int cantidad;
+    private long materialId;
+    private long idPedido;
 
 }
+
