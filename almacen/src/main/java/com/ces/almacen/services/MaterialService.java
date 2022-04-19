@@ -67,4 +67,20 @@ public class MaterialService {
         }
         return materialesModel;
     }
+
+
+    public List<MaterialModel> deleteMateriales(List<Long> ids) {
+        List<MaterialModel> materialesModel = new ArrayList<>();
+        for (Long id: ids) {
+            Optional<Material> result = materialRepository.findById(id);
+            if (result.isPresent()){
+                Material material = result.get();
+                MaterialModel materialModel = materialConverter.entityToModel(material);
+                materialesModel.add(materialModel);
+                materialRepository.delete(material);
+            }
+
+        }
+        return materialesModel;
+    }
 }

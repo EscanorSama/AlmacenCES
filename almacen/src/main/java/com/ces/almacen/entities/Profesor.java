@@ -27,12 +27,6 @@ public class Profesor {
     @Column(name = "salario")
     private double salario;
 
-    @Column(name = "nombre")
-    private String nombre;
-
-    @Column(name = "apellido")
-    private String apellido;
-
     @Column(name = "domicilio")
     private String domicilio;
 
@@ -45,17 +39,12 @@ public class Profesor {
     @Column(name = "codigoPostal")
     private String codigoPostal;
 
-    @Column(name = "dni")
-    private String dni;
 
     @Column(name = "telefono")
     private String telefono;
 
     @Column(name = "movil")
     private String movil;
-
-    @Column(name = "email")
-    private String email;
 
     @Column(name = "formaPago")
     private String formaPago;

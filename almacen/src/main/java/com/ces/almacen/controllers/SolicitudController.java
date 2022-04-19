@@ -5,6 +5,7 @@ import com.ces.almacen.services.SolicitudService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Date;
 import java.util.Optional;
 
 @RestController
@@ -23,7 +24,7 @@ public class SolicitudController {
     }
 
     @PutMapping(path = "/solicitud/fecha")
-    public boolean putSolicitud(@RequestParam(name = "id") Long id,@RequestParam(name = "fecha")Integer fecha){
+    public boolean putSolicitud(@RequestParam(name = "id") Long id,@RequestParam(name = "fecha") Date fecha){
         if (solicitudService.updateSolicitudFecha(id, fecha)){
             return true;
         }

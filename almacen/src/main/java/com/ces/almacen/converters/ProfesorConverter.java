@@ -43,6 +43,11 @@ public class ProfesorConverter {
         profesor.setFormaPago(profesorModel.getFormaPago());
         profesor.setEntidadDeCargo(profesorModel.getEntidadDeCargo());
         profesor.setCuentaBancaria(profesorModel.getCuentaBancaria());
+        Persona persona = new Persona();
+        persona.setNombre(profesorModel.getNombre());
+        persona.setApellido(profesorModel.getApellido());
+        persona.setMail(profesorModel.getMail());
+        profesor.setPersona(persona);
         return profesor;
     }
 

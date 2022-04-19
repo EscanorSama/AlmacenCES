@@ -7,6 +7,8 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+
+import java.sql.Date;
 import java.util.List;
 
 @Getter
@@ -21,7 +23,7 @@ public class Solicitud {
     @Column(name="id")
     private long id;
     @Column(name = "fecha")
-    private int fecha;
+    private Date fecha;
 
     @OneToMany(mappedBy = "solicitud")
     private List<LineaSolicitud> lineasSolicitud;

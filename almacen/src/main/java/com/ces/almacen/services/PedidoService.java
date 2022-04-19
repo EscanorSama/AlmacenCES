@@ -52,6 +52,10 @@ public class PedidoService {
         Optional<Pedido> result = pedidoRepository.findById(id);
         if ( result.isPresent()){
             Pedido pedido = result.get();
+            List<LineaPedido> lineasPedido = pedido.getLineasPedidos();
+            for (LineaPedido lineaPedido: lineasPedido) {
+                lineaPedidoRepository.delete(lineaPedido);
+            }
             PedidoModel pedidoModel = pedidoConverter.entityToModel(pedido);
             resultPm = Optional.of(pedidoModel);
             pedidoRepository.delete(pedido);

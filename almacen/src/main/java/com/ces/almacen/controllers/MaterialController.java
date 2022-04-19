@@ -6,6 +6,7 @@ import com.ces.almacen.services.MaterialService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -45,5 +46,10 @@ public class MaterialController {
             return result.get();
         }
         throw new NotFoundException();
+    }
+
+    @DeleteMapping(path = "/materiales")
+    public List<MaterialModel> deleteMateriales(@RequestBody  List<Long > ids){
+        return materialService.deleteMateriales(ids);
     }
 }
