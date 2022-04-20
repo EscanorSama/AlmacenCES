@@ -66,7 +66,7 @@ public class AlumnoService {
     }
 
     public List<AlumnoModel> getAlumnosPag(int npag){
-        Pageable pageable = PageRequest.of(npag, 5);
+        Pageable pageable = PageRequest.of(npag, 3);
         Page<Alumno> alumnosPag = alumnoRepository.findAll(pageable);
         List<Alumno> alumnos = alumnosPag.getContent();
         List<AlumnoModel> alumnosModel = listAlumnoToListAlumnoModel(alumnos);

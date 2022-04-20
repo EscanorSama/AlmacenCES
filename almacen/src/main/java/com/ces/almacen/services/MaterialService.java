@@ -116,4 +116,16 @@ public class MaterialService {
         }
         return materialModelModificado;
     }
+
+    public List<MaterialModel> getMaterialMarca(String marca){
+        List<Material> materiales = materialRepository.findByMarca(marca);
+        List<MaterialModel> materialesModel = listMaterialesToMaterialesModel(materiales);
+        return materialesModel;
+    }
+
+    public List<MaterialModel> getMaterialProveedor(String proveedor){
+        List<Material> materiales = materialRepository.findByProveedor(proveedor);
+        List<MaterialModel> materialesModel = listMaterialesToMaterialesModel(materiales);
+        return materialesModel;
+    }
 }

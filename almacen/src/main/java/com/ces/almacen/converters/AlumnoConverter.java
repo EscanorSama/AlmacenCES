@@ -20,7 +20,7 @@ public class AlumnoConverter {
         alumnoModel.setProvincia(alumno.getProvincia());
         alumnoModel.setCodigoPostal(alumno.getCodigoPostal());
         alumnoModel.setTelefono(alumno.getTelefono());
-        alumnoModel.setMovil(alumnoModel.getMovil());
+        alumnoModel.setMovil(alumno.getMovil());
         alumnoModel.setNumExpediente(alumno.getNumExpediente());
 
         return alumnoModel;
