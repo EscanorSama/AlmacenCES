@@ -40,6 +40,7 @@ public class SolicitudService {
         List<LineaSolicitudModel> lineasSolicitudModel = solicitudModel.getLineasSolicitud();
         solicitudModel.setFecha(utilsDate.getSqlSysDate());//fecha del sistema
         Solicitud solicitud = solicitudRepository.save(solicitudConverter.modelToEntity(solicitudModel));
+        log.info("*****"+ getSolicitudId(solicitud.getId()));
         java.sql.Date date = utilsDate.getSqlSysDate();
         log.info("***** "+date);
         for (LineaSolicitudModel lineaSolicitudModel: lineasSolicitudModel) {
@@ -47,13 +48,14 @@ public class SolicitudService {
             lineaSolicitudModel.setSolicitudId(solicitud.getId());
             lineaSolicitudService.insertLineaSolicitud(lineaSolicitudModel);
         }
-
-
     }
+
+
 
     public Optional<SolicitudModel> getSolicitudId(Long id) {
         Optional<SolicitudModel> resultSm = Optional.empty();
         Optional<Solicitud> solicitud = solicitudRepository.findById(id);
+        log.info("*******"+ id);
         if (solicitud.isPresent()){
             SolicitudModel solicitudModel = solicitudConverter.entityToModel(solicitud.get());
             resultSm = Optional.of(solicitudModel);
@@ -63,7 +65,9 @@ public class SolicitudService {
 
     public Optional<SolicitudModel> deleteSolicitud(Long id) {
         Optional<SolicitudModel> resultSm = Optional.empty();
+        log.info("******"+ id);
         Optional<Solicitud> result = solicitudRepository.findById(id);
+
         if (result.isPresent()){
             Solicitud solicitud = result.get();
             List<LineaSolicitud> lineasSolicitud = solicitud.getLineasSolicitud();

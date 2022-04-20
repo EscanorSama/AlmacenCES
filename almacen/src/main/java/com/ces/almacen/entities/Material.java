@@ -61,7 +61,11 @@ public class Material {
     @OneToMany(mappedBy = "material")
     private List<LineaAlmacen> lineasAlmacen;
 
-    @OneToMany(mappedBy = "material")
+    @OneToMany(mappedBy = "material", cascade={CascadeType.PERSIST})
     private List<LineaSolicitud> lineasSolicitud;
+    @PreRemove
+    private void preRemove(){
+        lineasSolicitud.forEach(lineaSolicitud -> lineaSolicitud.setMaterial(null));
+    }
 
 }

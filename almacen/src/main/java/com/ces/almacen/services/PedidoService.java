@@ -66,6 +66,7 @@ public class PedidoService {
     public Optional<PedidoModel> getPedido(Long id) {
         Optional<PedidoModel> resultPm = Optional.empty();
         Optional<Pedido> result = pedidoRepository.findById(id);
+
         if(result.isPresent()){
             Pedido pedido = result.get();
             PedidoModel pedidoModel = pedidoConverter.entityToModel(pedido);

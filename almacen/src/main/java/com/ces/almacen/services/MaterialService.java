@@ -4,6 +4,7 @@ import com.ces.almacen.converters.MaterialConverter;
 import com.ces.almacen.entities.Material;
 import com.ces.almacen.models.MaterialModel;
 import com.ces.almacen.repositories.MaterialRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Slf4j
 public class MaterialService {
     @Autowired
     private MaterialRepository materialRepository;
@@ -77,10 +79,30 @@ public class MaterialService {
                 Material material = result.get();
                 MaterialModel materialModel = materialConverter.entityToModel(material);
                 materialesModel.add(materialModel);
+                log.info("**********"+ id);
                 materialRepository.delete(material);
             }
 
         }
         return materialesModel;
+    }
+
+    public MaterialModel updateMaterial(MaterialModel materialModel) {
+        MaterialModel materialModelModificado = new MaterialModel();
+        Optional<Material> result = materialRepository.findById(materialModel.getId());
+        if (result.isPresent()){
+            Material material = result.get();
+            material.setNombre(materialModel.getNombre());
+            material.setDescripcion(materialModel.getDescripcion());
+            material.setMarca(materialModel.getMarca());
+            material.setProveedor(materialModel.getProveedor());
+            material.setNumUnidades(materialModel.getNumUnidades());
+            material.setMinimoStock(materialModel.getMinimoStock());
+            material.setObservaciones(materialModel.getObservaciones());
+            material.setPrecio(materialModel.getPrecio());
+            materialRepository.save(material);
+            materialModelModificado = materialConverter.entityToModel(material);
+        }
+        return materialModelModificado;
     }
 }

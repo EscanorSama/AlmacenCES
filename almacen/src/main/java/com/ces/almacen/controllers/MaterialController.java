@@ -39,6 +39,11 @@ public class MaterialController {
         throw new NotFoundException();
     }
 
+    @PutMapping(path = "/material")
+    public MaterialModel putMaterial(@RequestBody MaterialModel materialModel){
+        return materialService.updateMaterial(materialModel);
+    }
+
     @DeleteMapping(path = "/material/{id}")
     public MaterialModel deleteMaterial(@PathVariable(name = "id")Long id){
         Optional<MaterialModel> result = materialService.deleteMaterial(id);
