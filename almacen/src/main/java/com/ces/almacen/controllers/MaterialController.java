@@ -26,8 +26,13 @@ public class MaterialController {
     }
 
     @GetMapping(path = "/materiales")
-    public List<MaterialModel> getMateriales(){
-        return materialService.getMateriales();
+    public List<MaterialModel> getMateriales(@RequestParam(name = "npag", required = false)Integer npag){
+        if(npag!= null){
+            return materialService.getMaterialesPag(npag);
+        }else{
+            return materialService.getMateriales();
+        }
+
     }
 
     @GetMapping(path = "/material/{id}")

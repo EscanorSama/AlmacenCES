@@ -6,6 +6,9 @@ import com.ces.almacen.models.MaterialModel;
 import com.ces.almacen.repositories.MaterialRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -48,7 +51,15 @@ public class MaterialService {
         return resultMm;
     }
 
-    public List<MaterialModel> getMateriales() {
+    public List<MaterialModel> getMaterialesPag(int nPag) {
+        Pageable pageable = PageRequest.of(nPag, 3);
+        Page<Material> materialesPag = materialRepository.findAll(pageable);
+        List<Material> materiales = materialesPag.getContent();
+        List<MaterialModel> materialesModel = listMaterialesToMaterialesModel(materiales);
+        return materialesModel;
+    }
+
+    public List<MaterialModel> getMateriales(){
         List<Material> materiales = materialRepository.findAll();
         List<MaterialModel> materialesModel = listMaterialesToMaterialesModel(materiales);
         return materialesModel;

@@ -36,8 +36,13 @@ public class AlumnoController {
 
 
     @GetMapping(path = "/alumnos")
-    public List<AlumnoModel> getAlumnos (){
-        return alumnoService.getAlumnos();
+    public List<AlumnoModel> getAlumnos (@RequestParam(name = "npag", required = false)Integer npag){
+        if(npag!= null){
+            return alumnoService.getAlumnosPag(npag);
+        }else{
+            return alumnoService.getAlumnos();
+        }
+
     }
 
     @DeleteMapping(path = "/alumno/{id}")
