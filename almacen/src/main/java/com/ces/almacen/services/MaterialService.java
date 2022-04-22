@@ -128,4 +128,10 @@ public class MaterialService {
         List<MaterialModel> materialesModel = listMaterialesToMaterialesModel(materiales);
         return materialesModel;
     }
+
+    public List<MaterialModel> getMaterialBetweenPrecio(int precio1, int precio2){
+        List<Material> materiales = materialRepository.findByPrecioBetween(precio1, precio2);
+        List<MaterialModel> materialesModel = listMaterialesToMaterialesModel(materiales);
+        return materialesModel;
+    }
 }

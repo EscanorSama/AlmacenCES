@@ -65,6 +65,18 @@ public class AlumnoService {
         return resultAm;
     }
 
+    public List<AlumnoModel> getAlumnoNumExpediente(String numExpediente){
+        List<Alumno> alumnos = alumnoRepository.findByNumExpediente(numExpediente);
+        List<AlumnoModel> alumnosModel = listAlumnoToListAlumnoModel(alumnos);
+        return alumnosModel;
+    }
+
+    public List<AlumnoModel> getAlumnoCodigoPostal(String codigoPostal){
+        List<Alumno> alumnos = alumnoRepository.findByCodigoPostal(codigoPostal);
+        List<AlumnoModel> alumnosModel = listAlumnoToListAlumnoModel(alumnos);
+        return alumnosModel;
+    }
+
     public List<AlumnoModel> getAlumnosPag(int npag){
         Pageable pageable = PageRequest.of(npag, 3);
         Page<Alumno> alumnosPag = alumnoRepository.findAll(pageable);
@@ -105,4 +117,8 @@ public class AlumnoService {
             alumnoRepository.save(alumno);
         }
     }
+
+
+
+
 }

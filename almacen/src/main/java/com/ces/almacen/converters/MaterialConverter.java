@@ -1,11 +1,20 @@
 package com.ces.almacen.converters;
 
+import com.ces.almacen.entities.Categoria;
 import com.ces.almacen.entities.Material;
+import com.ces.almacen.models.CategoriaModel;
 import com.ces.almacen.models.MaterialModel;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Component
 public class MaterialConverter {
+
+
+
     public MaterialModel entityToModel(Material material){
         MaterialModel materialModel = new MaterialModel();
         materialModel.setId(material.getId());
@@ -17,6 +26,7 @@ public class MaterialConverter {
         materialModel.setMinimoStock(material.getMinimoStock());
         materialModel.setObservaciones(material.getObservaciones());
         materialModel.setPrecio(material.getPrecio());
+
         return materialModel;
     }
     public Material modelToEntity(MaterialModel materialModel){
@@ -30,6 +40,7 @@ public class MaterialConverter {
         material.setMinimoStock(materialModel.getMinimoStock());
         material.setObservaciones(materialModel.getObservaciones());
         material.setPrecio(materialModel.getPrecio());
+
         return material;
     }
 }

@@ -23,6 +23,8 @@ public class Categoria {
     @GeneratedValue
     @Column
     private long id;
+    @Column
+    private String nombre;
 
     @ManyToMany(mappedBy = "categorias")
     @JsonIgnoreProperties({"categorias"})

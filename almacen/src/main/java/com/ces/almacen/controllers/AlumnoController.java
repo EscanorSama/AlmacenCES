@@ -36,14 +36,22 @@ public class AlumnoController {
 
 
     @GetMapping(path = "/alumnos")
-    public List<AlumnoModel> getAlumnos (@RequestParam(name = "npag", required = false)Integer npag){
-        if(npag!= null){
+    public List<AlumnoModel> getAlumnos (@RequestParam(name = "npag", required = false)Integer npag,
+                                         @RequestParam(name = "numExpediente", required = false)String numExpediente,
+                                         @RequestParam(name = "codigoPostal", required = false)String codigoPostal){
+        if(npag!= null && numExpediente==null && codigoPostal==null){
             return alumnoService.getAlumnosPag(npag);
+        }else if(npag== null && numExpediente!=null && codigoPostal==null){
+            return alumnoService.getAlumnoNumExpediente(numExpediente);
+        }else if(npag== null && numExpediente==null && codigoPostal!=null){
+            return alumnoService.getAlumnoCodigoPostal(codigoPostal);
         }else{
             return alumnoService.getAlumnos();
         }
 
     }
+
+
 
     @DeleteMapping(path = "/alumno/{id}")
     public AlumnoModel deleteAlumno(@PathVariable(name = "id") Long id){

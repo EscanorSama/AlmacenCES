@@ -10,6 +10,7 @@ import com.ces.almacen.models.PedidoModel;
 import com.ces.almacen.repositories.LineaPedidoRepository;
 import com.ces.almacen.repositories.MaterialRepository;
 import com.ces.almacen.repositories.PedidoRepository;
+import com.ces.almacen.utils.UtilsDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,15 +33,17 @@ public class PedidoService {
     private LineaPedidoRepository lineaPedidoRepository;
     @Autowired
     private MaterialRepository materialRepository;
+    @Autowired
+    private UtilsDate utilsDate;
 
     public void insertPedido(PedidoModel pedidoModel){
         List<LineaPedidoModel>lineasPedidoModel = pedidoModel.getLineasPedido();
+        pedidoModel.setFecha(utilsDate.getSqlSysDate());
         Pedido pedido = pedidoRepository.save(pedidoConverter.modelToEntity(pedidoModel));
+        java.sql.Date date = utilsDate.getSqlSysDate();
         for (LineaPedidoModel lineaPedidoModel: lineasPedidoModel) {
             lineaPedidoModel.setIdPedido(pedido.getId());
             lineaPedidoService.insertLineaPedido(lineaPedidoModel);
-            /*LineaPedido lineaPedido = lineaPedidoConverter.modelToEntity(lineaPedidoModel);
-            lineaPedidoRepository.save(lineaPedido);*/
         }
 
     }

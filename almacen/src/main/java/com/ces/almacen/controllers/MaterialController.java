@@ -28,16 +28,20 @@ public class MaterialController {
     @GetMapping(path = "/materiales")
     public List<MaterialModel> getMateriales(@RequestParam(name = "npag", required = false)Integer npag,
                                              @RequestParam(name = "marca", required = false)String marca,
-                                             @RequestParam(name = "proveedor", required = false)String proveedor){
+                                             @RequestParam(name = "proveedor", required = false)String proveedor,
+                                             @RequestParam(name = "precio1", required = false)Integer precio1,
+                                             @RequestParam(name = "precio2", required = false)Integer precio2){
 
         if(npag!= null && marca==null && proveedor==null){
             return materialService.getMaterialesPag(npag);
         } else if(npag== null && marca==null && proveedor==null){
             return materialService.getMateriales();
-        } else if(npag== null && marca!=null && proveedor==null){
+        } else if(npag!= null && marca!=null && proveedor==null){
             return materialService.getMaterialMarca(marca);
-        } else if (npag== null && marca==null && proveedor!=null){
+        } else if(npag!= null && marca==null && proveedor!=null){
             return materialService.getMaterialProveedor(proveedor);
+        }else{
+            return materialService.getMaterialBetweenPrecio(precio1,precio2);
         }
 
     }

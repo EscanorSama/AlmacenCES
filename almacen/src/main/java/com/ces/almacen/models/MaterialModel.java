@@ -5,6 +5,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -19,5 +21,6 @@ public class MaterialModel {
     private int minimoStock;
     private String observaciones;
     private double precio;
+    //private List<CategoriaModel> categorias;
 
 }

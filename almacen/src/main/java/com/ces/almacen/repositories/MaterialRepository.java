@@ -10,5 +10,7 @@ public interface MaterialRepository extends JpaRepository<Material, Long> {
 
     List<Material> findByProveedor(String proveedor);
 
+    List<Material> findByPrecioBetween(int precio1, int precio2);
+
 
 }

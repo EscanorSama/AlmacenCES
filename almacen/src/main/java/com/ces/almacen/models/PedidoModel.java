@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.sql.Date;
 import java.util.List;
 
 @Getter
@@ -14,6 +15,6 @@ import java.util.List;
 @ToString
 public class PedidoModel {
     private long id;
-    private int fecha;
+    private Date fecha;
     List<LineaPedidoModel> lineasPedido;
 }
