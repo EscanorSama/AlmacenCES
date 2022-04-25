@@ -1,6 +1,5 @@
 package com.ces.almacen.entities;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,28 +14,16 @@ import java.util.List;
 @NoArgsConstructor
 @ToString
 @Entity
-@Table(name = "armario")
-public class Armario {
+@Table(name = "aula")
+public class Aula {
 
     @Id
     @GeneratedValue
     @Column(name = "id")
     private long id;
 
-
-    @OneToOne(cascade={CascadeType.REMOVE})
-    @JsonBackReference
-    private Contenedor contenedor;
-
-    @ManyToOne
-    @JsonBackReference
-    private Profesor profesor;
-
-    @OneToMany (mappedBy = "armario")
+    @OneToMany (mappedBy = "aula")
     @JsonManagedReference
-    List<LineaSolicitud> lineasSolicitud;
-
-
-
+    private List<Prestamo> prestamos;
 
 }

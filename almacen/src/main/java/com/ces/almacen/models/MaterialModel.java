@@ -21,6 +21,6 @@ public class MaterialModel {
     private int minimoStock;
     private String observaciones;
     private double precio;
-    //private List<CategoriaModel> categorias;
+    private List<CategoriaModel> categorias;
 
 }

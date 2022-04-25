@@ -67,4 +67,8 @@ public class Profesor {
     @JsonManagedReference
     private List<Armario> armarios;
 
+    @OneToOne(mappedBy = "profesor")
+    @JsonManagedReference
+    private Prestamo prestamo;
+
 }

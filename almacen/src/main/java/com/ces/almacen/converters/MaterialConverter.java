@@ -13,7 +13,8 @@ import java.util.List;
 @Component
 public class MaterialConverter {
 
-
+    @Autowired
+    private CategoriaConverter categoriaConverter;
 
     public MaterialModel entityToModel(Material material){
         MaterialModel materialModel = new MaterialModel();
@@ -27,8 +28,12 @@ public class MaterialConverter {
         materialModel.setObservaciones(material.getObservaciones());
         materialModel.setPrecio(material.getPrecio());
 
+        List<CategoriaModel> categoriasModel = categoriaConverter.listEntityToListModel(material.getCategorias());
+        materialModel.setCategorias(categoriasModel);
         return materialModel;
     }
+
+
     public Material modelToEntity(MaterialModel materialModel){
         Material material = new Material();
         material.setId(material.getId());
@@ -41,6 +46,27 @@ public class MaterialConverter {
         material.setObservaciones(materialModel.getObservaciones());
         material.setPrecio(materialModel.getPrecio());
 
+        List<Categoria> categorias = categoriaConverter.listModelToListEntity(materialModel.getCategorias());
+        material.setCategorias(categorias);
         return material;
+    }
+
+
+    public List<MaterialModel> listEntityToListModel(List<Material> materiales){
+        List<MaterialModel> materialesModel = new ArrayList<>();
+        for (Material material: materiales) {
+            MaterialModel materialModel = this.entityToModel(material);
+            materialesModel.add(materialModel);
+        }
+        return materialesModel;
+    }
+
+    public List<Material> listModelToListEntity(List<MaterialModel> materialesModel){
+        List<Material> materiales = new ArrayList<>();
+        for (MaterialModel materialModel: materialesModel) {
+            Material material = this.modelToEntity(materialModel);
+            materiales.add(material);
+        }
+        return materiales;
     }
 }

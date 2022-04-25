@@ -15,5 +15,5 @@ import java.util.List;
 public class CategoriaModel {
     private long id;
     private String nombre;
-    //private List<MaterialModel> materiales;
+
 }

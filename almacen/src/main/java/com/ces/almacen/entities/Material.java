@@ -68,4 +68,7 @@ public class Material {
         lineasSolicitud.forEach(lineaSolicitud -> lineaSolicitud.setMaterial(null));
     }
 
+    @OneToMany(mappedBy = "material")
+    private List<LineaPrestamo> lineasPrestamo;
+
 }

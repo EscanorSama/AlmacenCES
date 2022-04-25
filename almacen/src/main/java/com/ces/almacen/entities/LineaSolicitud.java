@@ -31,4 +31,9 @@ public class LineaSolicitud {
     @ManyToOne
     @JsonBackReference
     private Material material;
+
+    @ManyToOne
+    @JsonBackReference
+    private Armario armario;
+
 }

@@ -15,28 +15,25 @@ import java.util.List;
 @NoArgsConstructor
 @ToString
 @Entity
-@Table(name = "armario")
-public class Armario {
+@Table(name = "prestamo")
+public class Prestamo {
 
     @Id
     @GeneratedValue
     @Column(name = "id")
     private long id;
 
-
-    @OneToOne(cascade={CascadeType.REMOVE})
-    @JsonBackReference
-    private Contenedor contenedor;
-
     @ManyToOne
     @JsonBackReference
-    private Profesor profesor;
+    private Aula aula;
 
-    @OneToMany (mappedBy = "armario")
+    @OneToMany(mappedBy = "prestamo")
     @JsonManagedReference
-    List<LineaSolicitud> lineasSolicitud;
+    private List<LineaPrestamo> lineasPrestamo;
 
-
+    @OneToOne
+    @JsonBackReference
+    private Profesor profesor;
 
 
 }
