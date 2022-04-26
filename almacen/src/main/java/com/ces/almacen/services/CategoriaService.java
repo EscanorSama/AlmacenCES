@@ -25,6 +25,13 @@ public class CategoriaService {
 
     }
 
+    public void insertCategorias(List<CategoriaModel> categoriasModel) {
+        for (CategoriaModel categoriaModel: categoriasModel) {
+            Categoria categoria = categoriaConverter.modelToEntity(categoriaModel);
+            categoriaRepository.save(categoria);
+        }
+    }
+
     public Optional<CategoriaModel> deleteCategoria(Long id) {
         Optional<CategoriaModel> resultCm = Optional.empty();
         Optional<Categoria> result = categoriaRepository.findById(id);
@@ -62,4 +69,6 @@ public class CategoriaService {
         }
         return categoriaModels;
     }
+
+
 }

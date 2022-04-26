@@ -19,6 +19,11 @@ public class CategoriaController {
         categoriaService.insertCategoria(categoriaModel);
     }
 
+    @PostMapping(path = "/categorias")
+    public void postCategorias(@RequestBody List<CategoriaModel> categoriasModel){
+        categoriaService.insertCategorias(categoriasModel);
+    }
+
     @GetMapping(path = "/categoria/{id}")
     public CategoriaModel getCategoria(@PathVariable(name = "id")Long id){
         Optional<CategoriaModel> result = categoriaService.getCategoria(id);
