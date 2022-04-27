@@ -15,11 +15,15 @@ public class SolicitudConverter {
     @Autowired
     LineaSolicitudConverter lineaSolicitudConverter;
 
+    @Autowired
+    ProfesorConverter profesorConverter;
+
     public SolicitudModel entityToModel(Solicitud solicitud){
         SolicitudModel solicitudModel = new SolicitudModel();
         solicitudModel.setId(solicitud.getId());
         solicitudModel.setFecha(solicitud.getFecha());
         solicitudModel.setProfesorId(solicitud.getProfesor().getId());
+        //solicitudModel.setProfesor(profesorConverter.entityToModel(solicitud.getProfesor()));
         List<LineaSolicitudModel> lineasSolicitudModel = lineaSolicitudConverter.listLineaSolicitudToListLineaSolicitudModel(solicitud.getLineasSolicitud());
         solicitudModel.setLineasSolicitud(lineasSolicitudModel);
 
@@ -30,6 +34,7 @@ public class SolicitudConverter {
         Solicitud solicitud = new Solicitud();
         solicitud.setId(solicitudModel.getId());
         solicitud.setFecha(solicitudModel.getFecha());
+        //solicitud.setProfesor(profesorConverter.modelToEntity(solicitudModel.getProfesor()));
         List<LineaSolicitud> lineasSolicitud = lineaSolicitudConverter.listLineaSolicitudModelToListLineaSolicitud(solicitudModel.getLineasSolicitud());
         solicitud.setLineasSolicitud(lineasSolicitud);
         Profesor profesor = new Profesor();

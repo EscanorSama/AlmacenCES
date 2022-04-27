@@ -1,5 +1,6 @@
 package com.ces.almacen.converters;
 
+import com.ces.almacen.entities.Armario;
 import com.ces.almacen.entities.LineaSolicitud;
 import com.ces.almacen.entities.Material;
 import com.ces.almacen.entities.Solicitud;
@@ -17,6 +18,7 @@ public class LineaSolicitudConverter {
         lineaSolicitudModel.setEstado(lineaSolicitud.getEstado());
         lineaSolicitudModel.setCantidad(lineaSolicitud.getCantidad());
         lineaSolicitudModel.setMaterialId(lineaSolicitud.getMaterial().getId());
+        lineaSolicitudModel.setArmarioId(lineaSolicitud.getArmario().getId());
         return lineaSolicitudModel;
     }
 
@@ -25,6 +27,10 @@ public class LineaSolicitudConverter {
         lineaSolicitud.setId(lineaSolicitudModel.getId());
         lineaSolicitud.setEstado(lineaSolicitudModel.getEstado());
         lineaSolicitud.setCantidad(lineaSolicitudModel.getCantidad());
+
+        Armario armario = new Armario();
+        armario.setId(lineaSolicitudModel.getArmarioId());
+        lineaSolicitud.setArmario(armario);
 
         Solicitud solicitud = new Solicitud();
         solicitud.setId(lineaSolicitudModel.getSolicitudId());

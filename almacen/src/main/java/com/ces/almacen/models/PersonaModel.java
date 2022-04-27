@@ -1,13 +1,14 @@
 package com.ces.almacen.models;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
+
+
 
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@Data
 @ToString
 public class PersonaModel {
     private long personaId;
