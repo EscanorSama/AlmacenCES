@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.sql.Date;
 import java.util.List;
 
 @Getter
@@ -22,5 +23,8 @@ public class MaterialModel {
     private String observaciones;
     private double precio;
     private List<CategoriaModel> categorias;
+    private boolean fungible;
+    private Date fechaUso;
+    private Date fechaFinUso;
 
 }

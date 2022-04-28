@@ -4,7 +4,10 @@ import com.ces.almacen.entities.Armario;
 import com.ces.almacen.entities.LineaSolicitud;
 import com.ces.almacen.entities.Material;
 import com.ces.almacen.entities.Solicitud;
+import com.ces.almacen.models.ArmarioModel;
 import com.ces.almacen.models.LineaSolicitudModel;
+import com.ces.almacen.models.MaterialModel;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -12,13 +15,26 @@ import java.util.List;
 
 @Component
 public class LineaSolicitudConverter {
+
+    @Autowired
+    private MaterialConverter materialConverter;
+
+    @Autowired
+    private ArmarioConverter armarioConverter;
+
     public LineaSolicitudModel entityToModel(LineaSolicitud lineaSolicitud){
         LineaSolicitudModel lineaSolicitudModel = new LineaSolicitudModel();
         lineaSolicitudModel.setId(lineaSolicitud.getId());
         lineaSolicitudModel.setEstado(lineaSolicitud.getEstado());
         lineaSolicitudModel.setCantidad(lineaSolicitud.getCantidad());
-        lineaSolicitudModel.setMaterialId(lineaSolicitud.getMaterial().getId());
-        lineaSolicitudModel.setArmarioId(lineaSolicitud.getArmario().getId());
+        //lineaSolicitudModel.setMaterialId(lineaSolicitud.getMaterial().getId());
+       Material material = lineaSolicitud.getMaterial();
+       MaterialModel materialModel = materialConverter.entityToModel(material);
+       lineaSolicitudModel.setMaterial(materialModel);
+       Armario armario = lineaSolicitud.getArmario();
+       ArmarioModel armarioModel = armarioConverter.entityToModel(armario);
+       lineaSolicitudModel.setArmario(armarioModel);
+        //lineaSolicitudModel.setArmarioId(lineaSolicitud.getArmario().getId());
         return lineaSolicitudModel;
     }
 
@@ -28,17 +44,17 @@ public class LineaSolicitudConverter {
         lineaSolicitud.setEstado(lineaSolicitudModel.getEstado());
         lineaSolicitud.setCantidad(lineaSolicitudModel.getCantidad());
 
-        Armario armario = new Armario();
+       /* Armario armario = new Armario();
         armario.setId(lineaSolicitudModel.getArmarioId());
-        lineaSolicitud.setArmario(armario);
+        lineaSolicitud.setArmario(armario);*/
 
         Solicitud solicitud = new Solicitud();
         solicitud.setId(lineaSolicitudModel.getSolicitudId());
         lineaSolicitud.setSolicitud(solicitud);
 
-        Material material = new Material();
-        material.setId(lineaSolicitudModel.getMaterialId());
-        lineaSolicitud.setMaterial(material);
+        //Material material = new Material();
+        //material.setId(lineaSolicitudModel.getMaterialId());
+        //lineaSolicitud.setMaterial(material);
         return lineaSolicitud;
     }
 

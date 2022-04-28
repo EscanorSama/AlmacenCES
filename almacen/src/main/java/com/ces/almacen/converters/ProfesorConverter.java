@@ -23,7 +23,7 @@ public class ProfesorConverter {
         profesorModel.setProvincia(profesor.getProvincia());
         profesorModel.setCodigoPostal(profesor.getCodigoPostal());
         profesorModel.setTelefono(profesor.getTelefono());
-        profesorModel.setMovil(profesorModel.getMovil());
+        profesorModel.setMovil(profesor.getMovil());
         profesorModel.setFormaPago(profesor.getFormaPago());
         profesorModel.setEntidadDeCargo(profesor.getEntidadDeCargo());
         profesorModel.setCuentaBancaria(profesor.getCuentaBancaria());

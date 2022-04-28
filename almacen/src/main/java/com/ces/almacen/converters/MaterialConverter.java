@@ -27,6 +27,9 @@ public class MaterialConverter {
         materialModel.setMinimoStock(material.getMinimoStock());
         materialModel.setObservaciones(material.getObservaciones());
         materialModel.setPrecio(material.getPrecio());
+        materialModel.setFungible(material.isFungible());
+        materialModel.setFechaUso(material.getFechaUso());
+        materialModel.setFechaFinUso(material.getFechaFinUso());
 
         List<CategoriaModel> categoriasModel = categoriaConverter.listEntityToListModel(material.getCategorias());
         materialModel.setCategorias(categoriasModel);
@@ -45,6 +48,9 @@ public class MaterialConverter {
         material.setMinimoStock(materialModel.getMinimoStock());
         material.setObservaciones(materialModel.getObservaciones());
         material.setPrecio(materialModel.getPrecio());
+        material.setFungible(materialModel.isFungible());
+        material.setFechaUso(materialModel.getFechaUso());
+        material.setFechaFinUso(materialModel.getFechaFinUso());
 
         List<Categoria> categorias = categoriaConverter.listModelToListEntity(materialModel.getCategorias());
         material.setCategorias(categorias);

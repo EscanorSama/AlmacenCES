@@ -44,7 +44,7 @@ public class SolicitudService {
         java.sql.Date date = utilsDate.getSqlSysDate();
         log.info("***** "+date);
         for (LineaSolicitudModel lineaSolicitudModel: lineasSolicitudModel) {
-            log.info("****** "+lineaSolicitudModel.getMaterialId());
+            //log.info("****** "+lineaSolicitudModel.getMaterialId());
             lineaSolicitudModel.setSolicitudId(solicitud.getId());
             lineaSolicitudService.insertLineaSolicitud(lineaSolicitudModel);
         }

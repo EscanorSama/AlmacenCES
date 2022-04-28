@@ -11,6 +11,7 @@ import net.bytebuddy.implementation.bind.annotation.IgnoreForBinding;
 import org.hibernate.annotations.ManyToAny;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,6 +51,15 @@ public class Material {
 
     @Column(name = "precio")
     private double precio;
+
+    @Column(name = "fungible")
+    private boolean fungible;
+
+    @Column(name = "fechaUso")
+    private Date fechaUso;
+
+    @Column(name = "fechaFinUso")
+    private Date fechaFinUso;
 
 
     @ManyToMany

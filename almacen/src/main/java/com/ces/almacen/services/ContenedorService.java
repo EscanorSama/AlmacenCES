@@ -3,6 +3,7 @@ package com.ces.almacen.services;
 import com.ces.almacen.converters.ContenedorConverter;
 import com.ces.almacen.entities.Contenedor;
 import com.ces.almacen.models.ContenedorModel;
+import com.ces.almacen.models.LineaAlmacenModel;
 import com.ces.almacen.repositories.ContenedorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,9 +20,18 @@ public class ContenedorService {
     @Autowired
     private ContenedorConverter contenedorConverter;
 
+    @Autowired
+    private LineaAlmacenService lineaAlmacenService;
+
+
     public Contenedor insertContenedor(ContenedorModel contenedorModel) {
-        Contenedor contenedor = contenedorConverter.modelToEntity(contenedorModel);
-        return contenedorRepository.save(contenedor);
+        List<LineaAlmacenModel> lineasAlmacenModel = contenedorModel.getLineasAlmacen();
+        Contenedor contenedor = contenedorRepository.save(contenedorConverter.modelToEntity(contenedorModel));
+        for (LineaAlmacenModel lineaAlmacenModel: lineasAlmacenModel) {
+            lineaAlmacenModel.setContenedorId(contenedor.getId());
+            lineaAlmacenService.insertLineaAlmacen(lineaAlmacenModel);
+        }
+        return contenedor;
     }
 
     public Optional<ContenedorModel> deleteContenedor(Long id) {
