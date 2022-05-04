@@ -63,12 +63,14 @@ public class Material {
 
 
     @ManyToMany
+    @JsonIgnoreProperties({"materiales"})
     private List<Categoria> categorias;
 
     @OneToMany(mappedBy = "material")
     private List<LineaPedido> lineasPedidos;
 
     @OneToMany(mappedBy = "material")
+    @JsonIgnoreProperties({"material"})
     private List<LineaAlmacen> lineasAlmacen;
 
     @OneToMany(mappedBy = "material", cascade={CascadeType.PERSIST})

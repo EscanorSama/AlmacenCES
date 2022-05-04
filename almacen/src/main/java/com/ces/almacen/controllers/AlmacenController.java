@@ -25,6 +25,11 @@ public class AlmacenController {
         return almacenService.insertAlmacen(almacenModel);
     }
 
+    @PostMapping(path = "/almacenes")
+    public List<AlmacenModel> postAlmacenes(@RequestBody List<AlmacenModel> almacenesModel){
+        return almacenService.insertAlmacenes(almacenesModel);
+    }
+
     @GetMapping(path = "/almacenes")
     public List<AlmacenModel> getAlmacenes(){
         return almacenService.getAlmacenes();

@@ -94,4 +94,11 @@ public class TaquillaService {
             taquillaRepository.save(taquilla);
         }
     }
+
+    public List<TaquillaModel> postTaquillas(List<TaquillaModel> taquillasModel) {
+        for (TaquillaModel taquillaModel: taquillasModel) {
+            insertTaquilla(taquillaModel);
+        }
+        return taquillasModel;
+    }
 }

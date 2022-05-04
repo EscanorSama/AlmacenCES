@@ -22,6 +22,10 @@ public class ArmarioConverter {
     public Armario modelToEntity(ArmarioModel armarioModel){
         Armario armario = new Armario();
 
+        /*Profesor profesor = new Profesor();
+        Long profesorId = armarioModel.getProfesorId();
+        profesor.setId(profesorId);
+        armario.setProfesor(profesor);*/
         return armario;
     }
 }

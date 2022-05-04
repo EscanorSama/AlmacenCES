@@ -1,8 +1,10 @@
 package com.ces.almacen.converters;
 
 import com.ces.almacen.entities.Categoria;
+import com.ces.almacen.entities.LineaAlmacen;
 import com.ces.almacen.entities.Material;
 import com.ces.almacen.models.CategoriaModel;
+import com.ces.almacen.models.LineaAlmacenModel;
 import com.ces.almacen.models.MaterialModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -15,6 +17,9 @@ public class MaterialConverter {
 
     @Autowired
     private CategoriaConverter categoriaConverter;
+
+    @Autowired
+    private LineaAlmacenConverter lineaAlmacenConverter;
 
     public MaterialModel entityToModel(Material material){
         MaterialModel materialModel = new MaterialModel();
@@ -30,6 +35,10 @@ public class MaterialConverter {
         materialModel.setFungible(material.isFungible());
         materialModel.setFechaUso(material.getFechaUso());
         materialModel.setFechaFinUso(material.getFechaFinUso());
+
+        List<LineaAlmacen> lineasAlmacen = material.getLineasAlmacen();
+        List<LineaAlmacenModel> lineasAlmacenModel = lineaAlmacenConverter.listEntityToListModel(lineasAlmacen);
+        materialModel.setLineasAlmacen(lineasAlmacenModel);
 
         List<CategoriaModel> categoriasModel = categoriaConverter.listEntityToListModel(material.getCategorias());
         materialModel.setCategorias(categoriasModel);

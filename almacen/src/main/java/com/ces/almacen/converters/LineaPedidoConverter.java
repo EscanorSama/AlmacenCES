@@ -4,6 +4,8 @@ import com.ces.almacen.entities.LineaPedido;
 import com.ces.almacen.entities.Material;
 import com.ces.almacen.entities.Pedido;
 import com.ces.almacen.models.LineaPedidoModel;
+import com.ces.almacen.models.MaterialModel;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -11,11 +13,16 @@ import java.util.List;
 
 @Component
 public class LineaPedidoConverter {
+
+    @Autowired
+    private MaterialConverter materialConverter;
+
     public LineaPedidoModel entityToModel(LineaPedido lineaPedido){
         LineaPedidoModel lineaPedidoModel = new LineaPedidoModel();
         lineaPedidoModel.setId(lineaPedido.getId());
         lineaPedidoModel.setCantidad(lineaPedido.getCantidad());
         lineaPedidoModel.setMaterialId(lineaPedido.getMaterial().getId());
+
         return lineaPedidoModel;
     }
 

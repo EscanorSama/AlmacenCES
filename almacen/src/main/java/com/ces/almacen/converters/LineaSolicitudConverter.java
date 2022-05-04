@@ -31,10 +31,10 @@ public class LineaSolicitudConverter {
        Material material = lineaSolicitud.getMaterial();
        MaterialModel materialModel = materialConverter.entityToModel(material);
        lineaSolicitudModel.setMaterial(materialModel);
-       Armario armario = lineaSolicitud.getArmario();
+       /*Armario armario = lineaSolicitud.getArmario();
        ArmarioModel armarioModel = armarioConverter.entityToModel(armario);
-       lineaSolicitudModel.setArmario(armarioModel);
-        //lineaSolicitudModel.setArmarioId(lineaSolicitud.getArmario().getId());
+       lineaSolicitudModel.setArmario(armarioModel);*/
+        lineaSolicitudModel.setArmarioId(lineaSolicitud.getArmario().getId());
         return lineaSolicitudModel;
     }
 

@@ -97,4 +97,11 @@ public class ArmarioService {
             armarioRepository.save(armario);
         }
     }
+
+    public List<ArmarioModel> insertArmarios(List<ArmarioModel> armariosModel) {
+        for (ArmarioModel armarioModel: armariosModel) {
+            insertArmario(armarioModel);
+        }
+        return armariosModel;
+    }
 }

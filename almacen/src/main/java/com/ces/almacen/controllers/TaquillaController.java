@@ -20,6 +20,11 @@ public class TaquillaController {
         return taquillaService.insertTaquilla(taquillaModel);
     }
 
+    @PostMapping(path = "/taquillas")
+    public List<TaquillaModel> postTaquillas(@RequestBody List<TaquillaModel> taquillasModel){
+        return taquillaService.postTaquillas(taquillasModel);
+    }
+
     @GetMapping(path = "/taquillas")
     public List<TaquillaModel> getTaquillas(){
         return taquillaService.getTaquillas();

@@ -14,5 +14,6 @@ public class LineaAlmacenModel {
     private int cantidad;
     private int fecha;
     private long contenedorId;
+    //private ContenedorModel contenedor;
     private long materialId;
 }

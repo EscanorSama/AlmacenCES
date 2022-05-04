@@ -99,4 +99,11 @@ public class AlmacenService {
             log.info("***** Almacén no encontrado");
         }
     }
+
+    public List<AlmacenModel> insertAlmacenes(List<AlmacenModel> almacenesModel) {
+        for (AlmacenModel almacenModel: almacenesModel) {
+            insertAlmacen(almacenModel);
+        }
+        return almacenesModel;
+    }
 }

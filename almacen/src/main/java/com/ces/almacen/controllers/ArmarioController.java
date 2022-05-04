@@ -19,6 +19,11 @@ public class ArmarioController {
         return armarioService.insertArmario(armarioModel);
     }
 
+    @PostMapping(path = "/armarios")
+    public List<ArmarioModel> postArmarios(@RequestBody List<ArmarioModel> armariosModel){
+        return armarioService.insertArmarios(armariosModel);
+    }
+
     @GetMapping(path = "/armario/{id}")
     public ArmarioModel getArmario(@PathVariable(name = "id")Long id){
         Optional<ArmarioModel> result = armarioService.getArmario(id);
