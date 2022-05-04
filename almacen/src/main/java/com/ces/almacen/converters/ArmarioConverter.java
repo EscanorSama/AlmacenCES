@@ -26,6 +26,7 @@ public class ArmarioConverter {
         Long profesorId = armarioModel.getProfesorId();
         profesor.setId(profesorId);
         armario.setProfesor(profesor);*/
+
         return armario;
     }
 }
