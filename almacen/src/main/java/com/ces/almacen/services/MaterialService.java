@@ -15,7 +15,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,13 +36,18 @@ public class MaterialService {
 
     public void insertMaterial(MaterialModel materialModel) {
         Material material = materialConverter.modelToEntity(materialModel);
+
         material = materialRepository.save(material);
         Long materialId = material.getId();
         LineaAlmacenModel lineaAlmacenModel = materialModel.getLineasAlmacen().get(0);
+        lineaAlmacenModel.setCantidad(materialModel.getNumUnidades());
+        lineaAlmacenModel.setFecha(new java.sql.Date(new Date().getTime()));
         lineaAlmacenModel.setMaterialId(materialId);
         LineaAlmacen lineaAlmacen = lineaAlmacenConverter.modelToEntity(lineaAlmacenModel);
         lineaAlmacenRepository.save(lineaAlmacen);
+
     }
+
 
     public Optional<MaterialModel> deleteMaterial(Long id) {
         Optional<MaterialModel> resultMm = Optional.empty();

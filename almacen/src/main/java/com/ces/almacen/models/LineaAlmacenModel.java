@@ -5,6 +5,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.sql.Date;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -12,7 +14,7 @@ import lombok.ToString;
 public class LineaAlmacenModel {
     private long id;
     private int cantidad;
-    private int fecha;
+    private Date fecha;
     private long contenedorId;
     //private ContenedorModel contenedor;
     private long materialId;
