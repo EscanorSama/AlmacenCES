@@ -7,6 +7,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.sql.Date;
 
 @Getter
 @Setter
@@ -22,7 +23,7 @@ public class LineaAlmacen {
     @Column(name = "cantidad")
     private int cantidad;
     @Column(name = "fecha")
-    private int fecha;
+    private Date fecha;
 
     @ManyToOne
     @JsonBackReference

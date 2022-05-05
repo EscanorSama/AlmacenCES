@@ -26,6 +26,11 @@ public class ContenedorController {
         contenedorService.insertContenedor(contenedorModel);
     }
 
+    @GetMapping(path = "/contenedores")
+    public List<ContenedorModel> getContenedores(){
+        return contenedorService.getContenedores();
+    }
+
 
 
     @GetMapping(path = "/contenedor/{id}")
