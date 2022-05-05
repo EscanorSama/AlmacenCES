@@ -17,4 +17,5 @@ public class ContenedorModel {
     private String descripcion;
     private int numero;
     List<LineaAlmacenModel> lineasAlmacen;
+    private String tipo;
 }
