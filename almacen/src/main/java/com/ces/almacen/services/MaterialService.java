@@ -1,8 +1,12 @@
 package com.ces.almacen.services;
 
+import com.ces.almacen.converters.LineaAlmacenConverter;
 import com.ces.almacen.converters.MaterialConverter;
+import com.ces.almacen.entities.LineaAlmacen;
 import com.ces.almacen.entities.Material;
+import com.ces.almacen.models.LineaAlmacenModel;
 import com.ces.almacen.models.MaterialModel;
+import com.ces.almacen.repositories.LineaAlmacenRepository;
 import com.ces.almacen.repositories.MaterialRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +26,19 @@ public class MaterialService {
     private MaterialRepository materialRepository;
     @Autowired
     private MaterialConverter materialConverter;
+    @Autowired
+    private LineaAlmacenConverter lineaAlmacenConverter;
+    @Autowired
+    private LineaAlmacenRepository lineaAlmacenRepository;
 
     public void insertMaterial(MaterialModel materialModel) {
         Material material = materialConverter.modelToEntity(materialModel);
-        materialRepository.save(material);
+        material = materialRepository.save(material);
+        Long materialId = material.getId();
+        LineaAlmacenModel lineaAlmacenModel = materialModel.getLineasAlmacen().get(0);
+        lineaAlmacenModel.setMaterialId(materialId);
+        LineaAlmacen lineaAlmacen = lineaAlmacenConverter.modelToEntity(lineaAlmacenModel);
+        lineaAlmacenRepository.save(lineaAlmacen);
     }
 
     public Optional<MaterialModel> deleteMaterial(Long id) {

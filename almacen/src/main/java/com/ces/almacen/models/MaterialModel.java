@@ -28,4 +28,5 @@ public class MaterialModel {
     private Date fechaFinUso;
     private List<LineaAlmacenModel> lineasAlmacen;
 
+
 }
