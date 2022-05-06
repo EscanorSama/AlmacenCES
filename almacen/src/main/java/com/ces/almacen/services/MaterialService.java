@@ -72,10 +72,29 @@ public class MaterialService {
         return resultMm;
     }
 
-    public List<MaterialModel> getMaterialesPag(int nPag) {
-        Pageable pageable = PageRequest.of(nPag, 3);
+    public List<MaterialModel> getMaterialesPag(int nPag , int tPag) {
+        Pageable pageable = PageRequest.of(nPag, tPag);
         Page<Material> materialesPag = materialRepository.findAll(pageable);
         List<Material> materiales = materialesPag.getContent();
+        List<MaterialModel> materialesModel = listMaterialesToMaterialesModel(materiales);
+        return materialesModel;
+    }
+    public List<MaterialModel> getMaterialMarca(int nPag, String marca, int tPag){
+        Pageable pageable = PageRequest.of(nPag,tPag);
+        Page<Material> materialesMarcaPag = materialRepository.findByMarca(marca, pageable);
+        List<Material> materialesMarca= materialesMarcaPag.getContent();
+        List<MaterialModel> materialesModel = listMaterialesToMaterialesModel(materialesMarca);
+        return materialesModel;
+    }
+
+    public List<MaterialModel> getMaterialProveedor(int nPag, String proveedor){
+        List<Material> materiales = materialRepository.findByProveedor(proveedor);
+        List<MaterialModel> materialesModel = listMaterialesToMaterialesModel(materiales);
+        return materialesModel;
+    }
+
+    public List<MaterialModel> getMaterialBetweenPrecio(int nPag, int precio1, int precio2){
+        List<Material> materiales = materialRepository.findByPrecioBetween(precio1, precio2);
         List<MaterialModel> materialesModel = listMaterialesToMaterialesModel(materiales);
         return materialesModel;
     }
@@ -144,23 +163,7 @@ public class MaterialService {
         return materialModelModificado;
     }
 
-    public List<MaterialModel> getMaterialMarca(String marca){
-        List<Material> materiales = materialRepository.findByMarca(marca);
-        List<MaterialModel> materialesModel = listMaterialesToMaterialesModel(materiales);
-        return materialesModel;
-    }
 
-    public List<MaterialModel> getMaterialProveedor(String proveedor){
-        List<Material> materiales = materialRepository.findByProveedor(proveedor);
-        List<MaterialModel> materialesModel = listMaterialesToMaterialesModel(materiales);
-        return materialesModel;
-    }
-
-    public List<MaterialModel> getMaterialBetweenPrecio(int precio1, int precio2){
-        List<Material> materiales = materialRepository.findByPrecioBetween(precio1, precio2);
-        List<MaterialModel> materialesModel = listMaterialesToMaterialesModel(materiales);
-        return materialesModel;
-    }
 
     public int getNumMateriales() {
         int numMateriales = 0;

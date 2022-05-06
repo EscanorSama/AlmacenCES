@@ -22,6 +22,7 @@ public class LineaPedidoConverter {
         lineaPedidoModel.setId(lineaPedido.getId());
         lineaPedidoModel.setCantidad(lineaPedido.getCantidad());
         lineaPedidoModel.setMaterialId(lineaPedido.getMaterial().getId());
+        lineaPedidoModel.setIdPedido(lineaPedido.getPedido().getId());
 
         return lineaPedidoModel;
     }
