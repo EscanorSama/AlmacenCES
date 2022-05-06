@@ -10,9 +10,9 @@ import java.util.List;
 public interface MaterialRepository extends JpaRepository<Material, Long> {
     Page<Material> findByMarca(String marca, Pageable pageable);
 
-    List<Material> findByProveedor(String proveedor);
+    Page<Material> findByProveedor(String proveedor, Pageable pageable);
 
-    List<Material> findByPrecioBetween(int precio1, int precio2);
+    Page<Material> findByPrecioBetween(int precio1, int precio2, Pageable pageable);
 
 
 }

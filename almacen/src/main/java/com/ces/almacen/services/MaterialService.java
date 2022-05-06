@@ -87,17 +87,17 @@ public class MaterialService {
         return materialesModel;
     }
 
-    public List<MaterialModel> getMaterialProveedor(int nPag, String proveedor){
-        List<Material> materiales = materialRepository.findByProveedor(proveedor);
+    /*public List<MaterialModel> getMaterialProveedor(int nPag, String proveedor){
+        Page<Material> materiales = materialRepository.findByProveedor(proveedor);
         List<MaterialModel> materialesModel = listMaterialesToMaterialesModel(materiales);
         return materialesModel;
-    }
+    }*/
 
-    public List<MaterialModel> getMaterialBetweenPrecio(int nPag, int precio1, int precio2){
+   /* public List<MaterialModel> getMaterialBetweenPrecio(int nPag, int precio1, int precio2){
         List<Material> materiales = materialRepository.findByPrecioBetween(precio1, precio2);
         List<MaterialModel> materialesModel = listMaterialesToMaterialesModel(materiales);
         return materialesModel;
-    }
+    }*/
 
     public List<MaterialModel> getMateriales(){
         List<Material> materiales = materialRepository.findAll();
@@ -122,15 +122,15 @@ public class MaterialService {
     }
 
 
-    public List<MaterialModel> deleteMateriales(List<Long> ids) {
-        List<MaterialModel> materialesModel = new ArrayList<>();
-        for (Long id: ids) {
-            Optional<Material> result = materialRepository.findById(id);
+    public List<MaterialModel> deleteMateriales(List<MaterialModel> materialesModel) {
+        List<MaterialModel> materialesModelFinales = new ArrayList<>();
+        for (MaterialModel materialModel: materialesModel) {
+            Material materialConvertido = materialConverter.modelToEntity(materialModel);
+            Optional<Material> result = materialRepository.findById(materialConvertido.getId());
             if (result.isPresent()){
                 Material material = result.get();
-                MaterialModel materialModel = materialConverter.entityToModel(material);
-                materialesModel.add(materialModel);
-                log.info("**********"+ id);
+                MaterialModel materialModelConvertido = materialConverter.entityToModel(material);
+                materialesModelFinales.add(materialModelConvertido);
                 materialRepository.delete(material);
             }
 
