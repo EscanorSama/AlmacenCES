@@ -66,7 +66,7 @@ public class Material {
     @JsonIgnoreProperties({"materiales"})
     private List<Categoria> categorias;
 
-    @OneToMany(mappedBy = "material", cascade={CascadeType.REMOVE})
+    @OneToMany(mappedBy = "material", cascade={CascadeType.PERSIST})
     private List<LineaPedido> lineasPedidos;
 
     @OneToMany(mappedBy = "material",cascade={CascadeType.REMOVE} )
@@ -78,8 +78,9 @@ public class Material {
     @JsonManagedReference
     private List<LineaSolicitud> lineasSolicitud;
     @PreRemove
-    private void preRemoveLineaSolicitud(){
+    private void preRemove(){
         lineasSolicitud.forEach(lineaSolicitud -> lineaSolicitud.setMaterial(null));
+        lineasPedidos.forEach(lineaPedido -> lineaPedido.setMaterial(null));
     }
 
     @OneToMany(mappedBy = "material", cascade={CascadeType.PERSIST})
