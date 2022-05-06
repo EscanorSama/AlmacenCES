@@ -12,6 +12,7 @@ public class ContenedorConverter {
         contenedorModel.setZona(contenedor.getZona());
         contenedorModel.setDescripcion(contenedor.getDescripcion());
         contenedorModel.setNumero(contenedor.getNumero());
+        contenedorModel.setTipo(contenedor.getTipo());
         return contenedorModel;
     }
     public Contenedor modelToEntity(ContenedorModel contenedorModel){
@@ -20,6 +21,7 @@ public class ContenedorConverter {
         contenedor.setZona(contenedorModel.getZona());
         contenedor.setDescripcion(contenedorModel.getDescripcion());
         contenedor.setNumero(contenedorModel.getNumero());
+        contenedor.setTipo(contenedorModel.getTipo());
         return contenedor;
     }
 }

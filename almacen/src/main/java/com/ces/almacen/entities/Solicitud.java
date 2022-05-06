@@ -1,6 +1,7 @@
 package com.ces.almacen.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -26,6 +27,7 @@ public class Solicitud {
     private Date fecha;
 
     @OneToMany(mappedBy = "solicitud")
+    @JsonManagedReference
     private List<LineaSolicitud> lineasSolicitud;
 
     @ManyToOne

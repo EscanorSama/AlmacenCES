@@ -16,4 +16,5 @@ public class PersonaModel {
     private String nombre;
     private String apellido;
     private String dni;
+    private String tipo;
 }

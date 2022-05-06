@@ -132,6 +132,12 @@ public class MaterialService {
             material.setMinimoStock(materialModel.getMinimoStock());
             material.setObservaciones(materialModel.getObservaciones());
             material.setPrecio(materialModel.getPrecio());
+            material.setFungible(materialModel.isFungible());
+            material.setFechaUso(materialModel.getFechaUso());
+            material.setFechaFinUso(materialModel.getFechaFinUso());
+            List<LineaAlmacenModel> lineasAlmacenModel = materialModel.getLineasAlmacen();
+            List<LineaAlmacen> lineasAlmacen = lineaAlmacenConverter.listModelToListEntity(lineasAlmacenModel);
+            material.setLineasAlmacen(lineasAlmacen);
             materialRepository.save(material);
             materialModelModificado = materialConverter.entityToModel(material);
         }
@@ -154,5 +160,14 @@ public class MaterialService {
         List<Material> materiales = materialRepository.findByPrecioBetween(precio1, precio2);
         List<MaterialModel> materialesModel = listMaterialesToMaterialesModel(materiales);
         return materialesModel;
+    }
+
+    public int getNumMateriales() {
+        int numMateriales = 0;
+        List<Material> materiales = materialRepository.findAll();
+        for (Material material : materiales) {
+            numMateriales = materiales.size();
+        }
+        return numMateriales;
     }
 }

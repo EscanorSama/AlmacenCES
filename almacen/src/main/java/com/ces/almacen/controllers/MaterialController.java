@@ -73,4 +73,9 @@ public class MaterialController {
     public List<MaterialModel> deleteMateriales(@RequestBody  List<Long > ids){
         return materialService.deleteMateriales(ids);
     }
+
+    @GetMapping(path="/numMateriales")
+    public int getNumMateriales(){
+        return materialService.getNumMateriales();
+    }
 }

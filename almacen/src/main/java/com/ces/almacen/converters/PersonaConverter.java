@@ -13,6 +13,7 @@ public class PersonaConverter {
         personaModel.setNombre(persona.getNombre());
         personaModel.setApellido(persona.getApellido());
         personaModel.setDni(persona.getDni());
+        personaModel.setTipo(persona.getTipo());
         return personaModel;
     }
 
@@ -23,6 +24,7 @@ public class PersonaConverter {
         persona.setNombre(personaModel.getNombre());
         persona.setApellido(personaModel.getApellido());
         persona.setDni(personaModel.getDni());
+        persona.setTipo(personaModel.getTipo());
         return persona;
     }
 }

@@ -28,6 +28,8 @@ public class Contenedor {
     private String descripcion;
     @Column(name = "numero")
     private int numero;
+    @Column(name = "tipo")
+    private String tipo;
 
 
 

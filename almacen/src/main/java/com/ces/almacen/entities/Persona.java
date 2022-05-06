@@ -28,6 +28,8 @@ Persona {
     private String apellido;
     @Column(name = "dni")
     private String dni;
+    @Column(name = "tipo")
+    private String tipo;
 
     
 

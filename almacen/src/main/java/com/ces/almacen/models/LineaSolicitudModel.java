@@ -15,6 +15,7 @@ public class LineaSolicitudModel {
     private int cantidad;
     //private long materialId;
     private MaterialModel material;
+
     private long solicitudId;
     //private ArmarioModel armario;
     private long armarioId;
