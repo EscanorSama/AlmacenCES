@@ -62,7 +62,7 @@ public class Material {
     private Date fechaFinUso;
 
 
-    @ManyToMany
+    @ManyToMany(cascade = {CascadeType.ALL})
     @JsonIgnoreProperties({"materiales"})
     private List<Categoria> categorias;
 
@@ -81,6 +81,7 @@ public class Material {
     private void preRemove(){
         lineasSolicitud.forEach(lineaSolicitud -> lineaSolicitud.setMaterial(null));
         lineasPedidos.forEach(lineaPedido -> lineaPedido.setMaterial(null));
+        categorias.forEach(categoria -> categoria.setMateriales(null));
     }
 
     @OneToMany(mappedBy = "material", cascade={CascadeType.PERSIST})

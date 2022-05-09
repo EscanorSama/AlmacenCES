@@ -40,11 +40,11 @@ public class SolicitudConverter {
         Solicitud solicitud = new Solicitud();
         solicitud.setId(solicitudModel.getId());
         solicitud.setFecha(solicitudModel.getFecha());
-        //solicitud.setProfesor(profesorConverter.modelToEntity(solicitudModel.getProfesor()));
+
         List<LineaSolicitud> lineasSolicitud = lineaSolicitudConverter.listLineaSolicitudModelToListLineaSolicitud(solicitudModel.getLineasSolicitud());
         solicitud.setLineasSolicitud(lineasSolicitud);
-        Profesor profesor = new Profesor();
-        //profesor.setId(solicitudModel.getProfesorId());
+        ProfesorModel profesorModel = solicitudModel.getProfesor();
+        Profesor profesor = profesorConverter.modelToEntity(profesorModel);
         solicitud.setProfesor(profesor);
         return solicitud;
     }

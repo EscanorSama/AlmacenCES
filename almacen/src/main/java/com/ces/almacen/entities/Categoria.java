@@ -29,4 +29,9 @@ public class Categoria {
     @ManyToMany(mappedBy = "categorias")
     @JsonIgnoreProperties({"categorias"})
     private List<Material> materiales;
+
+    /*@PreRemove
+    private void preRemove(){
+        materiales.forEach(material -> material.setCategorias(null));
+    }*/
 }
