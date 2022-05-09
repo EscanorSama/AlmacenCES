@@ -87,23 +87,21 @@ public class MaterialService {
         return materialesModel;
     }
 
-    /*public List<MaterialModel> getMaterialProveedor(int nPag, String proveedor){
-        Page<Material> materiales = materialRepository.findByProveedor(proveedor);
-        List<MaterialModel> materialesModel = listMaterialesToMaterialesModel(materiales);
+    public List<MaterialModel> getMaterialProveedor(int nPag, String proveedor, int tPag){
+        Pageable pageable = PageRequest.of(nPag, tPag);
+        Page<Material> materialesProveedorPag = materialRepository.findByProveedor(proveedor, pageable);
+        List<Material> materialesProveedor = materialesProveedorPag.getContent();
+        List<MaterialModel> materialesModel = listMaterialesToMaterialesModel(materialesProveedor);
         return materialesModel;
-    }*/
+    }
 
-   /* public List<MaterialModel> getMaterialBetweenPrecio(int nPag, int precio1, int precio2){
-        List<Material> materiales = materialRepository.findByPrecioBetween(precio1, precio2);
-        List<MaterialModel> materialesModel = listMaterialesToMaterialesModel(materiales);
-        return materialesModel;
-    }*/
 
-    public List<MaterialModel> getMateriales(){
+
+    /*public List<MaterialModel> getMateriales(){
         List<Material> materiales = materialRepository.findAll();
         List<MaterialModel> materialesModel = listMaterialesToMaterialesModel(materiales);
         return materialesModel;
-    }
+    }*/
 
     private List<MaterialModel> listMaterialesToMaterialesModel(List<Material> materiales) {
         List<MaterialModel> materialesModel = new ArrayList<>();

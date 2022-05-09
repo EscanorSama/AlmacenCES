@@ -12,7 +12,7 @@ public interface MaterialRepository extends JpaRepository<Material, Long> {
 
     Page<Material> findByProveedor(String proveedor, Pageable pageable);
 
-    Page<Material> findByPrecioBetween(int precio1, int precio2, Pageable pageable);
+
 
 
 }
