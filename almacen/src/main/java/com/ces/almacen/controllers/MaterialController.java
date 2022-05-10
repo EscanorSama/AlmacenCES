@@ -1,5 +1,7 @@
 package com.ces.almacen.controllers;
 
+import com.ces.almacen.converters.MaterialConverter;
+import com.ces.almacen.entities.Material;
 import com.ces.almacen.errors.NotFoundException;
 import com.ces.almacen.models.MaterialModel;
 import com.ces.almacen.services.MaterialService;
@@ -12,6 +14,10 @@ import java.util.Optional;
 
 @RestController
 public class MaterialController {
+
+    @Autowired
+    private MaterialConverter materialConverter;
+
     @Autowired
     private MaterialService materialService;
 
@@ -65,8 +71,13 @@ public class MaterialController {
     }
 
     @DeleteMapping(path = "/materiales")
-    public List<MaterialModel> deleteMateriales(@RequestBody  List<MaterialModel > materialesModel){
-        return materialService.deleteMateriales(materialesModel);
+    public void deleteMateriales(@RequestBody  List<MaterialModel> materialesModel){
+        for (MaterialModel materialModel: materialesModel) {
+
+            materialService.deleteMateriales(materialModel.getId());
+
+        }
+
     }
 
     @GetMapping(path="/numMateriales")

@@ -62,7 +62,7 @@ public class Material {
     private Date fechaFinUso;
 
 
-    @ManyToMany(cascade = {CascadeType.ALL})
+    @ManyToMany()
     @JsonIgnoreProperties({"materiales"})
     private List<Categoria> categorias;
 

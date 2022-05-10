@@ -16,7 +16,6 @@ public class SolicitudModel {
     private long id;
     private Date fecha;
     List<LineaSolicitudModel> lineasSolicitud;
-    //private long profesorId;
-    private ProfesorModel profesor;
+    private long profesorId;
 
 }

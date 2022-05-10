@@ -13,11 +13,10 @@ public class LineaSolicitudModel {
     private long id;
     private String estado;
     private int cantidad;
-    //private long materialId;
-    private MaterialModel material;
+    private long materialId;
 
     private long solicitudId;
-    //private ArmarioModel armario;
+
     private long armarioId;
 
 

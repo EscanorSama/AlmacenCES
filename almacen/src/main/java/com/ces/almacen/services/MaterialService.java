@@ -60,6 +60,17 @@ public class MaterialService {
         }
         return resultMm;
     }
+    public MaterialModel deleteMateriales(Long id) {
+        MaterialModel  resultMm = new MaterialModel();
+        Optional<Material> result = materialRepository.findById(id);
+        if(result.isPresent()){
+            Material material = result.get();
+            MaterialModel materialModel = materialConverter.entityToModel(material);
+            resultMm = materialModel;
+            materialRepository.delete(material);
+        }
+        return resultMm;
+    }
 
     public Optional<MaterialModel> getMaterial(Long id) {
         Optional<MaterialModel> resultMm = Optional.empty();
@@ -120,7 +131,7 @@ public class MaterialService {
     }
 
 
-    public List<MaterialModel> deleteMateriales(List<MaterialModel> materialesModel) {
+    /*public List<MaterialModel> deleteMateriales(List<MaterialModel> materialesModel) {
         List<MaterialModel> materialesModelFinales = new ArrayList<>();
         for (MaterialModel materialModel: materialesModel) {
             Material materialConvertido = materialConverter.modelToEntity(materialModel);
@@ -131,10 +142,9 @@ public class MaterialService {
                 materialesModelFinales.add(materialModelConvertido);
                 materialRepository.delete(material);
             }
-
         }
-        return materialesModel;
-    }
+        return materialesModelFinales;
+    }*/
 
     public MaterialModel updateMaterial(MaterialModel materialModel) {
         MaterialModel materialModelModificado = new MaterialModel();

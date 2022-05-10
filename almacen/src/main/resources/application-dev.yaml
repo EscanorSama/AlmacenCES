@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:h2:file:~/almacenBD
+    url: jdbc:h2:file:~/almacen
     username: user
     password: pass
   jpa:
