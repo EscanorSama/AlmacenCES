@@ -1,6 +1,7 @@
 package com.ces.almacen.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -28,7 +29,9 @@ public class LineaAlmacen {
     @ManyToOne
     @JsonBackReference
     private Material material;
+
     @ManyToOne
     @JsonBackReference
+    @JsonIgnoreProperties({"lineasAlmacen"})
     private Contenedor contenedor;
 }

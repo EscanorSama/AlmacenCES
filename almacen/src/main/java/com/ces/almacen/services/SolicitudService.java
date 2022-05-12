@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -90,5 +91,15 @@ public class SolicitudService {
             return true;
         }
         return false;
+    }
+
+    public List<SolicitudModel> getSolicitudes() {
+        List<SolicitudModel> solicitudesModel = new ArrayList<>();
+        List<Solicitud> solicitudes = solicitudRepository.findAll();
+        for (Solicitud solicitud: solicitudes) {
+            SolicitudModel solicitudModel = solicitudConverter.entityToModel(solicitud);
+            solicitudesModel.add(solicitudModel);
+        }
+        return solicitudesModel;
     }
 }

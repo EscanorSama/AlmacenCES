@@ -32,18 +32,22 @@ public class CategoriaConverter {
 
     public List<CategoriaModel> listEntityToListModel(List<Categoria> categorias){
         List<CategoriaModel> categoriasModel = new ArrayList<>();
-        for (Categoria categoria: categorias) {
-            CategoriaModel categoriaModel = this.entityToModel(categoria);
-            categoriasModel.add(categoriaModel);
+        if(categorias!=null) {
+            for (Categoria categoria : categorias) {
+                CategoriaModel categoriaModel = this.entityToModel(categoria);
+                categoriasModel.add(categoriaModel);
+            }
         }
         return categoriasModel;
     }
 
     public List<Categoria> listModelToListEntity(List<CategoriaModel> categoriasModel){
         List<Categoria> categorias = new ArrayList<>();
-        for (CategoriaModel categoriaModel: categoriasModel) {
-            Categoria categoria = this.modelToEntity(categoriaModel);
-            categorias.add(categoria);
+        if(categoriasModel!=null) {
+            for (CategoriaModel categoriaModel : categoriasModel) {
+                Categoria categoria = this.modelToEntity(categoriaModel);
+                categorias.add(categoria);
+            }
         }
         return categorias;
     }

@@ -11,6 +11,5 @@ import lombok.ToString;
 @ToString
 public class TaquillaModel extends ContenedorModel{
     private long taquillaId;
-    private long alumnoId;
 
 }

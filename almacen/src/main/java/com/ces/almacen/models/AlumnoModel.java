@@ -18,6 +18,7 @@ public class AlumnoModel extends PersonaModel{
     private String codigoPostal;
     private String telefono;
     private String movil;
+    private TaquillaModel taquilla;
 
 
 

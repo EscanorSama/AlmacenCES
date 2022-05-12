@@ -3,12 +3,15 @@ package com.ces.almacen.controllers;
 import com.ces.almacen.errors.NotFoundException;
 import com.ces.almacen.models.SolicitudModel;
 import com.ces.almacen.services.SolicitudService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Date;
+import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @RestController
 public class SolicitudController {
     @Autowired
@@ -16,6 +19,7 @@ public class SolicitudController {
 
     @PostMapping(path = "/solicitud")
     public void postSolicitud(@RequestBody SolicitudModel solicitudModel){
+        log.info(solicitudModel.toString());
         solicitudService.insertSolicitud(solicitudModel);
     }
 
@@ -39,5 +43,10 @@ public class SolicitudController {
             return result.get();
         }
         throw new NotFoundException();
+    }
+
+    @GetMapping(path = "/solicitudes")
+    public List<SolicitudModel> getSolicitudes(){
+        return solicitudService.getSolicitudes();
     }
 }

@@ -2,17 +2,25 @@ package com.ces.almacen.converters;
 
 import com.ces.almacen.entities.Alumno;
 import com.ces.almacen.entities.Persona;
+import com.ces.almacen.entities.Taquilla;
 import com.ces.almacen.models.AlumnoModel;
+import com.ces.almacen.models.TaquillaModel;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class AlumnoConverter {
+    @Autowired
+    private TaquillaConverter taquillaConverter;
+
     public AlumnoModel entityToModel(Alumno alumno){
         AlumnoModel alumnoModel = new AlumnoModel();
+
         alumnoModel.setAlumnoId(alumno.getId());
         alumnoModel.setMail(alumno.getPersona().getMail());
         alumnoModel.setNombre(alumno.getPersona().getNombre());
         alumnoModel.setApellido(alumno.getPersona().getApellido());
+        alumnoModel.setTipo(alumno.getPersona().getTipo());
         alumnoModel.setDni(alumno.getPersona().getDni());
         alumnoModel.setAlumnoId(alumno.getPersona().getId());
         alumnoModel.setDomicilio(alumno.getDomicilio());
@@ -23,6 +31,11 @@ public class AlumnoConverter {
         alumnoModel.setMovil(alumno.getMovil());
         alumnoModel.setNumExpediente(alumno.getNumExpediente());
 
+        if (alumno.getTaquilla()!=null) {
+            Taquilla taquilla;
+            taquilla = alumno.getTaquilla();
+            alumnoModel.setTaquilla(taquillaConverter.entityToModel(taquilla));
+        }
         return alumnoModel;
     }
 
@@ -36,6 +49,7 @@ public class AlumnoConverter {
         alumno.setCodigoPostal(alumnoModel.getCodigoPostal());
         alumno.setTelefono(alumnoModel.getTelefono());
         alumno.setMovil(alumnoModel.getMovil());
+
         return alumno;
     }
 }

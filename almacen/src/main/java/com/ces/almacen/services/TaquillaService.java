@@ -34,12 +34,12 @@ public class TaquillaService {
         Taquilla taquilla = taquillaConverter.modelToEntity(taquillaModel);
         taquilla.setContenedor(contenedor);
 
-        if (taquillaModel.getAlumnoId()!=0){ //hay alumno asociado
+        /*if (taquillaModel.getAlumnoId()!=0){ //hay alumno asociado
             Optional<Alumno> alumno = alumnoRepository.findById(taquillaModel.getAlumnoId());
             if (alumno.isPresent()){  //el alumno existe en la base de datos
                 taquilla.setAlumno(alumno.get());
             }
-        }
+        }*/
         taquillaModel.setTaquillaId(taquillaRepository.save(taquilla).getId());
         return taquillaModel;
     }

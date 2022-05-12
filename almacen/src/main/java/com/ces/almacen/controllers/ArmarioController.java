@@ -38,7 +38,7 @@ public class ArmarioController {
         armarioService.updateArmario(armarioModel);
     }
 
-    @GetMapping(path = "armarios")
+    @GetMapping(path = "/armarios")
     public List<ArmarioModel> getArmarios(){
         return armarioService.getArmarios();
     }

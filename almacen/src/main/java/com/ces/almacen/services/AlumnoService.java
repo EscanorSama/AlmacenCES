@@ -3,9 +3,11 @@ package com.ces.almacen.services;
 import com.ces.almacen.converters.AlumnoConverter;
 import com.ces.almacen.entities.Alumno;
 import com.ces.almacen.entities.Persona;
+import com.ces.almacen.entities.Taquilla;
 import com.ces.almacen.models.AlumnoModel;
 import com.ces.almacen.repositories.AlumnoRepository;
 import com.ces.almacen.repositories.PersonaRepository;
+import com.ces.almacen.repositories.TaquillaRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -31,6 +33,9 @@ public class AlumnoService {
 
     @Autowired
     private PersonaService personaService;
+
+    @Autowired
+    private TaquillaRepository taquillaRepository;
 
     public AlumnoModel insertAlumno(AlumnoModel alumnoModel) {
         Persona persona = personaService.insertPersona(alumnoModel);
@@ -119,6 +124,17 @@ public class AlumnoService {
     }
 
 
+    public void insertTaquilla(Long alumnoId, Long taquillaId) {
+        Optional<Taquilla> resultTaquilla = taquillaRepository.findById(taquillaId);
+        Optional<Alumno> resultAlumno = alumnoRepository.findById(alumnoId);
+        if(resultTaquilla.isPresent() && resultAlumno.isPresent()){
+            Alumno alumno = resultAlumno.get();
+            alumno.setTaquilla(resultTaquilla.get());
+            Taquilla taquilla = resultTaquilla.get();
+            taquilla.setAlumno(alumno);
+            alumnoRepository.save(alumno);
+            taquillaRepository.save(taquilla);
+        }
 
-
+    }
 }

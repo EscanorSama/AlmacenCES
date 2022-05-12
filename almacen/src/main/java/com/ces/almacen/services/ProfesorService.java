@@ -1,9 +1,13 @@
 package com.ces.almacen.services;
 
+import com.ces.almacen.converters.ArmarioConverter;
 import com.ces.almacen.converters.ProfesorConverter;
+import com.ces.almacen.entities.Armario;
 import com.ces.almacen.entities.Persona;
 import com.ces.almacen.entities.Profesor;
+import com.ces.almacen.models.ArmarioModel;
 import com.ces.almacen.models.ProfesorModel;
+import com.ces.almacen.repositories.ArmarioRepository;
 import com.ces.almacen.repositories.PersonaRepository;
 import com.ces.almacen.repositories.ProfesorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +31,12 @@ public class ProfesorService {
     @Autowired
     private PersonaRepository personaRepository;
 
+    @Autowired
+    private ArmarioRepository armarioRepository;
+
+    @Autowired
+    private ArmarioConverter armarioConverter;
+
 
     public ProfesorModel insertProfesor(ProfesorModel profesorModel) {
         Persona persona = personaService.insertPersona(profesorModel);
@@ -36,6 +46,30 @@ public class ProfesorService {
         return profesorModel;
     }
 
+
+    public void insertArmario(List<Long> armarioId, Long profesorId){
+
+        List<Armario> resultArmario = armarioRepository.findAllById(armarioId);
+
+        Optional<Profesor> resultProfesor = profesorRepository.findById(profesorId);
+
+        if (!resultArmario.isEmpty() &&  resultProfesor.isPresent()){
+
+            Profesor profesor = resultProfesor.get();
+
+            profesor.setArmarios(resultArmario);
+
+            for (Armario armario:resultArmario) {
+                armario.setProfesor(profesor);
+                armarioRepository.save(armario);
+            }
+
+            profesorRepository.save(profesor);
+
+
+        }
+
+    }
 
 
     public Optional<ProfesorModel> deleteProfesor(Long id) {

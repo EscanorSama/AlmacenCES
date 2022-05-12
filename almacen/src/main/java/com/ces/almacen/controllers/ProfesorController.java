@@ -46,6 +46,11 @@ public class ProfesorController {
     public void putProfesorMail(ProfesorModel profesorModel){
         profesorService.updateProfesor(profesorModel);
     }
+    @PutMapping(path = "/profesor/{profesorId}/armarios")
+    public void putProfesorArmarios(@PathVariable(name = "profesorId")Long profesorId,
+                                @RequestBody List<Long> armariosId){
+        profesorService.insertArmario(armariosId, profesorId);
+    }
 
     @DeleteMapping(path = "/profesor/{id}")
     public ProfesorModel deleteProfesor(@PathVariable(name = "id") Long id){

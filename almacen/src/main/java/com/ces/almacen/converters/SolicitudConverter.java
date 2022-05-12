@@ -6,11 +6,13 @@ import com.ces.almacen.entities.Solicitud;
 import com.ces.almacen.models.LineaSolicitudModel;
 import com.ces.almacen.models.ProfesorModel;
 import com.ces.almacen.models.SolicitudModel;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Slf4j
 @Component
 public class SolicitudConverter {
     @Autowired
@@ -39,10 +41,9 @@ public class SolicitudConverter {
         Profesor profesor = new Profesor();
         profesor.setId(solicitudModel.getProfesorId());
         solicitud.setProfesor(profesor);
-
         List<LineaSolicitud> lineasSolicitud = lineaSolicitudConverter.listLineaSolicitudModelToListLineaSolicitud(solicitudModel.getLineasSolicitud());
         solicitud.setLineasSolicitud(lineasSolicitud);
-
+        log.info("***** "+solicitud);
         return solicitud;
     }
 }

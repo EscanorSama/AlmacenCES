@@ -1,14 +1,23 @@
 package com.ces.almacen.converters;
 
+import com.ces.almacen.entities.Armario;
 import com.ces.almacen.entities.Persona;
 import com.ces.almacen.entities.Profesor;
+import com.ces.almacen.models.ArmarioModel;
 import com.ces.almacen.models.ProfesorModel;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.prefs.PreferencesFactory;
 
 @Component
 public class ProfesorConverter {
+
+    @Autowired
+    private ArmarioConverter armarioConverter;
+
     public ProfesorModel entityToModel(Profesor profesor){
         ProfesorModel profesorModel = new ProfesorModel();
         profesorModel.setProfesorId(profesor.getId());
@@ -16,6 +25,7 @@ public class ProfesorConverter {
         profesorModel.setApellido(profesor.getPersona().getApellido());
         profesorModel.setDni(profesor.getPersona().getDni());
         profesorModel.setMail(profesor.getPersona().getMail());
+        profesorModel.setTipo(profesor.getPersona().getTipo());
         profesorModel.setNumSs(profesor.getNumSs());
         profesorModel.setSalario(profesor.getSalario());
         profesorModel.setDomicilio(profesor.getDomicilio());
@@ -27,6 +37,11 @@ public class ProfesorConverter {
         profesorModel.setFormaPago(profesor.getFormaPago());
         profesorModel.setEntidadDeCargo(profesor.getEntidadDeCargo());
         profesorModel.setCuentaBancaria(profesor.getCuentaBancaria());
+
+        List<Armario> armarios=profesor.getArmarios();
+
+        profesorModel.setArmarios(armarioConverter.listEntityToListModel(armarios));
+
         return profesorModel;
     }
 
@@ -47,9 +62,14 @@ public class ProfesorConverter {
         persona.setNombre(profesorModel.getNombre());
         persona.setApellido(profesorModel.getApellido());
         persona.setMail(profesorModel.getMail());
+        persona.setTipo(profesorModel.getTipo());
         profesor.setPersona(persona);
+
+
         return profesor;
     }
+
+
 
 
 }

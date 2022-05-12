@@ -51,6 +51,11 @@ public class AlumnoController {
 
     }
 
+    @PutMapping(path = "/alumno/{alumnoId}/taquilla")
+    public void insertTaquilla(@PathVariable(name = "alumnoId")Long alumnoId, @RequestBody Long taquillaId){
+        alumnoService.insertTaquilla(alumnoId,taquillaId);
+    }
+
 
 
     @DeleteMapping(path = "/alumno/{id}")

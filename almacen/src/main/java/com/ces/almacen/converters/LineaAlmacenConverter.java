@@ -14,8 +14,7 @@ import java.util.List;
 @Component
 public class LineaAlmacenConverter {
 
-    @Autowired
-    private ContenedorConverter contenedorConverter;
+
 
     public LineaAlmacenModel entityToModel(LineaAlmacen lineaAlmacen){
         LineaAlmacenModel lineaAlmacenModel = new LineaAlmacenModel();
@@ -50,9 +49,11 @@ public class LineaAlmacenConverter {
 
     public List<LineaAlmacenModel> listEntityToListModel(List<LineaAlmacen> lineasAlmacen){
         List<LineaAlmacenModel> lineasAlmacenModel = new ArrayList<>();
-        for (LineaAlmacen lineaAlmacen: lineasAlmacen) {
-            LineaAlmacenModel lineaAlmacenModel = this.entityToModel(lineaAlmacen);
-            lineasAlmacenModel.add(lineaAlmacenModel);
+        if(lineasAlmacen!=null) {
+            for (LineaAlmacen lineaAlmacen : lineasAlmacen) {
+                LineaAlmacenModel lineaAlmacenModel = this.entityToModel(lineaAlmacen);
+                lineasAlmacenModel.add(lineaAlmacenModel);
+            }
         }
         return lineasAlmacenModel;
     }

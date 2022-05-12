@@ -36,8 +36,9 @@ public class MaterialService {
 
     public void insertMaterial(MaterialModel materialModel) {
         Material material = materialConverter.modelToEntity(materialModel);
-
+        log.info("*** ANTES DE LA INSERCIÓN: "+material.toString());
         material = materialRepository.save(material);
+        log.info("*** DESPUÉS DE LA INSERCIÓN: "+material.toString());
         Long materialId = material.getId();
         LineaAlmacenModel lineaAlmacenModel = materialModel.getLineasAlmacen().get(0);
         lineaAlmacenModel.setCantidad(materialModel.getNumUnidades());

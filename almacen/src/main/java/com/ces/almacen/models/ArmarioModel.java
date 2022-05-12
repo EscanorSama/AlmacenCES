@@ -11,5 +11,5 @@ import lombok.ToString;
 @ToString
 public class ArmarioModel extends ContenedorModel{
     private long armarioId;
-    private long profesorId;
+
 }
