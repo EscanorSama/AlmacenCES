@@ -3,6 +3,7 @@ package com.ces.almacen.services;
 import com.ces.almacen.converters.LineaSolicitudConverter;
 import com.ces.almacen.entities.LineaSolicitud;
 import com.ces.almacen.models.LineaSolicitudModel;
+import com.ces.almacen.models.MaterialModel;
 import com.ces.almacen.repositories.LineaSolicitudRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,9 @@ public class LineaSolicitudService {
     private LineaSolicitudRepository lineaSolicitudRepository;
 
     public LineaSolicitud insertLineaSolicitud(LineaSolicitudModel lineaSolicitudModel){
+
         LineaSolicitud lineaSolicitud = lineaSolicitudConverter.modelToEntity(lineaSolicitudModel);
+
         log.info("********"+lineaSolicitud);
         lineaSolicitud = lineaSolicitudRepository.save(lineaSolicitud);
         return lineaSolicitud;

@@ -11,14 +11,13 @@ import lombok.ToString;
 @ToString
 public class LineaSolicitudModel {
     private long id;
-    private String estado;
+    private boolean estado;
     private int cantidad;
 
-    //private long materialId;
     private MaterialModel material;
     private long solicitudId;
 
-    private long armarioId;
+    private ArmarioModel armario;
 
 
 }

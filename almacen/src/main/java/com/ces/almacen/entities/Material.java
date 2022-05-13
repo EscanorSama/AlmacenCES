@@ -77,6 +77,7 @@ public class Material {
     @OneToMany(mappedBy = "material", cascade={CascadeType.PERSIST})
     @JsonManagedReference
     private List<LineaSolicitud> lineasSolicitud;
+
     @PreRemove
     private void preRemove(){
         lineasSolicitud.forEach(lineaSolicitud -> lineaSolicitud.setMaterial(null));

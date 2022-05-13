@@ -17,6 +17,7 @@ public class AlumnoConverter {
         AlumnoModel alumnoModel = new AlumnoModel();
 
         alumnoModel.setAlumnoId(alumno.getId());
+        alumnoModel.setPersonaId(alumno.getPersona().getId());
         alumnoModel.setMail(alumno.getPersona().getMail());
         alumnoModel.setNombre(alumno.getPersona().getNombre());
         alumnoModel.setApellido(alumno.getPersona().getApellido());
@@ -49,7 +50,13 @@ public class AlumnoConverter {
         alumno.setCodigoPostal(alumnoModel.getCodigoPostal());
         alumno.setTelefono(alumnoModel.getTelefono());
         alumno.setMovil(alumnoModel.getMovil());
-
+        Persona persona = new Persona();
+        persona.setId(alumnoModel.getAlumnoId());
+        persona.setMail(alumnoModel.getMail());
+        persona.setNombre(alumnoModel.getNombre());
+        persona.setApellido(alumnoModel.getApellido());
+        persona.setDni(alumnoModel.getDni());
+        persona.setTipo(alumnoModel.getTipo());
         return alumno;
     }
 }

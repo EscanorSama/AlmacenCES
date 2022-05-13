@@ -4,6 +4,7 @@ import com.ces.almacen.converters.SolicitudConverter;
 import com.ces.almacen.entities.LineaSolicitud;
 import com.ces.almacen.entities.Solicitud;
 import com.ces.almacen.models.LineaSolicitudModel;
+import com.ces.almacen.models.ProfesorModel;
 import com.ces.almacen.models.SolicitudModel;
 import com.ces.almacen.repositories.LineaSolicitudRepository;
 import com.ces.almacen.repositories.SolicitudRepository;
@@ -22,6 +23,8 @@ import java.util.Optional;
 public class SolicitudService {
 
 
+
+
     @Autowired
     private SolicitudConverter solicitudConverter;
 
@@ -37,15 +40,16 @@ public class SolicitudService {
     @Autowired
     private UtilsDate utilsDate;
 
-    public void insertSolicitud(SolicitudModel solicitudModel) {
+    public void  insertSolicitud(SolicitudModel solicitudModel) {
         List<LineaSolicitudModel> lineasSolicitudModel = solicitudModel.getLineasSolicitud();
+        log.info("profesorModel.getProfesorId()");
         solicitudModel.setFecha(utilsDate.getSqlSysDate());//fecha del sistema
         Solicitud solicitud = solicitudRepository.save(solicitudConverter.modelToEntity(solicitudModel));
         log.info("*****"+ getSolicitudId(solicitud.getId()));
         java.sql.Date date = utilsDate.getSqlSysDate();
         log.info("***** "+date);
         for (LineaSolicitudModel lineaSolicitudModel: lineasSolicitudModel) {
-            //log.info("****** "+lineaSolicitudModel.getMaterialId());
+            log.info("****** "+lineaSolicitudModel.getMaterial());
             lineaSolicitudModel.setSolicitudId(solicitud.getId());
             lineaSolicitudService.insertLineaSolicitud(lineaSolicitudModel);
         }

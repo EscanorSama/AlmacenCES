@@ -26,33 +26,43 @@ public class LineaSolicitudConverter {
     public LineaSolicitudModel entityToModel(LineaSolicitud lineaSolicitud){
         LineaSolicitudModel lineaSolicitudModel = new LineaSolicitudModel();
         lineaSolicitudModel.setId(lineaSolicitud.getId());
-        lineaSolicitudModel.setEstado(lineaSolicitud.getEstado());
+        lineaSolicitudModel.setEstado(lineaSolicitud.isEstado());
         lineaSolicitudModel.setCantidad(lineaSolicitud.getCantidad());
-        Material material = lineaSolicitud.getMaterial();
-        MaterialModel materialModel = materialConverter.entityToModel(material);
-        lineaSolicitudModel.setMaterial(materialModel);
+
+        if (lineaSolicitud.getMaterial()!=null) {
+            MaterialModel materialModel = materialConverter.entityToModel(lineaSolicitud.getMaterial());
+            lineaSolicitudModel.setMaterial(materialModel);
+        }
         //lineaSolicitudModel.setMaterialId(lineaSolicitud.getMaterial().getId());
         lineaSolicitudModel.setSolicitudId(lineaSolicitud.getSolicitud().getId());
-        lineaSolicitudModel.setArmarioId(lineaSolicitud.getArmario().getId());
+        if (lineaSolicitud.getArmario()!=null) {
+            ArmarioModel armarioModel = armarioConverter.entityToModel(lineaSolicitud.getArmario());
+            lineaSolicitudModel.setArmario(armarioModel);
+        }
         return lineaSolicitudModel;
     }
 
     public LineaSolicitud modelToEntity(LineaSolicitudModel lineaSolicitudModel){
         LineaSolicitud lineaSolicitud = new LineaSolicitud();
         lineaSolicitud.setId(lineaSolicitudModel.getId());
-        lineaSolicitud.setEstado(lineaSolicitudModel.getEstado());
+        lineaSolicitud.setEstado(lineaSolicitudModel.isEstado());
         lineaSolicitud.setCantidad(lineaSolicitudModel.getCantidad());
 
-        Material material = new Material();
-        material.setId(lineaSolicitudModel.getMaterial().getId());
-        lineaSolicitud.setMaterial(material);
+
 
         Solicitud solicitud = new Solicitud();
         solicitud.setId(lineaSolicitudModel.getSolicitudId());
         lineaSolicitud.setSolicitud(solicitud);
 
+        /*Material material = new Material();
+        material.setId(lineaSolicitudModel.getMaterial().getId());
+        lineaSolicitud.setMaterial(material);*/
+
+        MaterialModel materialModel =lineaSolicitudModel.getMaterial();
+        lineaSolicitud.setMaterial(materialConverter.modelToEntity(materialModel));
+
         Armario armario = new Armario();
-        armario.setId(lineaSolicitudModel.getArmarioId());
+        armario.setId(lineaSolicitudModel.getArmario().getArmarioId());
         lineaSolicitud.setArmario(armario);
 
         return lineaSolicitud;

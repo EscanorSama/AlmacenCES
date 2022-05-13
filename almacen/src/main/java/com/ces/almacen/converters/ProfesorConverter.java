@@ -20,12 +20,10 @@ public class ProfesorConverter {
 
     public ProfesorModel entityToModel(Profesor profesor){
         ProfesorModel profesorModel = new ProfesorModel();
+
+       Persona persona = profesor.getPersona();
         profesorModel.setProfesorId(profesor.getId());
-        profesorModel.setNombre(profesor.getPersona().getNombre());
-        profesorModel.setApellido(profesor.getPersona().getApellido());
-        profesorModel.setDni(profesor.getPersona().getDni());
-        profesorModel.setMail(profesor.getPersona().getMail());
-        profesorModel.setTipo(profesor.getPersona().getTipo());
+
         profesorModel.setNumSs(profesor.getNumSs());
         profesorModel.setSalario(profesor.getSalario());
         profesorModel.setDomicilio(profesor.getDomicilio());
@@ -37,16 +35,24 @@ public class ProfesorConverter {
         profesorModel.setFormaPago(profesor.getFormaPago());
         profesorModel.setEntidadDeCargo(profesor.getEntidadDeCargo());
         profesorModel.setCuentaBancaria(profesor.getCuentaBancaria());
+        profesorModel.setPersonaId(persona.getId());
+        profesorModel.setNombre(persona.getNombre());
+        profesorModel.setApellido(persona.getApellido());
+        profesorModel.setDni(persona.getDni());
+        profesorModel.setMail(persona.getMail());
+        profesorModel.setTipo(persona.getTipo());
 
-        List<Armario> armarios=profesor.getArmarios();
+        if (profesor.getArmarios()!=null) {
+            List<Armario> armarios = profesor.getArmarios();
 
-        profesorModel.setArmarios(armarioConverter.listEntityToListModel(armarios));
-
+            profesorModel.setArmarios(armarioConverter.listEntityToListModel(armarios));
+        }
         return profesorModel;
     }
 
     public Profesor modelToEntity (ProfesorModel profesorModel){
         Profesor profesor = new Profesor();
+        profesor.setId(profesorModel.getProfesorId());
         profesor.setNumSs(profesorModel.getNumSs());
         profesor.setSalario(profesorModel.getSalario());
         profesor.setDomicilio(profesorModel.getDomicilio());
@@ -58,7 +64,9 @@ public class ProfesorConverter {
         profesor.setFormaPago(profesorModel.getFormaPago());
         profesor.setEntidadDeCargo(profesorModel.getEntidadDeCargo());
         profesor.setCuentaBancaria(profesorModel.getCuentaBancaria());
-        Persona persona = new Persona();
+
+       Persona persona = new Persona();
+        persona.setId(profesorModel.getPersonaId());
         persona.setNombre(profesorModel.getNombre());
         persona.setApellido(profesorModel.getApellido());
         persona.setMail(profesorModel.getMail());

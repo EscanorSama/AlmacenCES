@@ -25,9 +25,12 @@ public class SolicitudConverter {
         SolicitudModel solicitudModel = new SolicitudModel();
         solicitudModel.setId(solicitud.getId());
         solicitudModel.setFecha(solicitud.getFecha());
-        solicitudModel.setProfesorId(solicitud.getProfesor().getId());
+        Profesor profesor = solicitud.getProfesor();
+        ProfesorModel profesorModel = profesorConverter.entityToModel(profesor);
+        solicitudModel.setProfesor(profesorModel);
 
         List<LineaSolicitudModel> lineasSolicitudModel = lineaSolicitudConverter.listLineaSolicitudToListLineaSolicitudModel(solicitud.getLineasSolicitud());
+
         solicitudModel.setLineasSolicitud(lineasSolicitudModel);
 
         return solicitudModel;
@@ -38,9 +41,9 @@ public class SolicitudConverter {
         solicitud.setId(solicitudModel.getId());
         solicitud.setFecha(solicitudModel.getFecha());
 
-        Profesor profesor = new Profesor();
-        profesor.setId(solicitudModel.getProfesorId());
-        solicitud.setProfesor(profesor);
+        ProfesorModel profesor = solicitudModel.getProfesor();
+        solicitud.setProfesor(profesorConverter.modelToEntity(profesor));
+
         List<LineaSolicitud> lineasSolicitud = lineaSolicitudConverter.listLineaSolicitudModelToListLineaSolicitud(solicitudModel.getLineasSolicitud());
         solicitud.setLineasSolicitud(lineasSolicitud);
         log.info("***** "+solicitud);

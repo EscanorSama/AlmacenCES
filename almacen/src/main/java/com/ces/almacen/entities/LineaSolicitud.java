@@ -21,9 +21,10 @@ public class LineaSolicitud {
     @Column(name = "id")
     private long id;
     @Column(name="estado")
-    private String estado;
+    private boolean estado;
     @Column(name = "cantidad")
     private int cantidad;
+
     @ManyToOne
     @JsonBackReference
     private Solicitud solicitud;

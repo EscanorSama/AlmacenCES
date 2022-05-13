@@ -19,6 +19,7 @@ public class TaquillaConverter {
         taquillaModel.setDescripcion(taquilla.getContenedor().getDescripcion());
         taquillaModel.setZona(taquilla.getContenedor().getZona());
         taquillaModel.setNumero(taquilla.getContenedor().getNumero());
+        taquillaModel.setTipo(taquilla.getContenedor().getTipo());
 
         return taquillaModel;
     }
