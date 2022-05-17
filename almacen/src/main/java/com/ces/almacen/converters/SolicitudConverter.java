@@ -44,6 +44,9 @@ public class SolicitudConverter {
         ProfesorModel profesor = solicitudModel.getProfesor();
         solicitud.setProfesor(profesorConverter.modelToEntity(profesor));
 
+        List<LineaSolicitudModel> lineasSolicitudModel = solicitudModel.getLineasSolicitud();
+        solicitud.setLineasSolicitud(lineaSolicitudConverter.listLineaSolicitudModelToListLineaSolicitud(lineasSolicitudModel));
+
 
 
         return solicitud;

@@ -36,6 +36,12 @@ public class SolicitudController {
         return false;
     }
 
+    @PutMapping(path = "/solicitud")
+    public Optional<SolicitudModel> putSolicitud(@RequestBody SolicitudModel solicitudModel){
+        return solicitudService.updateSolicitud(solicitudModel);
+    }
+
+
     @DeleteMapping(path="/solicitud/{id}")
     public SolicitudModel deleteSolicitud(@PathVariable(name="id") Long id){
         Optional<SolicitudModel> result = solicitudService.deleteSolicitud(id);

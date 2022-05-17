@@ -1,5 +1,6 @@
 package com.ces.almacen.services;
 
+import com.ces.almacen.converters.LineaSolicitudConverter;
 import com.ces.almacen.converters.SolicitudConverter;
 import com.ces.almacen.entities.LineaSolicitud;
 import com.ces.almacen.entities.Solicitud;
@@ -36,6 +37,9 @@ public class SolicitudService {
 
     @Autowired
     private LineaSolicitudRepository lineaSolicitudRepository;
+
+    @Autowired
+    private LineaSolicitudConverter lineaSolicitudConverter;
 
     @Autowired
     private UtilsDate utilsDate;
@@ -105,5 +109,23 @@ public class SolicitudService {
             solicitudesModel.add(solicitudModel);
         }
         return solicitudesModel;
+    }
+
+    public Optional<SolicitudModel> updateSolicitud(SolicitudModel solicitudModel) {
+        Optional<SolicitudModel> resultSm = Optional.empty();
+        Optional<Solicitud> result = solicitudRepository.findById(solicitudModel.getId());
+        if (result.isPresent()){
+            List<LineaSolicitud> lineasSolicitud = new ArrayList<>();
+            for (LineaSolicitudModel lineaSolicitudModel: solicitudModel.getLineasSolicitud()) {
+                    lineaSolicitudModel.setSolicitudId(solicitudModel.getId());
+                    lineasSolicitud.add(lineaSolicitudRepository.save(lineaSolicitudConverter.modelToEntity(lineaSolicitudModel)));
+
+
+            }
+            solicitudModel.setLineasSolicitud(lineaSolicitudConverter.listLineaSolicitudToListLineaSolicitudModel(lineasSolicitud));
+            Solicitud solicitud = solicitudRepository.save(solicitudConverter.modelToEntity(solicitudModel));
+            resultSm = Optional.of(solicitudConverter.entityToModel(solicitud));
+        }
+        return resultSm;
     }
 }
