@@ -26,7 +26,7 @@ public class Solicitud {
     @Column(name = "fecha")
     private Date fecha;
 
-    @OneToMany(mappedBy = "solicitud")
+    @OneToMany(mappedBy = "solicitud", cascade = CascadeType.ALL )
     @JsonManagedReference
     private List<LineaSolicitud> lineasSolicitud;
 

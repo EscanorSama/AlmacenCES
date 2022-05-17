@@ -42,14 +42,14 @@ public class SolicitudService {
 
     public void  insertSolicitud(SolicitudModel solicitudModel) {
         List<LineaSolicitudModel> lineasSolicitudModel = solicitudModel.getLineasSolicitud();
-        log.info("profesorModel.getProfesorId()");
+
         solicitudModel.setFecha(utilsDate.getSqlSysDate());//fecha del sistema
         Solicitud solicitud = solicitudRepository.save(solicitudConverter.modelToEntity(solicitudModel));
-        log.info("*****"+ getSolicitudId(solicitud.getId()));
+        log.info("^***************"+ solicitud.getId());
         java.sql.Date date = utilsDate.getSqlSysDate();
-        log.info("***** "+date);
+
         for (LineaSolicitudModel lineaSolicitudModel: lineasSolicitudModel) {
-            log.info("****** "+lineaSolicitudModel.getMaterial());
+
             lineaSolicitudModel.setSolicitudId(solicitud.getId());
             lineaSolicitudService.insertLineaSolicitud(lineaSolicitudModel);
         }

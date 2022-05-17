@@ -43,6 +43,7 @@ public class LineaSolicitudConverter {
     }
 
     public LineaSolicitud modelToEntity(LineaSolicitudModel lineaSolicitudModel){
+        log.info("***********"+ lineaSolicitudModel.getSolicitudId());
         LineaSolicitud lineaSolicitud = new LineaSolicitud();
         lineaSolicitud.setId(lineaSolicitudModel.getId());
         lineaSolicitud.setEstado(lineaSolicitudModel.isEstado());
@@ -54,12 +55,11 @@ public class LineaSolicitudConverter {
         solicitud.setId(lineaSolicitudModel.getSolicitudId());
         lineaSolicitud.setSolicitud(solicitud);
 
-        /*Material material = new Material();
+        Material material = new Material();
         material.setId(lineaSolicitudModel.getMaterial().getId());
-        lineaSolicitud.setMaterial(material);*/
+        lineaSolicitud.setMaterial(material);
 
-        MaterialModel materialModel =lineaSolicitudModel.getMaterial();
-        lineaSolicitud.setMaterial(materialConverter.modelToEntity(materialModel));
+
 
         Armario armario = new Armario();
         armario.setId(lineaSolicitudModel.getArmario().getArmarioId());
@@ -71,7 +71,7 @@ public class LineaSolicitudConverter {
     public List<LineaSolicitud> listLineaSolicitudModelToListLineaSolicitud(List<LineaSolicitudModel> lineasSolicitudModel){
         List<LineaSolicitud> lineasSolicitud = new ArrayList<>();
         for (LineaSolicitudModel lineaSolicitudModel: lineasSolicitudModel) {
-            log.info("******* "+lineaSolicitudModel);
+
             LineaSolicitud lineaSolicitud = this.modelToEntity(lineaSolicitudModel);
             lineasSolicitud.add(lineaSolicitud);
         }

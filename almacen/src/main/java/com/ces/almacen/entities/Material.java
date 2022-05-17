@@ -74,7 +74,7 @@ public class Material {
     private List<LineaAlmacen> lineasAlmacen;
 
 
-    @OneToMany(mappedBy = "material", cascade={CascadeType.PERSIST})
+    @OneToMany(mappedBy = "material", cascade={CascadeType.ALL}, orphanRemoval = true)
     @JsonManagedReference
     private List<LineaSolicitud> lineasSolicitud;
 

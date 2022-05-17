@@ -19,11 +19,10 @@ public class LineaSolicitudService {
     private LineaSolicitudRepository lineaSolicitudRepository;
 
     public LineaSolicitud insertLineaSolicitud(LineaSolicitudModel lineaSolicitudModel){
-
+        log.info("****** "+lineaSolicitudModel.getMaterial().getId());
         LineaSolicitud lineaSolicitud = lineaSolicitudConverter.modelToEntity(lineaSolicitudModel);
-
-        log.info("********"+lineaSolicitud);
         lineaSolicitud = lineaSolicitudRepository.save(lineaSolicitud);
+        log.info("****** "+lineaSolicitudModel.getId());
         return lineaSolicitud;
     }
 }
