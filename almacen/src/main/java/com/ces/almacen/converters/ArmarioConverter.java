@@ -33,7 +33,7 @@ public class ArmarioConverter {
         armarioModel.setDescripcion(contenedor.getDescripcion());
         armarioModel.setZona(armario.getContenedor().getZona());
         armarioModel.setNumero(armario.getContenedor().getNumero());
-        armarioModel.setTipo(armario.getContenedor().getTipo());
+        armarioModel.setTipo("Armario");
         //armarioModel.setProfesorId(armario.getProfesor().getId());
     }
         return armarioModel;
@@ -47,7 +47,7 @@ public class ArmarioConverter {
         contenedor.setNumero(armarioModel.getNumero());
         contenedor.setDescripcion(armarioModel.getDescripcion());
         contenedor.setZona(armarioModel.getZona());
-        contenedor.setTipo(armarioModel.getTipo());
+        contenedor.setTipo("Armario");
         List<LineaAlmacenModel> lineasAlmacenModel = armarioModel.getLineasAlmacen();
         List<LineaAlmacen> lineasAlmacen =lineaAlmacenConverter.listModelToListEntity(lineasAlmacenModel);
         contenedor.setLineasAlmacen(lineasAlmacen);

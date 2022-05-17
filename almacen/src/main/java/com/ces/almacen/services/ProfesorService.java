@@ -11,6 +11,9 @@ import com.ces.almacen.repositories.ArmarioRepository;
 import com.ces.almacen.repositories.PersonaRepository;
 import com.ces.almacen.repositories.ProfesorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -126,5 +129,18 @@ public class ProfesorService {
             insertProfesor(profesorModel);
         }
         return profesoresModel;
+    }
+
+    public List<ProfesorModel> getProfesoresPag(int nPag, int tPag){
+        Pageable pageable = PageRequest.of(nPag, tPag);
+        Page<Profesor> profesoresPag = profesorRepository.findAll(pageable);
+        List<Profesor> profesores = profesoresPag.getContent();
+        List<ProfesorModel> profesoresModel = listProfesoresToListProfesoresModel(profesores);
+        return profesoresModel;
+    }
+
+    public int getNumProfesores() {
+        List<Profesor> profesores = profesorRepository.findAll();
+        return  profesores.size();
     }
 }

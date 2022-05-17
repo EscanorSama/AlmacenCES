@@ -26,8 +26,9 @@ public class TaquillaController {
     }
 
     @GetMapping(path = "/taquillas")
-    public List<TaquillaModel> getTaquillas(){
-        return taquillaService.getTaquillas();
+    public List<TaquillaModel> getTaquillas(@RequestParam(name = "nPag", required = true)Integer nPag,
+                                            @RequestParam(name = "tPag", required = true)Integer tPag){
+        return taquillaService.getTaquillasPag(nPag, tPag);
     }
 
     @GetMapping(path = "/taquilla/{id}")
@@ -51,6 +52,11 @@ public class TaquillaController {
             return result.get();
         }
         throw new NotFoundException();
+    }
+
+    @GetMapping(path = "/numTaquillas")
+    public int getNumTaquillas(){
+        return taquillaService.getNumTaquillas();
     }
 
 }

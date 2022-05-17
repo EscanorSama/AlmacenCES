@@ -175,11 +175,7 @@ public class MaterialService {
 
 
     public int getNumMateriales() {
-        int numMateriales = 0;
         List<Material> materiales = materialRepository.findAll();
-        for (Material material : materiales) {
-            numMateriales = materiales.size();
-        }
-        return numMateriales;
+        return materiales.size();
     }
 }

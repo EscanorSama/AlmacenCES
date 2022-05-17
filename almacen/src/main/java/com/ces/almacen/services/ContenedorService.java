@@ -6,6 +6,9 @@ import com.ces.almacen.models.ContenedorModel;
 import com.ces.almacen.models.LineaAlmacenModel;
 import com.ces.almacen.repositories.ContenedorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -55,6 +58,14 @@ public class ContenedorService {
             resultCm = Optional.of(contenedorModel);
         }
         return resultCm;
+    }
+
+    public List<ContenedorModel> getContenedoresPag(int nPag, int tPag){
+        Pageable pageable = PageRequest.of(nPag, tPag);
+        Page<Contenedor> contenedorPag = contenedorRepository.findAll(pageable);
+        List<Contenedor> contenedores = contenedorPag.getContent();
+        List<ContenedorModel> contenedoresModel = listContenedorToListContenedorModel(contenedores);
+        return contenedoresModel;
     }
 
     public List<ContenedorModel> getContenedorZona(String zona) {

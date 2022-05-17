@@ -2,6 +2,7 @@ package com.ces.almacen.services;
 
 import com.ces.almacen.converters.AlumnoConverter;
 import com.ces.almacen.entities.Alumno;
+import com.ces.almacen.entities.Material;
 import com.ces.almacen.entities.Persona;
 import com.ces.almacen.entities.Taquilla;
 import com.ces.almacen.models.AlumnoModel;
@@ -70,25 +71,23 @@ public class AlumnoService {
         return resultAm;
     }
 
-    public List<AlumnoModel> getAlumnoNumExpediente(String numExpediente){
-        List<Alumno> alumnos = alumnoRepository.findByNumExpediente(numExpediente);
-        List<AlumnoModel> alumnosModel = listAlumnoToListAlumnoModel(alumnos);
+    public List<AlumnoModel> getAlumnoNumExpediente(int nPag, int tPag, String numExpediente){
+        Pageable pageable = PageRequest.of(nPag,tPag);
+        Page<Alumno> alumnosNumExpedientePag = alumnoRepository.findByNumExpediente(numExpediente, pageable);
+        List<Alumno> alumnosNumExpediente = alumnosNumExpedientePag.getContent();
+        List<AlumnoModel> alumnosModel = listAlumnoToListAlumnoModel(alumnosNumExpediente);
         return alumnosModel;
     }
 
-    public List<AlumnoModel> getAlumnoCodigoPostal(String codigoPostal){
-        List<Alumno> alumnos = alumnoRepository.findByCodigoPostal(codigoPostal);
-        List<AlumnoModel> alumnosModel = listAlumnoToListAlumnoModel(alumnos);
+    public List<AlumnoModel> getAlumnoCodigoPostal(int nPag, int tPag, String codigoPostal){
+        Pageable pageable = PageRequest.of(nPag, tPag);
+        Page<Alumno> alumnosCodigoPostalPag = alumnoRepository.findByCodigoPostal(codigoPostal, pageable);
+        List<Alumno> alumnosCodigoPostal = alumnosCodigoPostalPag.getContent();
+        List<AlumnoModel> alumnosModel = listAlumnoToListAlumnoModel(alumnosCodigoPostal);
         return alumnosModel;
     }
 
-    public List<AlumnoModel> getAlumnosPag(int npag){
-        Pageable pageable = PageRequest.of(npag, 3);
-        Page<Alumno> alumnosPag = alumnoRepository.findAll(pageable);
-        List<Alumno> alumnos = alumnosPag.getContent();
-        List<AlumnoModel> alumnosModel = listAlumnoToListAlumnoModel(alumnos);
-        return alumnosModel;
-    }
+
 
     public List<AlumnoModel> getAlumnos() {
         List<Alumno> alumnos = alumnoRepository.findAll();
@@ -136,5 +135,19 @@ public class AlumnoService {
             taquillaRepository.save(taquilla);
         }
 
+    }
+
+    public List<AlumnoModel> getAlumnosPag(int nPag, int tPag){
+        Pageable pageable = PageRequest.of(nPag, tPag);
+        Page<Alumno> alumnosPag = alumnoRepository.findAll(pageable);
+        List<Alumno> alumnos = alumnosPag.getContent();
+        List<AlumnoModel> alumnosModel = listAlumnoToListAlumnoModel(alumnos);
+        return alumnosModel;
+    }
+
+
+    public int getNumAlumnos() {
+        List<Alumno> alumnos = alumnoRepository.findAll();
+        return alumnos.size();
     }
 }

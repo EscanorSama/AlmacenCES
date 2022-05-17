@@ -27,8 +27,9 @@ public class ContenedorController {
     }
 
     @GetMapping(path = "/contenedores")
-    public List<ContenedorModel> getContenedores(){
-        return contenedorService.getContenedores();
+    public List<ContenedorModel> getContenedores(@RequestParam(name = "nPag", required = true) Integer nPag,
+                                                 @RequestParam(name = "tPag", required = true)Integer tPag){
+        return contenedorService.getContenedoresPag(nPag, tPag);
     }
 
 

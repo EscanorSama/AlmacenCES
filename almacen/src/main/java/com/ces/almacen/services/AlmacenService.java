@@ -3,6 +3,7 @@ package com.ces.almacen.services;
 import com.ces.almacen.converters.AlmacenConverter;
 import com.ces.almacen.entities.Almacen;
 import com.ces.almacen.entities.Contenedor;
+import com.ces.almacen.entities.Taquilla;
 import com.ces.almacen.models.AlmacenModel;
 import com.ces.almacen.repositories.AlmacenRepository;
 import com.ces.almacen.repositories.ContenedorRepository;
@@ -11,6 +12,9 @@ import com.ces.almacen.repositories.ContenedorRepository;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -54,6 +58,14 @@ public class AlmacenService {
             resultAm = Optional.of(almacenModel);
         }
         return resultAm;
+    }
+
+    public List<AlmacenModel> getAlmacenesPag(int nPag, int tPag){
+        Pageable pageable =  PageRequest.of(nPag, tPag);
+        Page<Almacen> almacenesPag = almacenRepository.findAll(pageable);
+        List<Almacen> almacenes = almacenesPag.getContent();
+        List<AlmacenModel> almacenesModel = listAlmacenToListAlmacenModel(almacenes);
+        return almacenesModel;
     }
 
     public List<AlmacenModel> getAlmacenes() {
@@ -105,5 +117,10 @@ public class AlmacenService {
             insertAlmacen(almacenModel);
         }
         return almacenesModel;
+    }
+
+    public int getNumAlmacenes() {
+        List<Almacen> almacenes = almacenRepository.findAll();
+        return almacenes.size();
     }
 }

@@ -1,6 +1,7 @@
 package com.ces.almacen.services;
 
 import com.ces.almacen.converters.ArmarioConverter;
+import com.ces.almacen.entities.Alumno;
 import com.ces.almacen.entities.Armario;
 import com.ces.almacen.entities.Contenedor;
 import com.ces.almacen.entities.Profesor;
@@ -10,6 +11,9 @@ import com.ces.almacen.repositories.ArmarioRepository;
 import com.ces.almacen.repositories.ContenedorRepository;
 import com.ces.almacen.repositories.ProfesorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -106,5 +110,18 @@ public class ArmarioService {
             insertArmario(armarioModel);
         }
         return armariosModel;
+    }
+
+    public List<ArmarioModel> getArmariosPag(int nPag, int tPag){
+        Pageable pageable = PageRequest.of(nPag, tPag);
+        Page<Armario> armariosPag = armarioRepository.findAll(pageable);
+        List<Armario> armarios = armariosPag.getContent();
+        List<ArmarioModel> armariosModel = listArmarioToListArmarioModel(armarios);
+        return armariosModel;
+    }
+
+    public int getNumArmarios() {
+        List<Armario> armarios = armarioRepository.findAll();
+        return armarios.size();
     }
 }

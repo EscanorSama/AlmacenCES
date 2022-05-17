@@ -36,15 +36,16 @@ public class AlumnoController {
 
 
     @GetMapping(path = "/alumnos")
-    public List<AlumnoModel> getAlumnos (@RequestParam(name = "npag", required = false)Integer npag,
+    public List<AlumnoModel> getAlumnos (@RequestParam(name = "nPag", required = true)Integer nPag,
                                          @RequestParam(name = "numExpediente", required = false)String numExpediente,
-                                         @RequestParam(name = "codigoPostal", required = false)String codigoPostal){
-        if(npag!= null && numExpediente==null && codigoPostal==null){
-            return alumnoService.getAlumnosPag(npag);
-        }else if(npag== null && numExpediente!=null && codigoPostal==null){
-            return alumnoService.getAlumnoNumExpediente(numExpediente);
-        }else if(npag== null && numExpediente==null && codigoPostal!=null){
-            return alumnoService.getAlumnoCodigoPostal(codigoPostal);
+                                         @RequestParam(name = "codigoPostal", required = false)String codigoPostal,
+                                         @RequestParam(name = "tPag", required = true)Integer tPag){
+        if(nPag!= null && tPag!=null && numExpediente==null && codigoPostal==null){
+            return alumnoService.getAlumnosPag(nPag, tPag);
+        }else if(nPag== null && numExpediente!=null && codigoPostal==null){
+            return alumnoService.getAlumnoNumExpediente(nPag, tPag, numExpediente);
+        }else if(nPag== null && numExpediente==null && codigoPostal!=null){
+            return alumnoService.getAlumnoCodigoPostal(nPag, tPag, codigoPostal);
         }else{
             return alumnoService.getAlumnos();
         }
@@ -70,5 +71,10 @@ public class AlumnoController {
     @PutMapping(path = "/alumno/mail")
     public void putAlumnoMail(@RequestBody AlumnoModel alumnoModel){
         alumnoService.updateAlumno(alumnoModel);
+    }
+
+    @GetMapping(path = "/numAlumnos")
+    public int getNumAlumnos(){
+        return alumnoService.getNumAlumnos();
     }
 }

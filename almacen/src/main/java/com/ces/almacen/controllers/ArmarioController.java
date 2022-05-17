@@ -39,8 +39,9 @@ public class ArmarioController {
     }
 
     @GetMapping(path = "/armarios")
-    public List<ArmarioModel> getArmarios(){
-        return armarioService.getArmarios();
+    public List<ArmarioModel> getArmarios(@RequestParam(name = "nPag", required = true)Integer nPag,
+                                          @RequestParam(name = "tPag", required = true)Integer tPag){
+        return armarioService.getArmariosPag(nPag, tPag);
     }
 
     @DeleteMapping(path = "/armario/{id}")
@@ -50,6 +51,11 @@ public class ArmarioController {
             return result.get();
         }
         throw new NotFoundException();
+    }
+
+    @GetMapping(path = "/numArmarios")
+    public int getNumArmarios(){
+        return armarioService.getNumArmarios();
     }
 
 }

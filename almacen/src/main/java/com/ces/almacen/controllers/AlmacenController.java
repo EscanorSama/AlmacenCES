@@ -31,9 +31,9 @@ public class AlmacenController {
     }
 
     @GetMapping(path = "/almacenes")
-    public List<AlmacenModel> getAlmacenes(){
-        return almacenService.getAlmacenes();
-
+    public List<AlmacenModel> getAlmacenes(@RequestParam(name = "nPag" , required = true)Integer nPag,
+                                           @RequestParam(name = "tPag", required = true)Integer tPag){
+        return almacenService.getAlmacenesPag(nPag,tPag);
     }
 
     @PutMapping(path = "/almacen")
@@ -59,6 +59,11 @@ public class AlmacenController {
             return result.get();
         }
         throw new NotFoundException();
+    }
+
+    @GetMapping(path = "/numAlmacenes")
+    public int getNumAlmacenes(){
+        return almacenService.getNumAlmacenes();
     }
 
 

@@ -27,8 +27,9 @@ public class ProfesorController {
     }
 
     @GetMapping(path = "/profesores")
-    public List<ProfesorModel> getProfesores(){
-        return profesorService.getProfesores();
+    public List<ProfesorModel> getProfesores(@RequestParam(name = "nPag", required = true)Integer nPag,
+                                             @RequestParam(name = "tPag", required = true)Integer tPag){
+        return profesorService.getProfesoresPag(nPag, tPag);
     }
 
 
@@ -59,5 +60,12 @@ public class ProfesorController {
             return result.get();
         }
         throw new NotFoundException();
+    }
+
+
+
+    @GetMapping(path = "/numProfesores")
+    public int getNumProfesores(){
+        return profesorService.getNumProfesores();
     }
 }

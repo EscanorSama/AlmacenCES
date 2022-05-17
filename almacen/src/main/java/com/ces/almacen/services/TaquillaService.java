@@ -3,12 +3,16 @@ package com.ces.almacen.services;
 import com.ces.almacen.converters.TaquillaConverter;
 import com.ces.almacen.entities.Alumno;
 import com.ces.almacen.entities.Contenedor;
+import com.ces.almacen.entities.Profesor;
 import com.ces.almacen.entities.Taquilla;
 import com.ces.almacen.models.TaquillaModel;
 import com.ces.almacen.repositories.AlumnoRepository;
 import com.ces.almacen.repositories.ContenedorRepository;
 import com.ces.almacen.repositories.TaquillaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -100,5 +104,18 @@ public class TaquillaService {
             insertTaquilla(taquillaModel);
         }
         return taquillasModel;
+    }
+
+    public List<TaquillaModel> getTaquillasPag(int nPag, int tPag){
+        Pageable pageable = PageRequest.of(nPag, tPag);
+        Page<Taquilla> taquillasPag = taquillaRepository.findAll(pageable);
+        List<Taquilla> taquillas = taquillasPag.getContent();
+        List<TaquillaModel> taquillasModel = listTaquillasToListTaquillasModel(taquillas);
+        return taquillasModel;
+    }
+
+    public int getNumTaquillas() {
+        List<Taquilla> taquillas = taquillaRepository.findAll();
+        return taquillas.size();
     }
 }
