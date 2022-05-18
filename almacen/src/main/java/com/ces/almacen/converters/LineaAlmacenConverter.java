@@ -22,9 +22,9 @@ public class LineaAlmacenConverter {
         lineaAlmacenModel.setCantidad(lineaAlmacen.getCantidad());
         lineaAlmacenModel.setFecha(lineaAlmacen.getFecha());
         lineaAlmacenModel.setContenedorId(lineaAlmacen.getContenedor().getId());
-        /*Contenedor contenedor = lineaAlmacen.getContenedor();
-        ContenedorModel contenedorModel = contenedorConverter.entityToModel(contenedor);
-        lineaAlmacenModel.setContenedor(contenedorModel);*/
+        if(lineaAlmacen.getContenedor().getTipo().equals("Catalogo")){
+            lineaAlmacenModel.setCantidad(0);
+        }
         lineaAlmacenModel.setMaterialId(lineaAlmacen.getMaterial().getId());
         return lineaAlmacenModel;
     }
@@ -35,6 +35,8 @@ public class LineaAlmacenConverter {
         lineaAlmacen.setCantidad(lineaAlmacenModel.getCantidad());
         lineaAlmacen.setFecha(lineaAlmacenModel.getFecha());
 
+
+
         Material material = new Material();
         material.setId(lineaAlmacenModel.getMaterialId());
         lineaAlmacen.setMaterial(material);
@@ -43,6 +45,10 @@ public class LineaAlmacenConverter {
         Contenedor contenedor = new Contenedor();
         contenedor.setId(lineaAlmacenModel.getContenedorId());
         lineaAlmacen.setContenedor(contenedor);
+
+        if (contenedor.getTipo().equals("Catalogo")){
+            lineaAlmacen.setCantidad(0);
+        }
 
         return lineaAlmacen;
     }

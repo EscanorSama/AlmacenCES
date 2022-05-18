@@ -18,6 +18,7 @@ public class AlmacenConverter {
     public AlmacenModel entityToModel(Almacen almacen){
         AlmacenModel almacenModel = new AlmacenModel();
         almacenModel.setAlmacenId(almacen.getId());
+        almacenModel.setContenedorId(almacen.getContenedor().getId());
         almacenModel.setDescripcion(almacen.getContenedor().getDescripcion());
         almacenModel.setZona(almacen.getContenedor().getZona());
         almacenModel.setNumero(almacen.getContenedor().getNumero());
@@ -29,6 +30,7 @@ public class AlmacenConverter {
         Almacen almacen = new Almacen();
         almacen.setId(almacenModel.getAlmacenId());
         Contenedor contenedor = new Contenedor();
+        contenedor.setId(almacenModel.getContenedorId());
         contenedor.setZona(almacenModel.getZona());
         contenedor.setDescripcion(almacenModel.getDescripcion());
         contenedor.setTipo("Almacen");

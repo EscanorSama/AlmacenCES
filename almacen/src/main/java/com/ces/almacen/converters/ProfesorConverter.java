@@ -50,6 +50,8 @@ public class ProfesorConverter {
         return profesorModel;
     }
 
+
+
     public Profesor modelToEntity (ProfesorModel profesorModel){
         Profesor profesor = new Profesor();
         profesor.setId(profesorModel.getProfesorId());

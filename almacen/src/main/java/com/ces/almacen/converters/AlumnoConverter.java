@@ -32,6 +32,7 @@ public class AlumnoConverter {
         alumnoModel.setMovil(alumno.getMovil());
         alumnoModel.setNumExpediente(alumno.getNumExpediente());
 
+
         if (alumno.getTaquilla()!=null) {
             Taquilla taquilla;
             taquilla = alumno.getTaquilla();
@@ -51,7 +52,7 @@ public class AlumnoConverter {
         alumno.setTelefono(alumnoModel.getTelefono());
         alumno.setMovil(alumnoModel.getMovil());
         Persona persona = new Persona();
-        persona.setId(alumnoModel.getAlumnoId());
+        persona.setId(alumnoModel.getPersonaId());
         persona.setMail(alumnoModel.getMail());
         persona.setNombre(alumnoModel.getNombre());
         persona.setApellido(alumnoModel.getApellido());

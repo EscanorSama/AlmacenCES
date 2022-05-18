@@ -22,6 +22,7 @@ public class TaquillaConverter {
     public TaquillaModel entityToModel (Taquilla taquilla){
         TaquillaModel taquillaModel = new TaquillaModel();
         taquillaModel.setTaquillaId(taquilla.getId());
+        taquillaModel.setContenedorId(taquilla.getContenedor().getId());
         taquillaModel.setDescripcion(taquilla.getContenedor().getDescripcion());
         taquillaModel.setZona(taquilla.getContenedor().getZona());
         taquillaModel.setNumero(taquilla.getContenedor().getNumero());
@@ -34,6 +35,7 @@ public class TaquillaConverter {
         Taquilla taquilla = new Taquilla();
         taquilla.setId(taquillaModel.getTaquillaId());
         Contenedor contenedor = new Contenedor();
+        contenedor.setId(taquillaModel.getContenedorId());
         contenedor.setTipo("Taquilla");
         contenedor.setNumero(taquillaModel.getNumero());
         contenedor.setZona(taquillaModel.getZona());

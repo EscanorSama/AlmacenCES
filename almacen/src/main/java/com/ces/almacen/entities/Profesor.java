@@ -1,6 +1,7 @@
 package com.ces.almacen.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -64,7 +65,7 @@ public class Profesor {
     private List<Solicitud> solicitudes;
 
     @OneToMany(mappedBy = "profesor")
-    @JsonManagedReference
+    @JsonIgnoreProperties({"profesor"})
     private List<Armario> armarios;
 
     @OneToOne(mappedBy = "profesor")

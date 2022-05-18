@@ -9,7 +9,9 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @ToString
-public class TaquillaModel extends ContenedorModel{
-    private long taquillaId;
-    private AlumnoModel alumno;
+public class LoginModel {
+
+    private String rol;
+    private String email;
+    private String password;
 }
