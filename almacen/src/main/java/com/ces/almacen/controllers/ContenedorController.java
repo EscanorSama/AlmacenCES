@@ -23,7 +23,7 @@ public class ContenedorController {
 
     @PostMapping(path = "/contenedor")
     public void postContenedor(@RequestBody ContenedorModel contenedorModel){
-        contenedorService.insertContenedor(contenedorModel);
+        contenedorService.insertContenedor(contenedorModel,"");
     }
 
     @GetMapping(path = "/contenedores")

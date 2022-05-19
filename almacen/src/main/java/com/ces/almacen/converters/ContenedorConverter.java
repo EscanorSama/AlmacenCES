@@ -27,13 +27,13 @@ public class ContenedorConverter {
 
         return contenedorModel;
     }
-    public Contenedor modelToEntity(ContenedorModel contenedorModel){
+    public Contenedor modelToEntity(ContenedorModel contenedorModel,String tipo){
         Contenedor contenedor = new Contenedor();
         contenedor.setId(contenedorModel.getContenedorId());
         contenedor.setZona(contenedorModel.getZona());
         contenedor.setDescripcion(contenedorModel.getDescripcion());
         contenedor.setNumero(contenedorModel.getNumero());
-        contenedor.setTipo(contenedorModel.getTipo());
+        contenedor.setTipo(tipo);
         /*List<LineaAlmacenModel> lineasAlmacenModel = contenedorModel.getLineasAlmacen();
         List<LineaAlmacen> lineasAlmacen = lineaAlmacenConverter.listModelToListEntity(lineasAlmacenModel);
         contenedor.setLineasAlmacen(lineasAlmacen);*/

@@ -61,10 +61,11 @@ public class ArmarioConverter {
         List<LineaAlmacenModel> lineasAlmacenModel = armarioModel.getLineasAlmacen();
         List<LineaAlmacen> lineasAlmacen =lineaAlmacenConverter.listModelToListEntity(lineasAlmacenModel);
         contenedor.setLineasAlmacen(lineasAlmacen);
-
+        armario.setContenedor(contenedor);
+        if(armarioModel.getProfesor()!=null){
         Profesor profesor = new Profesor();
         profesor.setId(armarioModel.getProfesor().getProfesorId());
-        armario.setProfesor(profesor);
+        armario.setProfesor(profesor);}
         return armario;
     }
 

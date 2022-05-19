@@ -42,7 +42,7 @@ public class ArmarioService {
     private ProfesorConverter profesorConverter;
 
     public ArmarioModel insertArmario(ArmarioModel armarioModel) {
-        Contenedor contenedor = contenedorService.insertContenedor(armarioModel);
+        Contenedor contenedor = contenedorService.insertContenedor(armarioModel,"Armario");
         Armario armario = armarioConverter.modelToEntity(armarioModel);
         armario.setContenedor(contenedor);
 

@@ -22,7 +22,7 @@ public class AlmacenConverter {
         almacenModel.setDescripcion(almacen.getContenedor().getDescripcion());
         almacenModel.setZona(almacen.getContenedor().getZona());
         almacenModel.setNumero(almacen.getContenedor().getNumero());
-        almacenModel.setTipo("Almacen");
+        almacenModel.setTipo(almacen.getContenedor().getTipo());
         return almacenModel;
     }
 
@@ -33,7 +33,7 @@ public class AlmacenConverter {
         contenedor.setId(almacenModel.getContenedorId());
         contenedor.setZona(almacenModel.getZona());
         contenedor.setDescripcion(almacenModel.getDescripcion());
-        contenedor.setTipo("Almacen");
+        contenedor.setTipo(almacenModel.getTipo());
         contenedor.setNumero(almacenModel.getNumero());
         List<LineaAlmacenModel> lineasAlmacenModel = almacenModel.getLineasAlmacen();
         contenedor.setLineasAlmacen(lineaAlmacenConverter.listModelToListEntity(lineasAlmacenModel));

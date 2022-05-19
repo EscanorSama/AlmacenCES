@@ -34,7 +34,7 @@ public class TaquillaService {
 
 
     public TaquillaModel insertTaquilla(TaquillaModel taquillaModel) {
-        Contenedor contenedor = contenedorService.insertContenedor(taquillaModel);
+        Contenedor contenedor = contenedorService.insertContenedor(taquillaModel,"Taquilla");
         Taquilla taquilla = taquillaConverter.modelToEntity(taquillaModel);
         taquilla.setContenedor(contenedor);
 

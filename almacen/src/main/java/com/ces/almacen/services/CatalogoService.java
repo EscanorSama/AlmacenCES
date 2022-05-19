@@ -25,8 +25,7 @@ public class CatalogoService {
 
     public CatalogoModel insertCatalogo(CatalogoModel catalogoModel) {
         Catalogo catalogo = catalogoConverter.modelToEntity(catalogoModel);
-        Contenedor contenedor = contenedorService.insertContenedor(catalogoModel);
-
+        Contenedor contenedor = contenedorService.insertContenedor(catalogoModel,"Catalogo");
         catalogo.setContenedor(contenedor);
         catalogoModel.setCatalogoId(catalogoRepository.save(catalogo).getCatalogoId());
         return catalogoModel;

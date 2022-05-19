@@ -27,9 +27,9 @@ public class ContenedorService {
     private LineaAlmacenService lineaAlmacenService;
 
 
-    public Contenedor insertContenedor(ContenedorModel contenedorModel) {
+    public Contenedor insertContenedor(ContenedorModel contenedorModel,String tipo) {
         List<LineaAlmacenModel> lineasAlmacenModel = contenedorModel.getLineasAlmacen();
-        Contenedor contenedor = contenedorRepository.save(contenedorConverter.modelToEntity(contenedorModel));
+        Contenedor contenedor = contenedorRepository.save(contenedorConverter.modelToEntity(contenedorModel,tipo));
         for (LineaAlmacenModel lineaAlmacenModel: lineasAlmacenModel) {
             lineaAlmacenModel.setContenedorId(contenedor.getId());
             lineaAlmacenService.insertLineaAlmacen(lineaAlmacenModel);

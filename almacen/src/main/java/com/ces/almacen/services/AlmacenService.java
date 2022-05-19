@@ -40,7 +40,7 @@ public class AlmacenService {
 
 
     public AlmacenModel insertAlmacen(AlmacenModel almacenModel) {
-        Contenedor contenedor = contenedorService.insertContenedor(almacenModel);
+        Contenedor contenedor = contenedorService.insertContenedor(almacenModel,"Almacen");
         Almacen almacen = almacenConverter.modelToEntity(almacenModel);
         almacen.setContenedor(contenedor);
         almacenModel.setAlmacenId(almacenRepository.save(almacen).getId());
