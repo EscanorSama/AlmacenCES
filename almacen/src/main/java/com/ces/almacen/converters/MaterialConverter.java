@@ -66,9 +66,9 @@ public class MaterialConverter {
         material.setFechaFinUso(materialModel.getFechaFinUso());
         material.setLineasAlmacen(lineaAlmacenConverter.listModelToListEntity(materialModel.getLineasAlmacen()));
 
-        if(material.getLineasAlmacen().get(0).getContenedor().getTipo().equals("Catalogo")){
+        /*if(material.getLineasAlmacen().get(0).getContenedor().getTipo().equals("Catalogo")){
             material.setNumUnidades(0);
-        }
+        }*/
 
         List<Categoria> categorias = categoriaConverter.listModelToListEntity(materialModel.getCategorias());
         material.setCategorias(categorias);

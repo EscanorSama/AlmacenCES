@@ -46,9 +46,9 @@ public class LineaAlmacenConverter {
         contenedor.setId(lineaAlmacenModel.getContenedorId());
         lineaAlmacen.setContenedor(contenedor);
 
-        if (contenedor.getTipo().equals("Catalogo")){
+        /*if (contenedor.getTipo().equals("Catalogo")){
             lineaAlmacen.setCantidad(0);
-        }
+        }*/
 
         return lineaAlmacen;
     }
