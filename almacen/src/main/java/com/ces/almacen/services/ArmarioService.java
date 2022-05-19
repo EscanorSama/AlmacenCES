@@ -1,6 +1,7 @@
 package com.ces.almacen.services;
 
 import com.ces.almacen.converters.ArmarioConverter;
+import com.ces.almacen.converters.ProfesorConverter;
 import com.ces.almacen.entities.Alumno;
 import com.ces.almacen.entities.Armario;
 import com.ces.almacen.entities.Contenedor;
@@ -37,6 +38,9 @@ public class ArmarioService {
     @Autowired
     private ContenedorRepository contenedorRepository;
 
+    @Autowired
+    private ProfesorConverter profesorConverter;
+
     public ArmarioModel insertArmario(ArmarioModel armarioModel) {
         Contenedor contenedor = contenedorService.insertContenedor(armarioModel);
         Armario armario = armarioConverter.modelToEntity(armarioModel);
@@ -72,16 +76,20 @@ public class ArmarioService {
         if(result.isPresent()){
             Armario armario = result.get();
             ArmarioModel armarioModel = armarioConverter.entityToModel(armario);
+            /*Optional<Profesor> profesor=(profesorRepository.findById(armarioModel.getProfesor().getProfesorId()));
+            if(profesor.isPresent()){
+            armarioModel.setProfesor(profesorConverter.entityToModel(profesor.get()));}*/
             resultAm = Optional.of(armarioModel);
+
         }
         return resultAm;
     }
 
-    public List<ArmarioModel> getArmarios() {
+    /*public List<ArmarioModel> getArmarios() {
         List<Armario> armarios = armarioRepository.findAll();
         List<ArmarioModel> armariosModel = listArmarioToListArmarioModel(armarios);
         return armariosModel;
-    }
+    }*/
 
     private List<ArmarioModel> listArmarioToListArmarioModel(List<Armario> armarios) {
         List<ArmarioModel> armariosModel = new ArrayList<>();

@@ -1,6 +1,7 @@
 package com.ces.almacen.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -29,14 +30,12 @@ public class Armario {
     private Contenedor contenedor;
 
     @ManyToOne
-    @JsonBackReference
+    @JsonIgnoreProperties({"armarios"})
     private Profesor profesor;
 
     @OneToMany (mappedBy = "armario")
     @JsonManagedReference
     List<LineaSolicitud> lineasSolicitud;
-
-
 
 
 }

@@ -6,15 +6,18 @@ import com.ces.almacen.entities.Profesor;
 import com.ces.almacen.models.ArmarioModel;
 import com.ces.almacen.models.ProfesorModel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.prefs.PreferencesFactory;
 
+@Lazy
 @Component
 public class ProfesorConverter {
 
+    @Lazy
     @Autowired
     private ArmarioConverter armarioConverter;
 

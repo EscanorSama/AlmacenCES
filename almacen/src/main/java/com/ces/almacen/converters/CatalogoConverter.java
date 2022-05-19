@@ -27,20 +27,14 @@ public class CatalogoConverter {
     public Catalogo modelToEntity(CatalogoModel catalogoModel){
         Catalogo catalogo = new Catalogo();
         catalogo.setCatalogoId(catalogoModel.getCatalogoId());
-        catalogoModel.setTipo("");
-        catalogoModel.setZona("");
-        catalogoModel.setTipo("Catalogo");
-        catalogoModel.setNumero(0);
-        catalogoModel.setDescripcion("");
-
         Contenedor contenedor = new Contenedor();
         contenedor.setId(catalogoModel.getContenedorId());
-        contenedor.setDescripcion(catalogoModel.getDescripcion());
-        contenedor.setZona(catalogoModel.getZona());
-        contenedor.setNumero(catalogoModel.getNumero());
+        contenedor.setDescripcion("");
+        contenedor.setZona("");
+        contenedor.setNumero(0);
         contenedor.setTipo("Catalogo");
         contenedor.setLineasAlmacen(lineaAlmacenConverter.listModelToListEntity(catalogoModel.getLineasAlmacen()));
-
+        catalogo.setContenedor(contenedor);
         return catalogo;
     }
 }
