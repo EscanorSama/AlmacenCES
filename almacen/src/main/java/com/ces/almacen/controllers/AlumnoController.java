@@ -57,6 +57,17 @@ public class AlumnoController {
         alumnoService.insertTaquilla(alumnoId,taquillaId);
     }
 
+    /*@PutMapping(path = "/alumno/mail")
+    public void putAlumnoMail(@RequestBody AlumnoModel alumnoModel){
+        alumnoService.updateAlumno(alumnoModel);
+    }*/
+
+
+    @PutMapping(path = "/alumno")
+    public AlumnoModel putAlumno(@RequestBody AlumnoModel alumnoModel){
+         return alumnoService.updateAlumno(alumnoModel);
+    }
+
 
 
     @DeleteMapping(path = "/alumno/{id}")
@@ -68,10 +79,7 @@ public class AlumnoController {
         throw new NotFoundException();
     }
 
-    @PutMapping(path = "/alumno/mail")
-    public void putAlumnoMail(@RequestBody AlumnoModel alumnoModel){
-        alumnoService.updateAlumno(alumnoModel);
-    }
+
 
     @GetMapping(path = "/numAlumnos")
     public int getNumAlumnos(){

@@ -30,8 +30,8 @@ public class Categoria {
     @JsonIgnoreProperties({"categorias"})
     private List<Material> materiales;
 
-    /*@PreRemove
+    @PreRemove
     private void preRemove(){
         materiales.forEach(material -> material.setCategorias(null));
-    }*/
+    }
 }

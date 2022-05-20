@@ -111,7 +111,7 @@ public class AlumnoService {
         return alumnosModel;
     }
 
-    public void updateAlumno (AlumnoModel alumnoM){
+    /*public void updateAlumno (AlumnoModel alumnoM){
         Optional<Alumno> result = alumnoRepository.findById(alumnoM.getAlumnoId());
         if(result.isPresent()){
             Alumno alumno = result.get();
@@ -119,6 +119,15 @@ public class AlumnoService {
             persona.setMail(alumnoM.getMail());
             personaRepository.save(persona);
             alumnoRepository.save(alumno);
+        }
+    }*/
+
+    public AlumnoModel updateAlumno(AlumnoModel alumnoModel) {
+        Optional<AlumnoModel> resultAm = Optional.empty();
+        Optional<Alumno> result = alumnoRepository.findById(alumnoModel.getAlumnoId());
+        if (result.isPresent()){
+            Alumno alumno = result.get();
+            alumno.getPersona();
         }
     }
 
@@ -150,4 +159,6 @@ public class AlumnoService {
         List<Alumno> alumnos = alumnoRepository.findAll();
         return alumnos.size();
     }
+
+
 }

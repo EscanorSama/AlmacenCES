@@ -4,10 +4,7 @@ import com.ces.almacen.entities.Armario;
 import com.ces.almacen.entities.Contenedor;
 import com.ces.almacen.entities.LineaAlmacen;
 import com.ces.almacen.entities.Profesor;
-import com.ces.almacen.models.ArmarioModel;
-import com.ces.almacen.models.ContenedorModel;
-import com.ces.almacen.models.LineaAlmacenModel;
-import com.ces.almacen.models.ProfesorModel;
+import com.ces.almacen.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
@@ -41,6 +38,7 @@ public class ArmarioConverter {
         armarioModel.setTipo("Armario");
         List<LineaAlmacenModel> lineasAlmacen = lineaAlmacenConverter.listEntityToListModel(armario.getContenedor().getLineasAlmacen());
         armarioModel.setLineasAlmacen(lineasAlmacen);
+
         if(armario.getProfesor() != null)  {
             armario.getProfesor().setArmarios(null) ;
             ProfesorModel profesorModel = profesorConverter.entityToModel(armario.getProfesor());
