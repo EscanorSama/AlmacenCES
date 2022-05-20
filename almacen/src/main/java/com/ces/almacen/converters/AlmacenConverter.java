@@ -23,6 +23,8 @@ public class AlmacenConverter {
         almacenModel.setZona(almacen.getContenedor().getZona());
         almacenModel.setNumero(almacen.getContenedor().getNumero());
         almacenModel.setTipo(almacen.getContenedor().getTipo());
+        List<LineaAlmacenModel> lineasAlmacen = lineaAlmacenConverter.listEntityToListModel(almacen.getContenedor().getLineasAlmacen());
+        almacenModel.setLineasAlmacen(lineasAlmacen);
         return almacenModel;
     }
 
