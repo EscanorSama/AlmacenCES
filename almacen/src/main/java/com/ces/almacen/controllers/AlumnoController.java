@@ -64,8 +64,8 @@ public class AlumnoController {
 
 
     @PutMapping(path = "/alumno")
-    public AlumnoModel putAlumno(@RequestBody AlumnoModel alumnoModel){
-         return alumnoService.updateAlumno(alumnoModel);
+    public void putAlumno(@RequestBody AlumnoModel alumnoModel){
+          alumnoService.updateAlumno(alumnoModel);
     }
 
 

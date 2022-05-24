@@ -122,12 +122,14 @@ public class AlumnoService {
         }
     }*/
 
-    public AlumnoModel updateAlumno(AlumnoModel alumnoModel) {
-        Optional<AlumnoModel> resultAm = Optional.empty();
+    public void updateAlumno(AlumnoModel alumnoModel) {
+
         Optional<Alumno> result = alumnoRepository.findById(alumnoModel.getAlumnoId());
         if (result.isPresent()){
             Alumno alumno = result.get();
-            alumno.getPersona();
+            Alumno alumnoConvertido = alumnoConverter.modelToEntity(alumnoModel);
+            alumnoRepository.save(alumnoConvertido);
+
         }
     }
 
