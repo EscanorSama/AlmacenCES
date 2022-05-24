@@ -51,9 +51,14 @@ public class AlumnoConverter {
         alumno.setCodigoPostal(alumnoModel.getCodigoPostal());
         alumno.setTelefono(alumnoModel.getTelefono());
         alumno.setMovil(alumnoModel.getMovil());
-        Taquilla taquilla = new Taquilla();
-        taquilla.setId(alumnoModel.getTaquilla().getTaquillaId());
-        alumno.setTaquilla(taquilla);
+
+        /*if(alumnoModel.getTaquilla()!= null){
+            TaquillaModel taquillaModel = alumnoModel.getTaquilla();
+            Taquilla taquilla = taquillaConverter.modelToEntity(taquillaModel);
+            taquilla.setId(alumnoModel.getTaquilla().getTaquillaId());
+            alumno.setTaquilla(taquilla);
+        }*/
+
         Persona persona = new Persona();
         persona.setId(alumnoModel.getPersonaId());
         persona.setMail(alumnoModel.getMail());
@@ -62,6 +67,7 @@ public class AlumnoConverter {
         persona.setDni(alumnoModel.getDni());
         persona.setTipo(alumnoModel.getTipo());
         alumno.setPersona(persona);
+
         return alumno;
     }
 }
