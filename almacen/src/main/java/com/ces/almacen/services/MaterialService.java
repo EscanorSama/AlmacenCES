@@ -147,32 +147,13 @@ public class MaterialService {
         return materialesModelFinales;
     }*/
 
-    public MaterialModel updateMaterial(MaterialModel materialModel) {
-        MaterialModel materialModelModificado = new MaterialModel();
+    public void updateMaterial(MaterialModel materialModel) {
         Optional<Material> result = materialRepository.findById(materialModel.getId());
         if (result.isPresent()){
-            Material material = result.get();
-            material.setNombre(materialModel.getNombre());
-            material.setDescripcion(materialModel.getDescripcion());
-            material.setMarca(materialModel.getMarca());
-            material.setProveedor(materialModel.getProveedor());
-            material.setNumUnidades(materialModel.getNumUnidades());
-            material.setMinimoStock(materialModel.getMinimoStock());
-            material.setObservaciones(materialModel.getObservaciones());
-            material.setPrecio(materialModel.getPrecio());
-            material.setFungible(materialModel.isFungible());
-            material.setFechaUso(materialModel.getFechaUso());
-            material.setFechaFinUso(materialModel.getFechaFinUso());
-            List<LineaAlmacenModel> lineasAlmacenModel = materialModel.getLineasAlmacen();
-            List<LineaAlmacen> lineasAlmacen = lineaAlmacenConverter.listModelToListEntity(lineasAlmacenModel);
-            material.setLineasAlmacen(lineasAlmacen);
-            materialRepository.save(material);
-            materialModelModificado = materialConverter.entityToModel(material);
+            Material materialConvertido = materialConverter.modelToEntity(materialModel);
+            materialRepository.save(materialConvertido);
         }
-        return materialModelModificado;
     }
-
-
 
     public int getNumMateriales() {
         List<Material> materiales = materialRepository.findAll();

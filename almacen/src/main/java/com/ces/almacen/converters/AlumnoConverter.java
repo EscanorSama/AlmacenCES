@@ -5,6 +5,7 @@ import com.ces.almacen.entities.Persona;
 import com.ces.almacen.entities.Taquilla;
 import com.ces.almacen.models.AlumnoModel;
 import com.ces.almacen.models.TaquillaModel;
+import com.ces.almacen.repositories.TaquillaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -12,6 +13,9 @@ import org.springframework.stereotype.Component;
 public class AlumnoConverter {
     @Autowired
     private TaquillaConverter taquillaConverter;
+
+    @Autowired
+    private TaquillaRepository taquillaRepository;
 
     public AlumnoModel entityToModel(Alumno alumno){
         AlumnoModel alumnoModel = new AlumnoModel();
@@ -52,11 +56,12 @@ public class AlumnoConverter {
         alumno.setTelefono(alumnoModel.getTelefono());
         alumno.setMovil(alumnoModel.getMovil());
 
-        /*if(alumnoModel.getTaquilla()!= null){
-            TaquillaModel taquillaModel = alumnoModel.getTaquilla();
-            Taquilla taquilla = taquillaConverter.modelToEntity(taquillaModel);
+        /*if(alumnoModel.getTaquilla()!=null || alumnoModel.getTaquilla()==null){
+            Taquilla taquilla = new Taquilla();
             taquilla.setId(alumnoModel.getTaquilla().getTaquillaId());
+            taquillaRepository.save(taquilla);
             alumno.setTaquilla(taquilla);
+
         }*/
 
         Persona persona = new Persona();

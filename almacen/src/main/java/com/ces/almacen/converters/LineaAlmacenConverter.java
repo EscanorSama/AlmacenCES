@@ -22,9 +22,9 @@ public class LineaAlmacenConverter {
         lineaAlmacenModel.setCantidad(lineaAlmacen.getCantidad());
         lineaAlmacenModel.setFecha(lineaAlmacen.getFecha());
         lineaAlmacenModel.setContenedorId(lineaAlmacen.getContenedor().getId());
-        if(lineaAlmacen.getContenedor().getTipo().equals("Catalogo")){
+        /*if(lineaAlmacen.getContenedor().getTipo().equals("Catalogo")){
             lineaAlmacenModel.setCantidad(0);
-        }
+        }*/
         lineaAlmacenModel.setMaterialId(lineaAlmacen.getMaterial().getId());
         return lineaAlmacenModel;
     }

@@ -40,9 +40,9 @@ public class MaterialConverter {
         List<LineaAlmacenModel> lineasAlmacenModel = lineaAlmacenConverter.listEntityToListModel(lineasAlmacen);
         materialModel.setLineasAlmacen(lineasAlmacenModel);
 
-        if(lineasAlmacen.get(0).getContenedor().getTipo().equals("Catalogo")){
+        /*if(lineasAlmacen.get(0).getContenedor().getTipo().equals("Catalogo")){
             materialModel.setNumUnidades(0);
-        }
+        }*/
 
         List<CategoriaModel> categoriasModel = categoriaConverter.listEntityToListModel(material.getCategorias());
         materialModel.setCategorias(categoriasModel);
@@ -52,7 +52,7 @@ public class MaterialConverter {
 
     public Material modelToEntity(MaterialModel materialModel){
         Material material = new Material();
-        material.setId(material.getId());
+        material.setId(materialModel.getId());
         material.setNombre(materialModel.getNombre());
         material.setDescripcion(materialModel.getDescripcion());
         material.setMarca(materialModel.getMarca());
@@ -65,10 +65,6 @@ public class MaterialConverter {
         material.setFechaUso(materialModel.getFechaUso());
         material.setFechaFinUso(materialModel.getFechaFinUso());
         material.setLineasAlmacen(lineaAlmacenConverter.listModelToListEntity(materialModel.getLineasAlmacen()));
-
-        /*if(material.getLineasAlmacen().get(0).getContenedor().getTipo().equals("Catalogo")){
-            material.setNumUnidades(0);
-        }*/
 
         List<Categoria> categorias = categoriaConverter.listModelToListEntity(materialModel.getCategorias());
         material.setCategorias(categorias);

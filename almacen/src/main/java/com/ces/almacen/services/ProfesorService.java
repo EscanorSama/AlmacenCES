@@ -105,13 +105,12 @@ public class ProfesorService {
     }
 
     public void updateProfesor(ProfesorModel profesorM){
+
         Optional<Profesor> result = profesorRepository.findById(profesorM.getProfesorId());
         if (result.isPresent()){
-            Profesor profesor = result.get();
-            Persona persona = profesor.getPersona();
-            persona.setMail(profesorM.getMail());
-            personaRepository.save(persona);
-            profesorRepository.save(profesor);
+           Profesor profesorConvertido = profesorConverter.modelToEntity(profesorM);
+           personaRepository.save(profesorConvertido.getPersona());
+           profesorRepository.save(profesorConvertido);
         }
     }
 

@@ -57,8 +57,8 @@ public class MaterialController {
     }
 
     @PutMapping(path = "/material")
-    public MaterialModel putMaterial(@RequestBody MaterialModel materialModel){
-        return materialService.updateMaterial(materialModel);
+    public void putMaterial(@RequestBody MaterialModel materialModel){
+         materialService.updateMaterial(materialModel);
     }
 
     @DeleteMapping(path = "/material/{id}")

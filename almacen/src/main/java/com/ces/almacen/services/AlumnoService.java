@@ -127,6 +127,7 @@ public class AlumnoService {
         Optional<Alumno> result = alumnoRepository.findById(alumnoModel.getAlumnoId());
         if (result.isPresent()){
             Alumno alumnoConvertido = alumnoConverter.modelToEntity(alumnoModel);
+
             personaRepository.save(alumnoConvertido.getPersona());
             alumnoRepository.save(alumnoConvertido);
         }
