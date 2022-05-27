@@ -34,6 +34,10 @@ public class MaterialService {
     @Autowired
     private LineaAlmacenRepository lineaAlmacenRepository;
 
+    /**
+     * Insertar material en el almacén principal
+     * @param materialModel
+     */
     public void insertMaterial(MaterialModel materialModel) {
         Material material = materialConverter.modelToEntity(materialModel);
         log.info("*** ANTES DE LA INSERCIÓN: "+material.toString());
@@ -151,6 +155,7 @@ public class MaterialService {
         Optional<Material> result = materialRepository.findById(materialModel.getId());
         if (result.isPresent()){
             Material materialConvertido = materialConverter.modelToEntity(materialModel);
+
             materialRepository.save(materialConvertido);
         }
     }

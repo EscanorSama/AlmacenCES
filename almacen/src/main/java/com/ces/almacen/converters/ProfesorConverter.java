@@ -76,8 +76,8 @@ public class ProfesorConverter {
         persona.setApellido(profesorModel.getApellido());
         persona.setMail(profesorModel.getMail());
         persona.setTipo(profesorModel.getTipo());
+        persona.setDni(profesorModel.getDni());
         profesor.setPersona(persona);
-
 
         return profesor;
     }

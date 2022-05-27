@@ -57,10 +57,6 @@ public class AlumnoController {
         alumnoService.insertTaquilla(alumnoId,taquillaId);
     }
 
-    /*@PutMapping(path = "/alumno/mail")
-    public void putAlumnoMail(@RequestBody AlumnoModel alumnoModel){
-        alumnoService.updateAlumno(alumnoModel);
-    }*/
 
 
     @PutMapping(path = "/alumno")

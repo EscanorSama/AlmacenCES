@@ -43,8 +43,8 @@ public class ProfesorController {
         throw new NotFoundException();
     }
 
-    @PutMapping(path = "/profesor/mail")
-    public void putProfesor(ProfesorModel profesorModel){
+    @PutMapping(path = "/profesor")
+    public void putProfesor(@RequestBody ProfesorModel profesorModel){
         profesorService.updateProfesor(profesorModel);
     }
 
