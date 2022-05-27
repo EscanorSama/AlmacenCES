@@ -40,8 +40,6 @@ public class Material {
     @Column(name = "proveedor")
     private String proveedor;
 
-    @Column(name = "numUnidades")
-    private int numUnidades;
 
     @Column(name = "minimoStock")
     private int minimoStock;

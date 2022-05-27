@@ -28,7 +28,6 @@ public class MaterialConverter {
         materialModel.setDescripcion(material.getDescripcion());
         materialModel.setMarca(material.getMarca());
         materialModel.setProveedor(material.getProveedor());
-        materialModel.setNumUnidades(material.getNumUnidades());
         materialModel.setMinimoStock(material.getMinimoStock());
         materialModel.setObservaciones(material.getObservaciones());
         materialModel.setPrecio(material.getPrecio());
@@ -36,13 +35,9 @@ public class MaterialConverter {
         materialModel.setFechaUso(material.getFechaUso());
         materialModel.setFechaFinUso(material.getFechaFinUso());
 
-        List<LineaAlmacen> lineasAlmacen = material.getLineasAlmacen();
+        /*List<LineaAlmacen> lineasAlmacen = material.getLineasAlmacen();
         List<LineaAlmacenModel> lineasAlmacenModel = lineaAlmacenConverter.listEntityToListModel(lineasAlmacen);
-        materialModel.setLineasAlmacen(lineasAlmacenModel);
-
-        /*if(lineasAlmacen.get(0).getContenedor().getTipo().equals("Catalogo")){
-            materialModel.setNumUnidades(0);
-        }*/
+        materialModel.setLineasAlmacen(lineasAlmacenModel);*/
 
         List<CategoriaModel> categoriasModel = categoriaConverter.listEntityToListModel(material.getCategorias());
         materialModel.setCategorias(categoriasModel);
@@ -57,14 +52,14 @@ public class MaterialConverter {
         material.setDescripcion(materialModel.getDescripcion());
         material.setMarca(materialModel.getMarca());
         material.setProveedor(materialModel.getProveedor());
-        material.setNumUnidades(materialModel.getNumUnidades());
         material.setMinimoStock(materialModel.getMinimoStock());
         material.setObservaciones(materialModel.getObservaciones());
         material.setPrecio(materialModel.getPrecio());
         material.setFungible(materialModel.isFungible());
         material.setFechaUso(materialModel.getFechaUso());
         material.setFechaFinUso(materialModel.getFechaFinUso());
-        material.setLineasAlmacen(lineaAlmacenConverter.listModelToListEntity(materialModel.getLineasAlmacen()));
+        /*material.setLineasAlmacen(lineaAlmacenConverter.listModelToListEntity(materialModel.getLineasAlmacen()));*/
+
 
         List<Categoria> categorias = categoriaConverter.listModelToListEntity(materialModel.getCategorias());
         material.setCategorias(categorias);

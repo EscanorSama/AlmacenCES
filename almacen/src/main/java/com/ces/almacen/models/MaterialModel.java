@@ -18,7 +18,6 @@ public class MaterialModel {
     private String descripcion;
     private String marca;
     private String proveedor;
-    private int numUnidades;
     private int minimoStock;
     private String observaciones;
     private double precio;
@@ -26,7 +25,7 @@ public class MaterialModel {
     private boolean fungible;
     private Date fechaUso;
     private Date fechaFinUso;
-    private List<LineaAlmacenModel> lineasAlmacen;
+    //private List<LineaAlmacenModel> lineasAlmacen;
 
 
 }
