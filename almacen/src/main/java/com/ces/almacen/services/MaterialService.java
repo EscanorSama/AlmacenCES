@@ -44,12 +44,12 @@ public class MaterialService {
         material = materialRepository.save(material);
         log.info("*** DESPUÉS DE LA INSERCIÓN: "+material.toString());
         Long materialId = material.getId();
-        LineaAlmacenModel lineaAlmacenModel = materialModel.getLineasAlmacen().get(0);
+        /*LineaAlmacenModel lineaAlmacenModel = materialModel.getLineasAlmacen().get(0);
         lineaAlmacenModel.setCantidad(materialModel.getNumUnidades());
         lineaAlmacenModel.setFecha(new java.sql.Date(new Date().getTime()));
         lineaAlmacenModel.setMaterialId(materialId);
         LineaAlmacen lineaAlmacen = lineaAlmacenConverter.modelToEntity(lineaAlmacenModel);
-        lineaAlmacenRepository.save(lineaAlmacen);
+        lineaAlmacenRepository.save(lineaAlmacen);*/
 
     }
 

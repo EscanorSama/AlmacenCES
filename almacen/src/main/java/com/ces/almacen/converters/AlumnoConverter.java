@@ -55,15 +55,7 @@ public class AlumnoConverter {
         alumno.setCodigoPostal(alumnoModel.getCodigoPostal());
         alumno.setTelefono(alumnoModel.getTelefono());
         alumno.setMovil(alumnoModel.getMovil());
-/*
-        if(alumnoModel.getTaquilla()!=null || alumnoModel.getTaquilla()==null){
-            Taquilla taquilla = new Taquilla();
-            taquilla.setId(alumnoModel.getTaquilla().getTaquillaId());
-            taquillaRepository.save(taquilla);
-            alumno.setTaquilla(taquilla);
 
-        }
-*/
         Persona persona = new Persona();
         persona.setId(alumnoModel.getPersonaId());
         persona.setMail(alumnoModel.getMail());
