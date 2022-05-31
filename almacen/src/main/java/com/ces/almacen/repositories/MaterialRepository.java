@@ -12,6 +12,10 @@ public interface MaterialRepository extends JpaRepository<Material, Long> {
 
     Page<Material> findByProveedor(String proveedor, Pageable pageable);
 
+    Page<Material> findByLineasAlmacenLengthEquals(Integer numUnidades, Pageable pageable);
+    Page<Material> findByLineasAlmacenLengthGreaterThanEqual(Integer numUnidades, Pageable pageable);
+
+
 
 
 

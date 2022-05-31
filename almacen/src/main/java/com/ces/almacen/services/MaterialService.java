@@ -88,7 +88,7 @@ public class MaterialService {
         return resultMm;
     }
 
-    public List<MaterialModel> getMaterialesPag(int nPag , int tPag) {
+    public List<MaterialModel> getMaterialesPag(int nPag , int tPag, int numMateriales) {
         Pageable pageable = PageRequest.of(nPag, tPag);
         Page<Material> materialesPag = materialRepository.findAll(pageable);
         List<Material> materiales = materialesPag.getContent();

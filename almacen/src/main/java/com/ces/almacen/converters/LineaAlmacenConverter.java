@@ -43,13 +43,12 @@ public class LineaAlmacenConverter {
         lineaAlmacen.setMaterial(material);
 
 
+
         Contenedor contenedor = new Contenedor();
         contenedor.setId(lineaAlmacenModel.getContenedor().getContenedorId());
         lineaAlmacen.setContenedor(contenedor);
 
-        /*if (contenedor.getTipo().equals("Catalogo")){
-            lineaAlmacen.setCantidad(0);
-        }*/
+
 
         return lineaAlmacen;
     }

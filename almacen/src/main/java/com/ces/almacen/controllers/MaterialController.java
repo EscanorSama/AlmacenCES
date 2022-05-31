@@ -35,10 +35,11 @@ public class MaterialController {
     public List<MaterialModel> getMateriales(@RequestParam(name = "npag", required = false)Integer npag,
                                              @RequestParam(name = "tPag", required = false)Integer tPag,
                                              @RequestParam(name = "marca", required = false)String marca,
-                                             @RequestParam(name = "proveedor", required = false)String proveedor){
+                                             @RequestParam(name = "proveedor", required = false)String proveedor,
+                                             @RequestParam(name = "numMateriales", required = false)Integer numMateriales){
 
         if(npag!= null && marca==null && proveedor==null){
-            return materialService.getMaterialesPag(npag, tPag);
+            return materialService.getMaterialesPag(npag, tPag, numMateriales);
         }  else if(npag!= null && marca!=null && proveedor==null){
             return materialService.getMaterialMarca(npag, marca, tPag);
         } else {
