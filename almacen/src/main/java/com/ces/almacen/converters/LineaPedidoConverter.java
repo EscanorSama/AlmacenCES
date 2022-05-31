@@ -17,11 +17,14 @@ public class LineaPedidoConverter {
     @Autowired
     private MaterialConverter materialConverter;
 
+
+
     public LineaPedidoModel entityToModel(LineaPedido lineaPedido){
         LineaPedidoModel lineaPedidoModel = new LineaPedidoModel();
         lineaPedidoModel.setId(lineaPedido.getId());
         lineaPedidoModel.setCantidad(lineaPedido.getCantidad());
-        lineaPedidoModel.setMaterialId(lineaPedido.getMaterial().getId());
+        //lineaPedidoModel.setMaterialId(lineaPedido.getMaterial().getId());
+        lineaPedidoModel.setMaterial(materialConverter.entityToModel(lineaPedido.getMaterial()));
         lineaPedidoModel.setIdPedido(lineaPedido.getPedido().getId());
 
         return lineaPedidoModel;
@@ -36,7 +39,7 @@ public class LineaPedidoConverter {
         lineaPedido.setPedido(pedido);
 
         Material material = new Material();
-        material.setId(lineaPedidoModel.getMaterialId());
+        material.setId(lineaPedidoModel.getMaterial().getId());
         lineaPedido.setMaterial(material);
         return lineaPedido;
     }
