@@ -35,9 +35,9 @@ public class MaterialConverter {
         materialModel.setFechaUso(material.getFechaUso());
         materialModel.setFechaFinUso(material.getFechaFinUso());
 
-        /*List<LineaAlmacen> lineasAlmacen = material.getLineasAlmacen();
+        List<LineaAlmacen> lineasAlmacen = material.getLineasAlmacen();
         List<LineaAlmacenModel> lineasAlmacenModel = lineaAlmacenConverter.listEntityToListModel(lineasAlmacen);
-        materialModel.setLineasAlmacen(lineasAlmacenModel);*/
+        materialModel.setLineasAlmacen(lineasAlmacenModel);
 
         List<CategoriaModel> categoriasModel = categoriaConverter.listEntityToListModel(material.getCategorias());
         materialModel.setCategorias(categoriasModel);
@@ -58,7 +58,7 @@ public class MaterialConverter {
         material.setFungible(materialModel.isFungible());
         material.setFechaUso(materialModel.getFechaUso());
         material.setFechaFinUso(materialModel.getFechaFinUso());
-        /*material.setLineasAlmacen(lineaAlmacenConverter.listModelToListEntity(materialModel.getLineasAlmacen()));*/
+        material.setLineasAlmacen(lineaAlmacenConverter.listModelToListEntity(materialModel.getLineasAlmacen()));
 
 
         List<Categoria> categorias = categoriaConverter.listModelToListEntity(materialModel.getCategorias());

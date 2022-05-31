@@ -25,7 +25,7 @@ public class MaterialModel {
     private boolean fungible;
     private Date fechaUso;
     private Date fechaFinUso;
-    //private List<LineaAlmacenModel> lineasAlmacen;
+    private List<LineaAlmacenModel> lineasAlmacen;
 
 
 }

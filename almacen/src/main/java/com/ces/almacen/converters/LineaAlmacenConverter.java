@@ -14,6 +14,8 @@ import java.util.List;
 @Component
 public class LineaAlmacenConverter {
 
+    @Autowired
+    private ContenedorConverter contenedorConverter;
 
 
     public LineaAlmacenModel entityToModel(LineaAlmacen lineaAlmacen){
@@ -21,10 +23,9 @@ public class LineaAlmacenConverter {
         lineaAlmacenModel.setId(lineaAlmacen.getId());
         lineaAlmacenModel.setCantidad(lineaAlmacen.getCantidad());
         lineaAlmacenModel.setFecha(lineaAlmacen.getFecha());
-        lineaAlmacenModel.setContenedorId(lineaAlmacen.getContenedor().getId());
-        /*if(lineaAlmacen.getContenedor().getTipo().equals("Catalogo")){
-            lineaAlmacenModel.setCantidad(0);
-        }*/
+        //lineaAlmacenModel.setContenedorId(lineaAlmacen.getContenedor().getId());
+        Contenedor contenedor = lineaAlmacen.getContenedor();
+        lineaAlmacenModel.setContenedor(contenedorConverter.entityToModel(contenedor));
         lineaAlmacenModel.setMaterialId(lineaAlmacen.getMaterial().getId());
         return lineaAlmacenModel;
     }
@@ -43,7 +44,7 @@ public class LineaAlmacenConverter {
 
 
         Contenedor contenedor = new Contenedor();
-        contenedor.setId(lineaAlmacenModel.getContenedorId());
+        contenedor.setId(lineaAlmacenModel.getContenedor().getContenedorId());
         lineaAlmacen.setContenedor(contenedor);
 
         /*if (contenedor.getTipo().equals("Catalogo")){
