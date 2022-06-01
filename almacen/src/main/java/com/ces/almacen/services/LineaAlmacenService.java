@@ -49,15 +49,14 @@ public class LineaAlmacenService {
     }
 
     public void updateLineaContenedor(Long id, Long contenedorId) {
-        Optional<LineaAlmacen> result = lineaAlmacenRepository.findById(id);
-        if (result.isPresent()){
-            LineaAlmacen lineaAlmacen = result.get();
-
-
+        Optional<Contenedor> resultContenedor =contenedorRepository.findById(contenedorId);
+        Optional<LineaAlmacen> resultLineaAlmacen = lineaAlmacenRepository.findById(id);
+        if (resultContenedor.isPresent() && resultLineaAlmacen.isPresent()){
+            LineaAlmacen lineaAlmacen = resultLineaAlmacen.get();
 
             Contenedor contenedor = lineaAlmacen.getContenedor();
-
-
+            contenedor.setId(contenedorId);
+            lineaAlmacen.setContenedor(contenedor);
 
             lineaAlmacenRepository.save(lineaAlmacen);
 

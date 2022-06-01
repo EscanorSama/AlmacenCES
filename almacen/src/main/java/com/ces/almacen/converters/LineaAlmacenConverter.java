@@ -17,7 +17,8 @@ public class LineaAlmacenConverter {
     @Autowired
     private ContenedorConverter contenedorConverter;
 
-    
+    /*@Autowired
+    private MaterialConverter materialConverter;*/
 
 
     public LineaAlmacenModel entityToModel(LineaAlmacen lineaAlmacen){
@@ -39,19 +40,13 @@ public class LineaAlmacenConverter {
         lineaAlmacen.setCantidad(lineaAlmacenModel.getCantidad());
         lineaAlmacen.setFecha(lineaAlmacenModel.getFecha());
 
-
-
         Material material = new Material();
         material.setId(lineaAlmacenModel.getMaterialId());
         lineaAlmacen.setMaterial(material);
 
-
-
         Contenedor contenedor = new Contenedor();
         contenedor.setId(lineaAlmacenModel.getContenedor().getContenedorId());
         lineaAlmacen.setContenedor(contenedor);
-
-
 
         return lineaAlmacen;
     }
