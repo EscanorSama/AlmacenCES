@@ -1,7 +1,9 @@
 package com.ces.almacen.services;
 
+import com.ces.almacen.converters.CategoriaConverter;
 import com.ces.almacen.converters.LineaAlmacenConverter;
 import com.ces.almacen.converters.MaterialConverter;
+import com.ces.almacen.entities.Categoria;
 import com.ces.almacen.entities.LineaAlmacen;
 import com.ces.almacen.entities.Material;
 import com.ces.almacen.models.LineaAlmacenModel;
@@ -13,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.text.Format;
@@ -33,6 +36,9 @@ public class MaterialService {
     private LineaAlmacenConverter lineaAlmacenConverter;
     @Autowired
     private LineaAlmacenRepository lineaAlmacenRepository;
+    @Autowired
+    private CategoriaConverter categoriaConverter;
+
 
     /**
      * Insertar material en el almacén principal
@@ -88,13 +94,46 @@ public class MaterialService {
         return resultMm;
     }
 
-    public List<MaterialModel> getMaterialesPag(int nPag , int tPag, int numMateriales) {
+    public List<MaterialModel> getMaterialesPag(int nPag , int tPag) {
+
         Pageable pageable = PageRequest.of(nPag, tPag);
-        Page<Material> materialesPag = materialRepository.findAll(pageable);
+
+        Page<Material> materialesPag =  materialRepository.findAll(pageable);
+
+
+
         List<Material> materiales = materialesPag.getContent();
-        List<MaterialModel> materialesModel = listMaterialesToMaterialesModel(materiales);
+
+
+        List<MaterialModel> materialesModel = materialConverter.listEntityToListModel(materiales);
         return materialesModel;
     }
+
+   /* public List<MaterialModel> getMaterialesPag(int nPag , int tPag,int n ){
+
+        int tPagRef = tPag;
+        Pageable pageable;
+        Page<Material> materialesPag;
+        List<Material> materiales =new ArrayList<>();
+        while(materiales.size()<tPagRef){
+            pageable=PageRequest.of(nPag, tPag);
+            materialesPag = materialRepository.findAll(pageable) ;
+            materiales = materialesPag.getContent();
+            for (Material material: materiales) {
+                if(material.getLineasAlmacen().size()<n){
+                    materiales.remove(material);
+                }
+            }
+            tPag+=1;
+        }
+
+
+
+
+        List<MaterialModel> materialesModel = materialConverter.listEntityToListModelLineasAlmacen(materiales);
+        return materialesModel;
+    }*/
+
     public List<MaterialModel> getMaterialMarca(int nPag, String marca, int tPag){
         Pageable pageable = PageRequest.of(nPag,tPag);
         Page<Material> materialesMarcaPag = materialRepository.findByMarca(marca, pageable);
@@ -154,9 +193,24 @@ public class MaterialService {
     public void updateMaterial(MaterialModel materialModel) {
         Optional<Material> result = materialRepository.findById(materialModel.getId());
         if (result.isPresent()){
-            Material materialConvertido = materialConverter.modelToEntity(materialModel);
+            //Material materialConvertido = materialConverter.modelToEntity(materialModel);
+            Material material = result.get();
+            material.setId(materialModel.getId());
+            material.setNombre(materialModel.getNombre());
+            material.setDescripcion(materialModel.getDescripcion());
+            material.setMarca(materialModel.getMarca());
+            material.setProveedor(materialModel.getProveedor());
+            material.setMinimoStock(materialModel.getMinimoStock());
+            material.setObservaciones(materialModel.getObservaciones());
+            material.setPrecio(materialModel.getPrecio());
+            material.setFungible(materialModel.isFungible());
+            material.setFechaUso(materialModel.getFechaUso());
+            material.setFechaFinUso(materialModel.getFechaFinUso());
+            material.setLineasAlmacen(lineaAlmacenConverter.listModelToListEntity(materialModel.getLineasAlmacen()));
+            List<Categoria> categorias = categoriaConverter.listModelToListEntity(materialModel.getCategorias());
+            material.setCategorias(categorias);
 
-            materialRepository.save(materialConvertido);
+            materialRepository.save(material);
         }
     }
 

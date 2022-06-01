@@ -111,25 +111,32 @@ public class AlumnoService {
         return alumnosModel;
     }
 
-    /*public void updateAlumno (AlumnoModel alumnoM){
-        Optional<Alumno> result = alumnoRepository.findById(alumnoM.getAlumnoId());
-        if(result.isPresent()){
-            Alumno alumno = result.get();
-            Persona persona = alumno.getPersona();
-            persona.setMail(alumnoM.getMail());
-            personaRepository.save(persona);
-            alumnoRepository.save(alumno);
-        }
-    }*/
 
     public void updateAlumno(AlumnoModel alumnoModel) {
 
         Optional<Alumno> result = alumnoRepository.findById(alumnoModel.getAlumnoId());
         if (result.isPresent()){
-            Alumno alumnoConvertido = alumnoConverter.modelToEntity(alumnoModel);
+            Alumno alumno = result.get();
+            alumno.setId(alumnoModel.getAlumnoId());
+            alumno.setNumExpediente(alumnoModel.getNumExpediente());
+            alumno.setDomicilio(alumnoModel.getDomicilio());
+            alumno.setPoblacion(alumnoModel.getPoblacion());
+            alumno.setProvincia(alumnoModel.getProvincia());
+            alumno.setCodigoPostal(alumnoModel.getCodigoPostal());
+            alumno.setTelefono(alumnoModel.getTelefono());
+            alumno.setMovil(alumnoModel.getMovil());
 
-            personaRepository.save(alumnoConvertido.getPersona());
-            alumnoRepository.save(alumnoConvertido);
+            Persona persona = alumno.getPersona();
+            persona.setId(alumnoModel.getPersonaId());
+            persona.setMail(alumnoModel.getMail());
+            persona.setNombre(alumnoModel.getNombre());
+            persona.setApellido(alumnoModel.getApellido());
+            persona.setDni(alumnoModel.getDni());
+            persona.setTipo(alumnoModel.getTipo());
+
+
+            personaRepository.save(alumno.getPersona());
+            alumnoRepository.save(alumno);
         }
     }
 

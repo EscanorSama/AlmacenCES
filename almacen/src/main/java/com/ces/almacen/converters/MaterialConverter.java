@@ -76,6 +76,19 @@ public class MaterialConverter {
         return materialesModel;
     }
 
+    public List<MaterialModel> listEntityToListModelLineasAlmacen(List<Material> materiales){
+        List<MaterialModel> materialesModel = new ArrayList<>();
+        for (Material material: materiales) {
+
+                MaterialModel materialModel = this.entityToModel(material);
+                materialesModel.add(materialModel);
+
+
+
+        }
+        return materialesModel;
+    }
+
     public List<Material> listModelToListEntity(List<MaterialModel> materialesModel){
         List<Material> materiales = new ArrayList<>();
         for (MaterialModel materialModel: materialesModel) {
