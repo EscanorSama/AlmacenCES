@@ -18,4 +18,5 @@ public class LineaAlmacenModel {
     //private long contenedorId;
     private ContenedorModel contenedor;
     private long materialId;
+    //private MaterialModel material;
 }
