@@ -108,6 +108,8 @@ public class ArmarioService {
             contenedor.setZona(armarioModel.getZona());
             contenedor.setDescripcion(armarioModel.getDescripcion());
             contenedor.setNumero(armarioModel.getNumero());
+            contenedor.setTipo(armarioModel.getTipo());
+            armario.setProfesor(profesorConverter.modelToEntity(armarioModel.getProfesor()));
             contenedorRepository.save(contenedor);
             armarioRepository.save(armario);
         }
