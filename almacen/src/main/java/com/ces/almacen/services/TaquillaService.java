@@ -1,5 +1,6 @@
 package com.ces.almacen.services;
 
+import com.ces.almacen.converters.AlumnoConverter;
 import com.ces.almacen.converters.TaquillaConverter;
 import com.ces.almacen.entities.Alumno;
 import com.ces.almacen.entities.Contenedor;
@@ -31,6 +32,8 @@ public class TaquillaService {
     private AlumnoRepository alumnoRepository;
     @Autowired
     private ContenedorRepository contenedorRepository;
+    @Autowired
+    private AlumnoConverter alumnoConverter;
 
 
     public TaquillaModel insertTaquilla(TaquillaModel taquillaModel) {
@@ -94,6 +97,8 @@ public class TaquillaService {
             contenedor.setZona(taquillaModel.getZona());
             contenedor.setDescripcion(taquillaModel.getDescripcion());
             contenedor.setNumero(taquillaModel.getNumero());
+            contenedor.setTipo(taquillaModel.getTipo());
+            taquilla.setAlumno(alumnoConverter.modelToEntity(taquillaModel.getAlumno()));
             contenedorRepository.save(contenedor);
             taquillaRepository.save(taquilla);
         }
