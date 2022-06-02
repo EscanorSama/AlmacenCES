@@ -24,8 +24,8 @@ public class LineaContenedorController {
     }
 
     @PutMapping(path = "/lineaContenedor/{id}")
-    public void putLineaContenedor(@PathVariable(name = "id") Long id, @RequestBody Long contenedorId){
-        lineaAlmacenService.updateLineaContenedor(id, contenedorId);
+    public void putLineaContenedor(@PathVariable(name = "id") Long id, @RequestBody  LineaAlmacenModel lineaAlmacenModel){
+        lineaAlmacenService.updateLineaContenedor(id, lineaAlmacenModel);
     }
 
 
