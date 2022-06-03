@@ -44,12 +44,13 @@ public class MaterialService {
      * Insertar material en el almacén principal
      * @param materialModel
      */
-    public void insertMaterial(MaterialModel materialModel) {
+    public MaterialModel insertMaterial(MaterialModel materialModel) {
         Material material = materialConverter.modelToEntity(materialModel);
         log.info("*** ANTES DE LA INSERCIÓN: "+material.toString());
         material = materialRepository.save(material);
         log.info("*** DESPUÉS DE LA INSERCIÓN: "+material.toString());
-        Long materialId = material.getId();
+        return materialConverter.entityToModel(material);
+
         /*LineaAlmacenModel lineaAlmacenModel = materialModel.getLineasAlmacen().get(0);
         lineaAlmacenModel.setCantidad(materialModel.getNumUnidades());
         lineaAlmacenModel.setFecha(new java.sql.Date(new Date().getTime()));

@@ -22,8 +22,8 @@ public class MaterialController {
     private MaterialService materialService;
 
     @PostMapping(path = "/material")
-    public void postMaterial(@RequestBody MaterialModel materialModel){
-        materialService.insertMaterial(materialModel);
+    public MaterialModel postMaterial(@RequestBody MaterialModel materialModel){
+        return materialService.insertMaterial(materialModel);
     }
 
     @PostMapping(path = "/materiales")
